@@ -1,0 +1,236 @@
+snippet tcbtit "tcolorbox with title"
+\\begin\{tcolorbox\} [space to upper,
+        collower=white,
+        title=\{${1:title}\},
+        nobeforeafter,
+        halign lower=flush right, ]
+$2
+\\end\{tcolorbox\}
+$0
+endsnippet
+
+snippet graphic "add image to document"
+\\includegraphics[${1:width=\\textwidth}]\{${2:imagename}\}
+endsnippet
+
+snippet mini "minipage environment"
+\\begin\{minipage\}\{${1:1.0}\\textwidth\}
+$2
+\\end\{minipage\}
+$0
+endsnippet
+
+snippet doc "Favourite preamble"
+% Preamble {{{
+\\documentclass[${1:11pt,a4paper}]\{${2:scrartcl}\}
+\\usepackage[english]\{babel\}
+\\typearea\{${5:12}\}
+% }}}
+
+% Set indentation and line skip for paragraph {{{
+\\setlength\{\parindent\}\{0em\}
+\\setlength\{\parskip\}\{1em\}
+\\usepackage[margin=2cm]\{geometry\}
+\\addtolength\{\\textheight\}\{-1in\}
+\\setlength\{\\headsep\}\{.5in\}
+% }}}
+
+% Headers setup {{{
+\\usepackage\{${3:fancyhdr}\}
+\\pagestyle\{${4:fancy}\}
+\\lhead\{${6:title}\}
+\\rhead{Josh Felmeden}
+% }}}
+
+\\begin\{document\}
+$0
+\\end\{document\}
+endsnippet
+
+snippet larrow "left arrow outside of math mode"
+\$\\leftarrow\$
+endsnippet
+
+snippet rarrow "rightarrow outside of math mode"
+\$\\rightarrow\$
+endsnippet
+
+snippet mulcol "Multicolumn environment"
+\\multicolumn\{${1:1}\}\{${2:|c|}\}\{${3:text}\}$0
+endsnippet
+
+snippet tabtit "table title"
+\\multicolumn\{${1:number}\}\{${2:c}\}\{\\textbf\{${3:title}\}\} \\\\
+\\multicolumn\{$1\}\{c\}\{\} \\\\ \\hline
+$0
+endsnippet
+
+snippet lsil "inline listing with language option"
+\\lstinline[language=${1:[Visual]Basic}]|$2|$0
+endsnippet
+
+snippet lstset "Setup lst preamble"
+% Listings {{{
+\usepackage[]{listings}
+\usepackage[]{xcolor} 
+\definecolor{RoyalBlue}{cmyk}{1, 0.50, 0, 0}
+\lstset{language=${1:Language},
+    keywordstyle=\color{RoyalBlue},
+    basicstyle=\small\ttfamily,
+    commentstyle=\ttfamily\itshape\color{gray},
+    stringstyle=\ttfamily,
+    showstringspaces=false,
+    breaklines=true,
+    frameround=ffff,
+    frame=single,
+    rulecolor=\color{black}
+}
+% }}}
+endsnippet
+
+snippet lstcol "Setup lst preamble with color"
+% Listings {{{
+\usepackage[]{listings,xcolor} 
+\lstset
+{
+    breaklines=true,
+    tabsize=3,
+    showstringspaces=false
+}
+
+\definecolor{lstgrey}{rgb}{0.05,0.05,0.05}
+\usepackage{listings}
+\makeatletter
+\lstset{language=${1:[Visual]Basic},
+    backgroundcolor=\color{lstgrey},
+    frame=single,
+    xleftmargin=0.7cm,
+    frame=tlbr, framesep=0.2cm, framerule=0pt,
+    basicstyle=\lst@ifdisplaystyle\color{white}\footnotesize\ttfamily\else\color{black}\footnotesize\ttfamily\fi,
+    captionpos=b,
+    tabsize=2,
+    keywordstyle=\color{Magenta}\bfseries,
+    identifierstyle=\color{Cyan},
+    stringstyle=\color{Yellow},
+    commentstyle=\color{Gray}\itshape
+}
+\makeatother
+\renewcommand{\familydefault}{\sfdefault}
+% }}}
+$0
+endsnippet
+
+snippet title "Setup title"
+% Title {{{
+\\author{Josh Felmeden}
+\\date{${1:month} \\\\ ${2:year}}
+\\title{${3:title}}
+% }}}
+${0}
+endsnippet
+
+snippet bib "Insert bib preamble"
+% Bibliography setup (in Harvard form) {{{
+\\usepackage[sorting=nyt, style=apa]\{biblatex\}
+\\usepackage\{csquotes\}
+\\usepackage\{hyperref\}
+\\sloppy
+\\bibliography\{${7:bibliography}.bib\}
+\\let\\cite\\parencite
+% }}}
+endsnippet
+
+snippet lsl "lstlisting change language"
+\\begin\{lstlisting\}[language=${1:[Visual]Basic}]
+${2}
+\\end\{lstlisting\}
+${0}
+endsnippet
+
+snippet ls "lstlisting default language"
+\\begin\{lstlisting\}
+${1}
+\\end\{lstlisting\}
+${0}
+endsnippet
+
+snippet ct "cite" im
+~\\cite{${1}}$0
+endsnippet
+
+snippet al* "align*"
+\\begin\{align*\}
+    ${1}
+\\end\{align*\}
+${0}
+endsnippet
+
+snippet gat* "gather*"
+\\begin\{gather*\}
+    ${1}
+\\end\{gather*\}
+${0}
+endsnippet
+
+snippet formal "Formal notes preamble"
+% Preamble \{\{\{
+\\documentclass[11pt,a4paper,titlepage,dvipsnames,cmyk]\{scrartcl}
+\\usepackage[english]\{babel}
+\\typearea\{12\}
+% \}\}\}
+
+% Set indentation and line skip for paragraph \{\{\{
+\\setlength\{\parindent\}\{0em\}
+\\setlength\{\parskip\}\{1em\}
+\\usepackage[margin=2cm]\{geometry\}
+\\addtolength\{\textheight\}\{-1in\}
+\\setlength\{\headsep\}\{.5in\}
+% \}\}\}
+
+\\usepackage\{hhline\} 
+\\usepackage\{mathtools\} 
+\\usepackage[T1]\{fontenc\}
+
+% Headers setup \{\{\{
+\\usepackage\{fancyhdr\}
+\\pagestyle\{fancy\}
+\\lhead\{${1}\}
+\\rhead\{Josh Felmeden\}
+\\usepackage\{hyperref\} 
+% \}\}\}
+
+${2:Listings}
+
+% Other packages \{\{\{
+\\usepackage\{needspace\}
+\\usepackage\{tcolorbox\}
+\\usepackage\{soul\}
+\\usepackage\{babel,dejavu,helvet\} 
+\\usepackage\{amsmath\} 
+\\usepackage\{booktabs\} 
+\\usepackage\{tcolorbox\} 
+\\usepackage[symbol]\{footmisc\} 
+\\renewcommand\{\\thefootnote\}\{\\fnsymbol\{footnote\}\}
+\\renewcommand\{\\familydefault\}\{\\sfdefault\}
+% \}\}\}
+
+% Title {{{
+\title{$1}
+\author{Josh Felmeden}
+% }}}
+
+\\begin{document}
+
+\\maketitle
+\\tableofcontents
+
+\\newpage
+${0}
+\\end{document}
+endsnippet
+
+snippet tcb "tcolorbox"
+\begin{tcolorbox}
+	${0}
+\end{tcolorbox}
+endsnippet

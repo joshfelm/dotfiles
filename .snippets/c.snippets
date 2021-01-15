@@ -1,0 +1,23 @@
+snippet incd "Set up all relevant include tags at the beginning of a c file"
+#include <assert.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+endsnippet
+
+snippet prs "print string"
+printf("${1:} = %s\n", $1);
+endsnippet
+
+snippet struct "create structure with alias"
+struct ${2} {
+    ${1}
+}
+typedef struct $2 $2;
+${0}
+endsnippet
+
+snippet ssm "Show simple messagebox"
+SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_${1}, "${2:title}", "${3:message}", ${4:NULL});${0}
+endsnippet
