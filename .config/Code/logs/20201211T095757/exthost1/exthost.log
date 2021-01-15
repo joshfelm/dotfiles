@@ -1,0 +1,63 @@
+[2020-12-11 09:58:02.333] [exthost] [info] extension host started
+[2020-12-11 09:58:02.551] [exthost] [info] ExtensionService#_doActivateExtension vscode.microsoft-authentication {"startup":false,"extensionId":{"value":"vscode.microsoft-authentication","_lower":"vscode.microsoft-authentication"},"activationEvent":"onAuthenticationRequest:microsoft"}
+[2020-12-11 09:58:02.551] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/microsoft-authentication/dist/extension.js
+[2020-12-11 09:58:02.564] [exthost] [info] ExtensionService#_doActivateExtension aaron-bond.better-comments {"startup":false,"extensionId":{"value":"aaron-bond.better-comments","_lower":"aaron-bond.better-comments"},"activationEvent":"onLanguage:plaintext"}
+[2020-12-11 09:58:02.566] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/aaron-bond.better-comments-2.1.0/out/extension
+[2020-12-11 09:58:02.583] [exthost] [info] ExtensionService#_doActivateExtension James-Yu.latex-workshop {"startup":false,"extensionId":{"value":"James-Yu.latex-workshop","_lower":"james-yu.latex-workshop"},"activationEvent":"onLanguage:latex"}
+[2020-12-11 09:58:02.583] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/james-yu.latex-workshop-8.15.0/out/src/main.js
+[2020-12-11 09:58:03.540] [exthost] [info] ExtensionService#_doActivateExtension JeffersonQin.latex-snippets-jeff {"startup":false,"extensionId":{"value":"JeffersonQin.latex-snippets-jeff","_lower":"jeffersonqin.latex-snippets-jeff"},"activationEvent":"onLanguage:latex"}
+[2020-12-11 09:58:03.540] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/jeffersonqin.latex-snippets-jeff-1.2.3/src/extension.js
+[2020-12-11 09:58:03.547] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch {"startup":true,"extensionId":{"value":"vscode.debug-auto-launch","_lower":"vscode.debug-auto-launch"},"activationEvent":"*"}
+[2020-12-11 09:58:03.547] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/debug-auto-launch/dist/extension
+[2020-12-11 09:58:03.555] [exthost] [info] ExtensionService#_doActivateExtension vscode.emmet {"startup":true,"extensionId":{"value":"vscode.emmet","_lower":"vscode.emmet"},"activationEvent":"*"}
+[2020-12-11 09:58:03.555] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/emmet/dist/node/emmetNodeMain
+[2020-12-11 09:58:03.611] [exthost] [info] ExtensionService#_doActivateExtension vscode.git {"startup":true,"extensionId":{"value":"vscode.github","_lower":"vscode.github"},"activationEvent":"*"}
+[2020-12-11 09:58:03.611] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/git/dist/main
+[2020-12-11 09:58:03.732] [exthost] [info] ExtensionService#_doActivateExtension vscode.merge-conflict {"startup":true,"extensionId":{"value":"vscode.merge-conflict","_lower":"vscode.merge-conflict"},"activationEvent":"*"}
+[2020-12-11 09:58:03.737] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/merge-conflict/dist/mergeConflictMain
+[2020-12-11 09:58:03.738] [exthost] [info] ExtensionService#_doActivateExtension vscode.search-result {"startup":true,"extensionId":{"value":"vscode.search-result","_lower":"vscode.search-result"},"activationEvent":"*"}
+[2020-12-11 09:58:03.741] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/search-result/dist/extension.js
+[2020-12-11 09:58:03.753] [exthost] [info] ExtensionService#_doActivateExtension artlaman.chalice-icon-theme {"startup":true,"extensionId":{"value":"artlaman.chalice-icon-theme","_lower":"artlaman.chalice-icon-theme"},"activationEvent":"*"}
+[2020-12-11 09:58:03.755] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/artlaman.chalice-icon-theme-1.2.9/dist/extension.js
+[2020-12-11 09:58:03.757] [exthost] [info] ExtensionService#_doActivateExtension christian-kohler.path-intellisense {"startup":true,"extensionId":{"value":"christian-kohler.path-intellisense","_lower":"christian-kohler.path-intellisense"},"activationEvent":"*"}
+[2020-12-11 09:58:03.757] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/christian-kohler.path-intellisense-2.3.0/out/extension.js
+[2020-12-11 09:58:03.792] [exthost] [info] ExtensionService#_doActivateExtension CoenraadS.bracket-pair-colorizer {"startup":true,"extensionId":{"value":"CoenraadS.bracket-pair-colorizer","_lower":"coenraads.bracket-pair-colorizer"},"activationEvent":"*"}
+[2020-12-11 09:58:03.793] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/coenraads.bracket-pair-colorizer-1.0.61/out/src/extension
+[2020-12-11 09:58:03.819] [exthost] [info] ExtensionService#_doActivateExtension monokai.theme-monokai-pro-vscode {"startup":true,"extensionId":{"value":"monokai.theme-monokai-pro-vscode","_lower":"monokai.theme-monokai-pro-vscode"},"activationEvent":"*"}
+[2020-12-11 09:58:03.819] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/monokai.theme-monokai-pro-vscode-1.1.18/js/main
+[2020-12-11 09:58:03.822] [exthost] [info] ExtensionService#_doActivateExtension PKief.material-icon-theme {"startup":true,"extensionId":{"value":"PKief.material-icon-theme","_lower":"pkief.material-icon-theme"},"activationEvent":"*"}
+[2020-12-11 09:58:03.822] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/pkief.material-icon-theme-4.4.0/dist/extension
+[2020-12-11 09:58:03.829] [exthost] [info] ExtensionService#_doActivateExtension Shan.code-settings-sync {"startup":true,"extensionId":{"value":"Shan.code-settings-sync","_lower":"shan.code-settings-sync"},"activationEvent":"*"}
+[2020-12-11 09:58:03.829] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/shan.code-settings-sync-3.4.3/out/extension.js
+[2020-12-11 09:58:03.911] [exthost] [info] ExtensionService#_doActivateExtension streetsidesoftware.code-spell-checker {"startup":true,"extensionId":{"value":"streetsidesoftware.code-spell-checker","_lower":"streetsidesoftware.code-spell-checker"},"activationEvent":"*"}
+[2020-12-11 09:58:03.911] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/streetsidesoftware.code-spell-checker-1.10.2/dist/extension.js
+[2020-12-11 09:58:03.928] [exthost] [info] ExtensionService#_doActivateExtension vscodevim.vim {"startup":true,"extensionId":{"value":"vscodevim.vim","_lower":"vscodevim.vim"},"activationEvent":"*"}
+[2020-12-11 09:58:03.928] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/vscodevim.vim-1.18.4/out/extension
+[2020-12-11 09:58:03.964] [exthost] [info] ExtensionService#_doActivateExtension Wscats.eno {"startup":true,"extensionId":{"value":"Wscats.eno","_lower":"wscats.eno"},"activationEvent":"*"}
+[2020-12-11 09:58:03.964] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/wscats.eno-2.3.39/out/extension.js
+[2020-12-11 09:58:06.993] [exthost] [warning] DiagnosticCollection with name 'BibTeX' does already exist.
+[2020-12-11 09:58:08.636] [exthost] [info] ExtensionService#_doActivateExtension vscode.github {"startup":true,"extensionId":{"value":"vscode.github","_lower":"vscode.github"},"activationEvent":"*"}
+[2020-12-11 09:58:08.636] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/github/dist/extension.js
+[2020-12-11 09:58:08.643] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.js-debug {"startup":false,"extensionId":{"value":"ms-vscode.js-debug","_lower":"ms-vscode.js-debug"},"activationEvent":"onCommand:extension.js-debug.clearAutoAttachVariables"}
+[2020-12-11 09:58:08.644] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/ms-vscode.js-debug/src/extension.js
+[2020-12-11 09:58:08.904] [exthost] [info] eager extensions activated
+[2020-12-11 09:58:08.915] [exthost] [info] ExtensionService#_doActivateExtension eamodio.gitlens {"startup":false,"extensionId":{"value":"eamodio.gitlens","_lower":"eamodio.gitlens"},"activationEvent":"onStartupFinished"}
+[2020-12-11 09:58:08.915] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/eamodio.gitlens-11.0.6/dist/gitlens
+[2020-12-11 09:58:09.108] [exthost] [info] ExtensionService#_doActivateExtension vscode.github-authentication {"startup":false,"extensionId":{"value":"vscode.github-authentication","_lower":"vscode.github-authentication"},"activationEvent":"onAuthenticationRequest:github"}
+[2020-12-11 09:58:09.109] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/github-authentication/dist/extension.js
+[2020-12-11 11:11:57.702] [exthost] [warning] TextEditor is closed/disposed
+[2020-12-11 11:12:05.779] [exthost] [info] ExtensionService#_doActivateExtension ms-azuretools.vscode-docker {"startup":false,"extensionId":{"value":"ms-azuretools.vscode-docker","_lower":"ms-azuretools.vscode-docker"},"activationEvent":"onView:dockerContainers"}
+[2020-12-11 11:12:05.779] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/ms-azuretools.vscode-docker-1.8.1/main
+[2020-12-11 11:13:02.507] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.node-debug2 {"startup":false,"extensionId":{"value":"ms-vscode.node-debug","_lower":"ms-vscode.node-debug"},"activationEvent":"onDebugInitialConfigurations"}
+[2020-12-11 11:13:02.507] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/ms-vscode.node-debug2/out/src/extension
+[2020-12-11 11:13:02.510] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.cpptools {"startup":false,"extensionId":{"value":"ms-vscode.cpptools","_lower":"ms-vscode.cpptools"},"activationEvent":"onDebugInitialConfigurations"}
+[2020-12-11 11:13:02.510] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/ms-vscode.cpptools-1.1.3/dist/main
+[2020-12-11 11:13:02.546] [exthost] [info] ExtensionService#_doActivateExtension vscjava.vscode-java-debug {"startup":false,"extensionId":{"value":"vscjava.vscode-java-debug","_lower":"vscjava.vscode-java-debug"},"activationEvent":"onDebugInitialConfigurations"}
+[2020-12-11 11:13:02.546] [exthost] [info] ExtensionService#loadCommonJSModule file:///home/josh/.vscode/extensions/vscjava.vscode-java-debug-0.29.0/dist/extension
+[2020-12-11 11:13:02.709] [exthost] [info] ExtensionService#_doActivateExtension ms-vscode.node-debug {"startup":false,"extensionId":{"value":"ms-vscode.node-debug","_lower":"ms-vscode.node-debug"},"activationEvent":"onDebugInitialConfigurations"}
+[2020-12-11 11:13:02.709] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/ms-vscode.node-debug/dist/extension.js
+[2020-12-11 11:13:03.886] [exthost] [info] ExtensionService#_doActivateExtension vscode.debug-server-ready {"startup":false,"extensionId":{"value":"vscode.debug-server-ready","_lower":"vscode.debug-server-ready"},"activationEvent":"onDebugResolve"}
+[2020-12-11 11:13:03.886] [exthost] [info] ExtensionService#loadCommonJSModule file:///snap/code/50/usr/share/code/resources/app/extensions/debug-server-ready/dist/extension
+[2020-12-11 11:29:56.842] [exthost] [warning] TextEditor is closed/disposed
+[2020-12-11 11:29:56.842] [exthost] [warning] TextEditor is closed/disposed
+[2020-12-11 11:29:56.842] [exthost] [warning] TextEditor is closed/disposed

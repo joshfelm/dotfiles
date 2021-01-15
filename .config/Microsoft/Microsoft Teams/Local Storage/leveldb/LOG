@@ -1,0 +1,60 @@
+2021/01/15-09:10:05.688 b2f Reusing MANIFEST /home/josh/.config/Microsoft/Microsoft Teams/Local Storage/leveldb/MANIFEST-000001
+2021/01/15-09:10:05.688 b2f Recovering log #167
+2021/01/15-09:10:05.688 b2f Reusing old log /home/josh/.config/Microsoft/Microsoft Teams/Local Storage/leveldb/000167.log 
+2021/01/15-09:10:57.901 1072 Level-0 table #171: started
+2021/01/15-09:10:57.905 1072 Level-0 table #171: 69366 bytes OK
+2021/01/15-09:10:57.907 1072 Delete type=0 #167
+2021/01/15-09:10:57.908 1072 Compacting 4@0 + 1@1 files
+2021/01/15-09:10:57.916 1072 Generated table #172@0: 303 keys, 318102 bytes
+2021/01/15-09:10:57.916 1072 Compacted 4@0 + 1@1 files => 318102 bytes
+2021/01/15-09:10:57.917 1072 compacted to: files[ 0 1 1 0 0 0 0 ]
+2021/01/15-09:10:57.917 1072 Delete type=2 #171
+2021/01/15-09:10:57.917 1072 Delete type=2 #161
+2021/01/15-09:10:57.917 1072 Delete type=2 #166
+2021/01/15-09:10:57.917 1072 Delete type=2 #168
+2021/01/15-09:10:57.917 1072 Delete type=2 #164
+2021/01/15-09:52:16.720 1072 Level-0 table #174: started
+2021/01/15-09:52:16.723 1072 Level-0 table #174: 73418 bytes OK
+2021/01/15-09:52:16.725 1072 Delete type=0 #170
+2021/01/15-10:26:38.327 1072 Level-0 table #176: started
+2021/01/15-10:26:38.340 1072 Level-0 table #176: 458431 bytes OK
+2021/01/15-10:26:38.344 1072 Delete type=0 #173
+2021/01/15-10:26:39.099 1072 Level-0 table #178: started
+2021/01/15-10:26:39.101 1072 Level-0 table #178: 42426 bytes OK
+2021/01/15-10:26:39.103 1072 Delete type=0 #175
+2021/01/15-11:08:43.403 1072 Level-0 table #180: started
+2021/01/15-11:08:43.410 1072 Level-0 table #180: 59798 bytes OK
+2021/01/15-11:08:43.412 1072 Delete type=0 #177
+2021/01/15-11:08:43.412 1072 Compacting 4@0 + 1@1 files
+2021/01/15-11:08:43.429 1072 Generated table #181@0: 314 keys, 564863 bytes
+2021/01/15-11:08:43.429 1072 Compacted 4@0 + 1@1 files => 564863 bytes
+2021/01/15-11:08:43.431 1072 compacted to: files[ 0 1 1 0 0 0 0 ]
+2021/01/15-11:08:43.431 1072 Delete type=2 #178
+2021/01/15-11:08:43.431 1072 Delete type=2 #180
+2021/01/15-11:08:43.431 1072 Delete type=2 #176
+2021/01/15-11:08:43.431 1072 Delete type=2 #174
+2021/01/15-11:08:43.431 1072 Delete type=2 #172
+2021/01/15-11:49:11.701 1072 Level-0 table #183: started
+2021/01/15-11:49:11.703 1072 Level-0 table #183: 43863 bytes OK
+2021/01/15-11:49:11.705 1072 Delete type=0 #179
+2021/01/15-12:28:11.623 1072 Level-0 table #185: started
+2021/01/15-12:28:11.630 1072 Level-0 table #185: 48185 bytes OK
+2021/01/15-12:28:11.632 1072 Delete type=0 #182
+2021/01/15-13:07:41.583 1072 Level-0 table #187: started
+2021/01/15-13:07:41.591 1072 Level-0 table #187: 50289 bytes OK
+2021/01/15-13:07:41.593 1072 Delete type=0 #184
+2021/01/15-13:25:41.250 1072 Level-0 table #189: started
+2021/01/15-13:25:41.261 1072 Level-0 table #189: 246561 bytes OK
+2021/01/15-13:25:41.263 1072 Delete type=0 #186
+2021/01/15-13:25:41.263 1072 Compacting 4@0 + 1@1 files
+2021/01/15-13:25:41.272 1072 Generated table #190@0: 315 keys, 316947 bytes
+2021/01/15-13:25:41.272 1072 Compacted 4@0 + 1@1 files => 316947 bytes
+2021/01/15-13:25:41.274 1072 compacted to: files[ 0 1 1 0 0 0 0 ]
+2021/01/15-13:25:41.274 1072 Delete type=2 #183
+2021/01/15-13:25:41.274 1072 Delete type=2 #189
+2021/01/15-13:25:41.274 1072 Delete type=2 #185
+2021/01/15-13:25:41.274 1072 Delete type=2 #181
+2021/01/15-13:25:41.274 1072 Delete type=2 #187
+2021/01/15-13:25:51.521 1072 Level-0 table #192: started
+2021/01/15-13:25:51.531 1072 Level-0 table #192: 279319 bytes OK
+2021/01/15-13:25:51.533 1072 Delete type=0 #188

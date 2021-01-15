@@ -1,0 +1,64 @@
+[16:21:30] Initializing LaTeX Workshop.
+[16:21:30] Extension root: /home/josh/.vscode/extensions/james-yu.latex-workshop-8.15.0
+[16:21:30] Creating PDF file watcher.
+[16:21:30] Creating LaTeX Workshop http and websocket server.
+[16:21:30] LaTeX Workshop initialized.
+[16:21:30] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[16:21:30] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[16:21:30] Server created on 127.0.0.1:44929
+[16:21:30] Restoring the PDF viewer at the column 1 from the state: {"type":"state","state":{"path":"/home/josh/Documents/neuro/report/report.pdf","scale":"auto","scrollMode":0,"spreadMode":0,"scrollTop":0,"scrollLeft":0,"trim":0}}
+[16:21:30] Restoring the PDF viewer at the column 2 from the state: {"type":"state","state":{"path":"/home/josh/Documents/neuro/report/report.pdf","scale":"1","scrollMode":0,"spreadMode":0,"scrollTop":0,"scrollLeft":0,"trim":0}}
+[16:21:30] Snippet data loaded.
+[16:21:30] LaTeX Workshop version: 8.15.0
+[16:21:30] Found files that might be root, choose the first one: /home/josh/Documents/neuro/report/report.tex
+[16:21:30] Root file changed: from undefined to /home/josh/Documents/neuro/report/report.tex
+[16:21:30] Start to find all dependencies.
+[16:21:30] Root file languageId: latex
+[16:21:30] Instantiating a new file watcher for /home/josh/Documents/neuro/report/report.tex
+[16:21:30] Creating Bib file watcher.
+[16:21:30] Parsing a file and its subfiles: /home/josh/Documents/neuro/report/report.tex
+[16:21:30] Parse fls file.
+[16:21:30] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[16:21:31] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/report.tex
+[16:21:31] Added to file watcher: /home/josh/.texlive2019/texmf-var/luatex-cache/generic-dev/fonts/otl/lmroman10-regular.luc
+[16:21:31] Added to file watcher: /var/lib/texmf/tex/generic/config/language.dat
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-bins-trial0.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-bins-trial1.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-dec-true_neg.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-dec-true_pos.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-dec-true.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/q3-dec-true_neg.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/q3-dec-true_pos.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/q3-dec-true.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/pics/weight_matrix.png
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/pics/original_state.png
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/pics/state_1000_image0.png
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/pics/state_3000_image0.png
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/pics/original_state_image1.png
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/pics/state_1000_image1.png
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/pics/state_3000_image1.png
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/energy-of-image0.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/energy-of-image1.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/mixed-image_0_1.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/mixed-image_0_2.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/mixed-image_1_2.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/voltageq1.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/countsq1.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/voltageq2.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/voltage-vary-r1.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/voltage-vary-r2.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/varied_rates_5_0.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/varied_rates_0_50.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-5-0.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-0-50.csv
+[16:21:31] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-0-5.csv
+[16:21:32] Handle data type: open
+[16:21:32] Handle data type: open
+[16:21:32] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[16:21:32] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[16:21:32] Handle data type: request_params
+[16:21:32] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[16:21:32] Handle data type: request_params
+[16:21:32] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[16:21:33] Handle data type: loaded

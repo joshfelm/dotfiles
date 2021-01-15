@@ -1,0 +1,25 @@
+[Info  - 09:58:11] Pylance language server 2020.12.1 (pyright 4ef6f2b2) starting
+[Info  - 09:58:11] Server root directory: /home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist
+[Error - 09:58:11] stubPath /home/josh/Documents/neuro/coursework/typings is not a valid directory.
+[Error - 10:07:31] An internal error occurred while type checking file "/home/josh/Documents/neuro/coursework/part-2.py": RangeError: Maximum call stack size exceeded
+    at checkForCancellation (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:636:14)
+    at getTypeOfExpression (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:790:9)
+    at evaluateTypesForAssignmentStatement (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:9539:39)
+    at forEach (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:14382:21)
+    at Array.forEach (<anonymous>)
+    at getEffectiveTypeOfSymbolForUsage (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:14355:15)
+    at getTypeFromName (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:3264:39)
+    at getTypeOfExpression (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:810:30)
+    at validateArgType (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:6532:30)
+    at /home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:6488:18
+[Error - 10:07:31] Error performing analysis: RangeError: Maximum call stack size exceeded
+    at checkForCancellation (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:636:14)
+    at getTypeOfExpression (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:790:9)
+    at evaluateTypesForAssignmentStatement (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:9539:39)
+    at forEach (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:14382:21)
+    at Array.forEach (<anonymous>)
+    at getEffectiveTypeOfSymbolForUsage (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:14355:15)
+    at getTypeFromName (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:3264:39)
+    at getTypeOfExpression (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:810:30)
+    at validateArgType (/home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:6532:30)
+    at /home/josh/.vscode/extensions/ms-python.vscode-pylance-2020.12.1/dist/pyright-internal/src/analyzer/typeEvaluator.ts:6488:18

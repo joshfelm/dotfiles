@@ -1,0 +1,27 @@
+[15:00:50] Initializing LaTeX Workshop.
+[15:00:51] Extension root: /home/josh/.vscode/extensions/james-yu.latex-workshop-8.15.0
+[15:00:51] Creating PDF file watcher.
+[15:00:51] Creating LaTeX Workshop http and websocket server.
+[15:00:51] LaTeX Workshop initialized.
+[15:00:51] Current workspace folders: ["file:///home/josh/Documents/formal-notes/year-3/IPCV"]
+[15:00:51] Current workspaceRootDir: /home/josh/Documents/formal-notes/year-3/IPCV
+[15:00:51] Found root file from active editor: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[15:00:51] Root file changed: from undefined to /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[15:00:51] Start to find all dependencies.
+[15:00:51] Root file languageId: latex
+[15:00:51] Instantiating a new file watcher for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[15:00:51] Creating Bib file watcher.
+[15:00:51] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[15:00:51] Parse fls file.
+[15:00:51] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[15:00:51] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[15:00:51] Server created on 127.0.0.1:34467
+[15:00:51] Added to file watcher: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[15:00:51] LaTeX Workshop version: 8.15.0
+[15:00:51] Snippet data loaded.
+[15:00:51] Restoring the PDF viewer at the column 2 from the state: {"type":"state","state":{"path":"/home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf","scale":"auto","scrollMode":0,"spreadMode":0,"scrollTop":14698,"scrollLeft":0,"trim":0}}
+[15:00:53] Handle data type: open
+[15:00:53] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[15:00:53] Handle data type: request_params
+[15:00:53] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[15:00:54] Handle data type: loaded

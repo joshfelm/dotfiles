@@ -1,0 +1,1 @@
+source ~/.rcs/init.vim

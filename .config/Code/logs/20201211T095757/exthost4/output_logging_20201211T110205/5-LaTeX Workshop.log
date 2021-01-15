@@ -1,0 +1,94 @@
+[11:02:05] Initializing LaTeX Workshop.
+[11:02:05] Extension root: /home/josh/.vscode/extensions/james-yu.latex-workshop-8.15.0
+[11:02:05] Creating PDF file watcher.
+[11:02:05] Creating LaTeX Workshop http and websocket server.
+[11:02:05] LaTeX Workshop initialized.
+[11:02:06] Current workspace folders: ["file:///home/josh/Documents/ai/coursework"]
+[11:02:06] Current workspaceRootDir: /home/josh/Documents/ai/coursework
+[11:02:06] Server created on 127.0.0.1:42057
+[11:02:06] LaTeX Workshop version: 8.15.0
+[11:02:06] Snippet data loaded.
+[11:02:06] PDF command invoked.
+[11:02:06] Serving PDF file at http://localhost:42057/viewer.html?file=pdf..JTJGaG9tZSUyRmpvc2glMkZEb2N1bWVudHMlMkZhaSUyRmNvdXJzZXdvcmslMkZyZXBvcnQucGRm
+[11:02:06] The encoded path is /home/josh/Documents/ai/coursework/report.pdf
+[11:02:06] Open PDF tab for /home/josh/Documents/ai/coursework/report.pdf
+[11:02:06] Found files that might be root, choose the first one: /home/josh/Documents/ai/coursework/report.tex
+[11:02:06] Root file changed: from undefined to /home/josh/Documents/ai/coursework/report.tex
+[11:02:06] Start to find all dependencies.
+[11:02:06] Root file languageId: latex
+[11:02:06] Instantiating a new file watcher for /home/josh/Documents/ai/coursework/report.tex
+[11:02:06] Creating Bib file watcher.
+[11:02:06] Parsing a file and its subfiles: /home/josh/Documents/ai/coursework/report.tex
+[11:02:06] Parse fls file.
+[11:02:06] Fls file found: /home/josh/Documents/ai/coursework/report.fls
+[11:02:06] Parse aux file: /home/josh/Documents/ai/coursework/report.aux
+[11:02:06] Added to file watcher: /home/josh/Documents/ai/coursework/report.tex
+[11:02:06] Handle data type: open
+[11:02:06] Preview PDF file: /home/josh/Documents/ai/coursework/report.pdf
+[11:02:06] Handle data type: request_params
+[11:02:06] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[11:02:06] Handle data type: loaded
+[11:02:45] Current workspace folders: ["file:///home/josh/Documents/ai/coursework"]
+[11:02:45] Current workspaceRootDir: /home/josh/Documents/ai/coursework
+[11:02:45] Current workspace folders: ["file:///home/josh/Documents/ai/coursework"]
+[11:02:45] Current workspaceRootDir: /home/josh/Documents/ai/coursework
+[11:02:45] Found root file from active editor: /home/josh/Documents/ai/coursework/report.tex
+[11:02:45] Found root file from active editor: /home/josh/Documents/ai/coursework/report.tex
+[11:02:45] Keep using the same root file: /home/josh/Documents/ai/coursework/report.tex
+[11:02:45] Keep using the same root file: /home/josh/Documents/ai/coursework/report.tex
+[11:03:08] File watcher - file changed: /home/josh/Documents/ai/coursework/report.tex
+[11:03:08] Parsing a file and its subfiles: /home/josh/Documents/ai/coursework/report.tex
+[11:03:08] Parse fls file.
+[11:03:08] Fls file found: /home/josh/Documents/ai/coursework/report.fls
+[11:03:08] Parse aux file: /home/josh/Documents/ai/coursework/report.aux
+[11:03:08] Auto build started detecting the change of a file: /home/josh/Documents/ai/coursework/report.tex
+[11:03:08] BUILD command invoked.
+[11:03:08] The document of the active editor: file:///home/josh/Documents/ai/coursework/report.tex
+[11:03:08] The languageId of the document: latex
+[11:03:08] Building root file: /home/josh/Documents/ai/coursework/report.tex
+[11:03:08] Build root file /home/josh/Documents/ai/coursework/report.tex
+[11:03:09] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/ai/coursework,/home/josh/Documents/ai/coursework/report
+[11:03:09] Recipe step env: {}
+[11:03:09] cwd: /home/josh/Documents/ai/coursework
+[11:03:09] LaTeX build process spawned. PID: 11924.
+[11:03:10] LaTeX log parsed with 1 messages.
+[11:03:10] Recipe of length 1 finished. PID: 11924.
+[11:03:10] Successfully built /home/josh/Documents/ai/coursework/report.tex.
+[11:03:10] Refresh PDF viewer for /home/josh/Documents/ai/coursework/report.pdf
+[11:03:10] Parse fls file.
+[11:03:10] Fls file found: /home/josh/Documents/ai/coursework/report.fls
+[11:03:10] Parse aux file: /home/josh/Documents/ai/coursework/report.aux
+[11:03:10] Preview PDF file: /home/josh/Documents/ai/coursework/report.pdf
+[11:03:11] Current workspace folders: ["file:///home/josh/Documents/ai/coursework"]
+[11:03:11] Current workspaceRootDir: /home/josh/Documents/ai/coursework
+[11:03:11] Found root file from active editor: /home/josh/Documents/ai/coursework/report.tex
+[11:03:11] Keep using the same root file: /home/josh/Documents/ai/coursework/report.tex
+[11:03:12] Handle data type: loaded
+[11:03:47] Current workspace folders: ["file:///home/josh/Documents/ai/coursework"]
+[11:03:47] Current workspaceRootDir: /home/josh/Documents/ai/coursework
+[11:03:47] Found root file from active editor: /home/josh/Documents/ai/coursework/report.tex
+[11:03:47] Keep using the same root file: /home/josh/Documents/ai/coursework/report.tex
+[11:04:00] File watcher - file changed: /home/josh/Documents/ai/coursework/report.tex
+[11:04:00] Parsing a file and its subfiles: /home/josh/Documents/ai/coursework/report.tex
+[11:04:00] Parse fls file.
+[11:04:00] Fls file found: /home/josh/Documents/ai/coursework/report.fls
+[11:04:00] Parse aux file: /home/josh/Documents/ai/coursework/report.aux
+[11:04:00] Auto build started detecting the change of a file: /home/josh/Documents/ai/coursework/report.tex
+[11:04:00] BUILD command invoked.
+[11:04:00] The document of the active editor: file:///home/josh/Documents/ai/coursework/report.tex
+[11:04:00] The languageId of the document: latex
+[11:04:00] Building root file: /home/josh/Documents/ai/coursework/report.tex
+[11:04:00] Build root file /home/josh/Documents/ai/coursework/report.tex
+[11:04:00] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/ai/coursework,/home/josh/Documents/ai/coursework/report
+[11:04:00] Recipe step env: {}
+[11:04:00] cwd: /home/josh/Documents/ai/coursework
+[11:04:00] LaTeX build process spawned. PID: 11958.
+[11:04:01] LaTeX log parsed with 1 messages.
+[11:04:01] Recipe of length 1 finished. PID: 11958.
+[11:04:01] Successfully built /home/josh/Documents/ai/coursework/report.tex.
+[11:04:01] Refresh PDF viewer for /home/josh/Documents/ai/coursework/report.pdf
+[11:04:01] Parse fls file.
+[11:04:01] Fls file found: /home/josh/Documents/ai/coursework/report.fls
+[11:04:01] Parse aux file: /home/josh/Documents/ai/coursework/report.aux
+[11:04:01] Preview PDF file: /home/josh/Documents/ai/coursework/report.pdf
+[11:04:38] Handle data type: loaded

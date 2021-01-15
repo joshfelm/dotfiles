@@ -1,0 +1,46 @@
+Error 2020-12-11 09:58:08: Exception while attempting zmq : [Error: /snap/core/current/usr/lib/x86_64-linux-gnu/libstdc++.so.6: version `GLIBCXX_3.4.22' not found (required by /home/josh/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/out/client/node_modules/zeromq/prebuilds/linux-x64/electron.napi.glibc.node)
+	at process.func [as dlopen] (electron/js2c/asar.js:140:31)
+	at Object.Module._extensions..node (internal/modules/cjs/loader.js:1081:18)
+	at Object.func [as .node] (electron/js2c/asar.js:140:31)
+	at Module.load (internal/modules/cjs/loader.js:862:32)
+	at Module._load (internal/modules/cjs/loader.js:774:14)
+	at Function.Module._load (electron/js2c/asar.js:769:28)
+	at Function.t._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1064:776)
+	at Function.i._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1034:665)
+	at Function.n._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1030:844)
+	at Module.require (internal/modules/cjs/loader.js:899:19)
+	at r (/snap/code/50/usr/share/code/resources/app/out/vs/loader.js:17:346)
+	at load (/home/josh/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/out/client/node_modules/node-gyp-build/index.js:21:10)
+	at Object.<anonymous> (/home/josh/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/out/client/node_modules/zeromq/lib/native.js:6:43)
+	at Module.i._compile (/snap/code/50/usr/share/code/resources/app/out/vs/loader.js:17:571)
+	at Object.Module._extensions..js (internal/modules/cjs/loader.js:1051:10)
+	at Module.load (internal/modules/cjs/loader.js:862:32)
+	at Module._load (internal/modules/cjs/loader.js:774:14)
+	at Function.Module._load (electron/js2c/asar.js:769:28)
+	at Function.t._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1064:776)
+	at Function.i._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1034:665)
+	at Function.n._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1030:844)
+	at Module.require (internal/modules/cjs/loader.js:899:19)
+	at r (/snap/code/50/usr/share/code/resources/app/out/vs/loader.js:17:346)
+	at Object.<anonymous> (/home/josh/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/out/client/node_modules/zeromq/lib/index.js:3:16)
+	at Module.i._compile (/snap/code/50/usr/share/code/resources/app/out/vs/loader.js:17:571)
+	at Object.Module._extensions..js (internal/modules/cjs/loader.js:1051:10)
+	at Module.load (internal/modules/cjs/loader.js:862:32)
+	at Module._load (internal/modules/cjs/loader.js:774:14)
+	at Function.Module._load (electron/js2c/asar.js:769:28)
+	at Function.t._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1064:776)
+	at Function.i._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1034:665)
+	at Function.n._load (/snap/code/50/usr/share/code/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:1030:844)
+	at Module.require (internal/modules/cjs/loader.js:899:19)
+	at r (/snap/code/50/usr/share/code/resources/app/out/vs/loader.js:17:346)
+	at Object.<anonymous> (/home/josh/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/out/client/extension.js:32:274679)
+	at n (/home/josh/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/out/client/extension.js:1:186)
+	at /home/josh/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/out/client/extension.js:49:803808
+	at processTicksAndRejections (internal/process/task_queues.js:94:5)
+	at async u.zmqSupportedImpl (/home/josh/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/out/client/extension.js:49:803775)]
+> /usr/bin/python3 ~/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/pythonFiles/pyvsc-run-isolated.py -c "import jupyter"
+> /usr/bin/python3 ~/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/pythonFiles/pyvsc-run-isolated.py -c "import jupyter"
+> /usr/bin/python3 ~/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/pythonFiles/pyvsc-run-isolated.py -c "import notebook"
+> /usr/bin/python3 ~/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/pythonFiles/pyvsc-run-isolated.py -c "import notebook"
+> /usr/bin/python3 ~/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/pythonFiles/pyvsc-run-isolated.py jupyter kernelspec --version
+> /usr/bin/python3 ~/.vscode/extensions/ms-toolsai.jupyter-2020.12.411183155/pythonFiles/pyvsc-run-isolated.py jupyter kernelspec --version

@@ -1,0 +1,26 @@
+2021/01/15-09:10:09.805 b2f Reusing MANIFEST /home/josh/.config/Microsoft/Microsoft Teams/IndexedDB/https_teams.microsoft.com_0.indexeddb.leveldb/MANIFEST-000001
+2021/01/15-09:10:09.805 b2f Recovering log #77
+2021/01/15-09:10:09.815 b2f Reusing old log /home/josh/.config/Microsoft/Microsoft Teams/IndexedDB/https_teams.microsoft.com_0.indexeddb.leveldb/000077.log 
+2021/01/15-09:10:11.093 d85 Level-0 table #83: started
+2021/01/15-09:10:11.119 d85 Level-0 table #83: 1322657 bytes OK
+2021/01/15-09:10:11.122 d85 Delete type=0 #77
+2021/01/15-09:10:11.562 d85 Compacting 1@1 + 2@2 files
+2021/01/15-09:10:11.657 d85 Generated table #84@1: 10545 keys, 2163725 bytes
+2021/01/15-09:10:11.703 d85 Generated table #85@1: 6905 keys, 2097395 bytes
+2021/01/15-09:10:11.703 d85 Compacted 1@1 + 2@2 files => 4261120 bytes
+2021/01/15-09:10:11.704 d85 compacted to: files[ 0 0 2 0 0 0 0 ]
+2021/01/15-09:10:11.704 d85 Delete type=2 #80
+2021/01/15-09:10:11.704 d85 Delete type=2 #79
+2021/01/15-09:10:11.704 d85 Delete type=2 #83
+2021/01/15-10:08:34.713 d85 Level-0 table #87: started
+2021/01/15-10:08:34.729 d85 Level-0 table #87: 1395776 bytes OK
+2021/01/15-10:08:34.730 d85 Delete type=0 #82
+2021/01/15-10:11:31.634 d85 Compacting 1@1 + 2@2 files
+2021/01/15-10:11:31.671 d85 Generated table #88@1: 10689 keys, 2195472 bytes
+2021/01/15-10:11:31.701 d85 Generated table #89@1: 7065 keys, 2154547 bytes
+2021/01/15-10:11:31.703 d85 Generated table #90@1: 92 keys, 9660 bytes
+2021/01/15-10:11:31.703 d85 Compacted 1@1 + 2@2 files => 4359679 bytes
+2021/01/15-10:11:31.705 d85 compacted to: files[ 0 0 3 0 0 0 0 ]
+2021/01/15-10:11:31.705 d85 Delete type=2 #84
+2021/01/15-10:11:31.705 d85 Delete type=2 #87
+2021/01/15-10:11:31.705 d85 Delete type=2 #85

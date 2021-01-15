@@ -1,0 +1,333 @@
+[09:58:06] Initializing LaTeX Workshop.
+[09:58:06] Extension root: /home/josh/.vscode/extensions/james-yu.latex-workshop-8.15.0
+[09:58:06] Creating PDF file watcher.
+[09:58:06] Creating LaTeX Workshop http and websocket server.
+[09:58:06] LaTeX Workshop initialized.
+[09:58:07] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[09:58:07] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[09:58:07] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[09:58:07] Root file changed: from undefined to /home/josh/Documents/neuro/report/report.tex
+[09:58:07] Start to find all dependencies.
+[09:58:07] Root file languageId: latex
+[09:58:07] Instantiating a new file watcher for /home/josh/Documents/neuro/report/report.tex
+[09:58:07] Creating Bib file watcher.
+[09:58:07] Parsing a file and its subfiles: /home/josh/Documents/neuro/report/report.tex
+[09:58:07] Parse fls file.
+[09:58:07] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[09:58:07] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[09:58:07] Server created on 127.0.0.1:37489
+[09:58:07] Restoring the PDF viewer at the column 2 from the state: {"type":"state","state":{"path":"/home/josh/Documents/neuro/report/report.pdf","scale":"1","scrollMode":0,"spreadMode":0,"scrollTop":0,"scrollLeft":0,"trim":0}}
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/report.tex
+[09:58:07] Added to file watcher: /home/josh/.texlive2019/texmf-var/luatex-cache/generic-dev/fonts/otl/lmroman10-regular.luc
+[09:58:07] Added to file watcher: /var/lib/texmf/tex/generic/config/language.dat
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-bins-trial0.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-bins-trial1.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-dec-true_neg.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-dec-true_pos.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/q2-dec-true.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/q3-dec-true_neg.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/q3-dec-true_pos.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/q3-dec-true.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/pics/weight_matrix.png
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/pics/original_state.png
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/pics/state_1000_image0.png
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/pics/state_3000_image0.png
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/pics/original_state_image1.png
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/pics/state_1000_image1.png
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/pics/state_3000_image1.png
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/energy-of-image0.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/energy-of-image1.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/mixed-image_0_1.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/mixed-image_0_2.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/mixed-image_1_2.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/voltageq1.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/countsq1.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/voltageq2.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/voltage-vary-r1.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/voltage-vary-r2.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/varied_rates_5_0.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/varied_rates_0_50.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-5-0.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-0-50.csv
+[09:58:07] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-0-5.csv
+[09:58:07] LaTeX Workshop version: 8.15.0
+[09:58:07] Snippet data loaded.
+[09:58:08] Handle data type: open
+[09:58:08] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[09:58:09] Handle data type: request_params
+[09:58:09] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[09:58:09] Handle data type: loaded
+[09:58:43] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[09:58:43] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[09:58:43] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[09:58:43] Keep using the same root file: /home/josh/Documents/neuro/report/report.tex
+[10:59:04] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[10:59:04] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[10:59:04] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[10:59:04] Keep using the same root file: /home/josh/Documents/neuro/report/report.tex
+[11:11:54] File watcher - file deleted: /home/josh/Documents/neuro/report/data/depression-0-5.csv
+[11:11:54] File watcher - file deleted: /home/josh/Documents/neuro/report/data/depression-0-50.csv
+[11:11:54] File watcher - file deleted: /home/josh/Documents/neuro/report/data/depression-5-0.csv
+[11:11:57] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[11:11:57] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[11:11:57] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[11:11:57] Keep using the same root file: /home/josh/Documents/neuro/report/report.tex
+[11:12:01] File watcher - file changed: /home/josh/Documents/neuro/report/report.tex
+[11:12:01] Parsing a file and its subfiles: /home/josh/Documents/neuro/report/report.tex
+[11:12:01] Parse fls file.
+[11:12:01] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[11:12:01] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[11:12:01] Auto build started detecting the change of a file: /home/josh/Documents/neuro/report/report.tex
+[11:12:01] BUILD command invoked.
+[11:12:01] The document of the active editor: file:///home/josh/Documents/neuro/report/report.tex
+[11:12:01] The languageId of the document: latex
+[11:12:01] Building root file: /home/josh/Documents/neuro/report/report.tex
+[11:12:01] Build root file /home/josh/Documents/neuro/report/report.tex
+[11:12:01] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/neuro/report,/home/josh/Documents/neuro/report/report
+[11:12:01] Recipe step env: {}
+[11:12:01] cwd: /home/josh/Documents/neuro/report
+[11:12:01] LaTeX build process spawned. PID: 12570.
+[11:12:01] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-5-0.csv
+[11:12:01] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-0-50.csv
+[11:12:01] Added to file watcher: /home/josh/Documents/neuro/report/data/depression-0-5.csv
+[11:12:12] LaTeX log parsed with 6 messages.
+[11:12:12] Recipe returns with error: 12/null. PID: 12570. message: Latexmk: This is Latexmk, John Collins, 26 Dec. 2019, version: 4.67.
+Rule 'pdflatex': The following rules & subrules became out-of-date:
+      'pdflatex'
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="/home/josh/Documents/neuro/report"  "/home/josh/Documents/neuro/report/report.tex"'
+------------
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/josh/Documents/neuro/report/report.log' for details
+Latexmk: Use the -f option to force complete processing,
+ unless error was exceeding maximum runs, or warnings treated as errors.
+.
+[11:12:12] The environment variable $PATH: /home/josh/.zinit/polaris/sbin:/home/josh/.zinit/polaris/bin:/home/josh/anaconda3/bin:/home/josh/bin:/usr/local/bin:/home/josh/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/josh/.fzf/bin
+[11:12:12] The environment variable $SHELL: /usr/bin/zsh
+[11:12:12] Cleaning auxiliary files and retrying build after toolchain error.
+[11:12:12] File cleaned: /home/josh/Documents/neuro/report/report.aux
+[11:12:12] File cleaned: /home/josh/Documents/neuro/report/report.out
+[11:12:12] File cleaned: /home/josh/Documents/neuro/report/report.fdb_latexmk
+[11:12:12] File cleaned: /home/josh/Documents/neuro/report/report.toc
+[11:12:12] File cleaned: /home/josh/Documents/neuro/report/report.fls
+[11:12:12] File cleaned: /home/josh/Documents/neuro/report/report.log
+[11:12:12] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/neuro/report,/home/josh/Documents/neuro/report/report
+[11:12:12] Recipe step env: {}
+[11:12:12] cwd: /home/josh/Documents/neuro/report
+[11:12:12] LaTeX build process spawned. PID: 12636.
+[11:12:20] KILL command invoked.
+[11:12:20] Kill the current process. PID: 12636.
+[11:12:20] Recipe returns with error: null/SIGTERM. PID: 12636. message: Latexmk: This is Latexmk, John Collins, 26 Dec. 2019, version: 4.67.
+Rule 'pdflatex': The following rules & subrules became out-of-date:
+      'pdflatex'
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="/home/josh/Documents/neuro/report"  "/home/josh/Documents/neuro/report/report.tex"'
+------------
+.
+[11:12:20] The environment variable $PATH: /home/josh/.zinit/polaris/sbin:/home/josh/.zinit/polaris/bin:/home/josh/anaconda3/bin:/home/josh/bin:/usr/local/bin:/home/josh/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/josh/.fzf/bin
+[11:12:20] The environment variable $SHELL: /usr/bin/zsh
+[11:12:21] RECIPES command invoked.
+[11:12:21] BUILD command invoked.
+[11:12:21] The document of the active editor: file:///home/josh/Documents/neuro/report/report.tex
+[11:12:21] The languageId of the document: latex
+[11:12:21] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[11:12:21] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[11:12:21] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[11:12:21] Keep using the same root file: /home/josh/Documents/neuro/report/report.tex
+[11:12:21] Building root file: /home/josh/Documents/neuro/report/report.tex
+[11:12:21] Build root file /home/josh/Documents/neuro/report/report.tex
+[11:12:21] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-lualatex,-outdir=/home/josh/Documents/neuro/report,/home/josh/Documents/neuro/report/report
+[11:12:21] Recipe step env: {}
+[11:12:21] cwd: /home/josh/Documents/neuro/report
+[11:12:21] LaTeX build process spawned. PID: 12661.
+[11:12:55] KILL command invoked.
+[11:12:55] Kill the current process. PID: 12661.
+[11:12:55] Recipe returns with error: null/SIGTERM. PID: 12661. message: Latexmk: This is Latexmk, John Collins, 26 Dec. 2019, version: 4.67.
+Rule 'lualatex': The following rules & subrules became out-of-date:
+      'lualatex'
+------------
+Run number 1 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="/home/josh/Documents/neuro/report"  "/home/josh/Documents/neuro/report/report.tex"'
+------------
+.
+[11:12:55] The environment variable $PATH: /home/josh/.zinit/polaris/sbin:/home/josh/.zinit/polaris/bin:/home/josh/anaconda3/bin:/home/josh/bin:/usr/local/bin:/home/josh/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/josh/.fzf/bin
+[11:12:55] The environment variable $SHELL: /usr/bin/zsh
+[11:13:02] File watcher - file changed: /home/josh/Documents/neuro/report/report.tex
+[11:13:02] Parsing a file and its subfiles: /home/josh/Documents/neuro/report/report.tex
+[11:13:02] Parse fls file.
+[11:13:02] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[11:13:02] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[11:13:02] Auto build started detecting the change of a file: /home/josh/Documents/neuro/report/report.tex
+[11:13:02] BUILD command invoked.
+[11:13:02] The document of the active editor: file:///home/josh/Documents/neuro/report/report.tex
+[11:13:02] The languageId of the document: latex
+[11:13:02] Building root file: /home/josh/Documents/neuro/report/report.tex
+[11:13:02] Build root file /home/josh/Documents/neuro/report/report.tex
+[11:13:02] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-lualatex,-outdir=/home/josh/Documents/neuro/report,/home/josh/Documents/neuro/report/report
+[11:13:02] Recipe step env: {}
+[11:13:02] cwd: /home/josh/Documents/neuro/report
+[11:13:02] LaTeX build process spawned. PID: 12730.
+[11:13:07] KILL command invoked.
+[11:13:07] Kill the current process. PID: 12730.
+[11:13:07] Recipe returns with error: null/SIGTERM. PID: 12730. message: Latexmk: This is Latexmk, John Collins, 26 Dec. 2019, version: 4.67.
+Rule 'lualatex': The following rules & subrules became out-of-date:
+      'lualatex'
+------------
+Run number 1 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="/home/josh/Documents/neuro/report"  "/home/josh/Documents/neuro/report/report.tex"'
+------------
+.
+[11:13:07] The environment variable $PATH: /home/josh/.zinit/polaris/sbin:/home/josh/.zinit/polaris/bin:/home/josh/anaconda3/bin:/home/josh/bin:/usr/local/bin:/home/josh/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/josh/.fzf/bin
+[11:13:07] The environment variable $SHELL: /usr/bin/zsh
+[11:13:09] RECIPES command invoked.
+[11:13:09] BUILD command invoked.
+[11:13:09] The document of the active editor: file:///home/josh/Documents/neuro/report/report.tex
+[11:13:09] The languageId of the document: latex
+[11:13:09] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[11:13:09] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[11:13:09] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[11:13:09] Keep using the same root file: /home/josh/Documents/neuro/report/report.tex
+[11:13:09] Building root file: /home/josh/Documents/neuro/report/report.tex
+[11:13:09] Build root file /home/josh/Documents/neuro/report/report.tex
+[11:13:09] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-lualatex,-outdir=/home/josh/Documents/neuro/report,/home/josh/Documents/neuro/report/report
+[11:13:09] Recipe step env: {}
+[11:13:09] cwd: /home/josh/Documents/neuro/report
+[11:13:09] LaTeX build process spawned. PID: 12756.
+[11:15:46] LaTeX log parsed with 4 messages.
+[11:15:46] Recipe of length 1 finished. PID: 12756.
+[11:15:46] Successfully built /home/josh/Documents/neuro/report/report.tex.
+[11:15:46] Refresh PDF viewer for /home/josh/Documents/neuro/report/report.pdf
+[11:15:46] Parse fls file.
+[11:15:46] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[11:15:46] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[11:15:46] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:15:46] Handle data type: loaded
+[11:17:33] File watcher - file changed: /home/josh/Documents/neuro/report/report.tex
+[11:17:33] Parsing a file and its subfiles: /home/josh/Documents/neuro/report/report.tex
+[11:17:33] Parse fls file.
+[11:17:33] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[11:17:33] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[11:17:33] Auto build started detecting the change of a file: /home/josh/Documents/neuro/report/report.tex
+[11:17:33] BUILD command invoked.
+[11:17:33] The document of the active editor: file:///home/josh/Documents/neuro/report/report.tex
+[11:17:33] The languageId of the document: latex
+[11:17:33] Building root file: /home/josh/Documents/neuro/report/report.tex
+[11:17:33] Build root file /home/josh/Documents/neuro/report/report.tex
+[11:17:33] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-lualatex,-outdir=/home/josh/Documents/neuro/report,/home/josh/Documents/neuro/report/report
+[11:17:33] Recipe step env: {}
+[11:17:33] cwd: /home/josh/Documents/neuro/report
+[11:17:34] LaTeX build process spawned. PID: 13667.
+[11:18:25] LaTeX log parsed with 4 messages.
+[11:18:25] Recipe of length 1 finished. PID: 13667.
+[11:18:25] Successfully built /home/josh/Documents/neuro/report/report.tex.
+[11:18:25] Refresh PDF viewer for /home/josh/Documents/neuro/report/report.pdf
+[11:18:25] Parse fls file.
+[11:18:25] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[11:18:25] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[11:18:25] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:18:25] Handle data type: loaded
+[11:24:29] Added to PDF file watcher: /home/josh/Documents/neuro/report/report.pdf
+[11:24:30] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[11:24:30] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[11:24:30] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[11:24:30] Keep using the same root file: /home/josh/Documents/neuro/report/report.tex
+[11:24:30] PDF command invoked.
+[11:24:30] Serving PDF file at http://localhost:37489/viewer.html?file=pdf..JTJGaG9tZSUyRmpvc2glMkZEb2N1bWVudHMlMkZuZXVybyUyRnJlcG9ydCUyRnJlcG9ydC5wZGY
+[11:24:30] The encoded path is /home/josh/Documents/neuro/report/report.pdf
+[11:24:30] Open PDF tab for /home/josh/Documents/neuro/report/report.pdf
+[11:24:30] Handle data type: open
+[11:24:30] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:24:30] Handle data type: request_params
+[11:24:30] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[11:24:30] Handle data type: loaded
+[11:28:09] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[11:28:09] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[11:28:09] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[11:28:09] Keep using the same root file: /home/josh/Documents/neuro/report/report.tex
+[11:28:56] File watcher - file changed: /home/josh/Documents/neuro/report/report.tex
+[11:28:56] Parsing a file and its subfiles: /home/josh/Documents/neuro/report/report.tex
+[11:28:56] Parse fls file.
+[11:28:56] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[11:28:56] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[11:28:56] Auto build started detecting the change of a file: /home/josh/Documents/neuro/report/report.tex
+[11:28:56] BUILD command invoked.
+[11:28:56] The document of the active editor: file:///home/josh/Documents/neuro/report/report.tex
+[11:28:56] The languageId of the document: latex
+[11:28:56] Building root file: /home/josh/Documents/neuro/report/report.tex
+[11:28:56] Build root file /home/josh/Documents/neuro/report/report.tex
+[11:28:56] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-lualatex,-outdir=/home/josh/Documents/neuro/report,/home/josh/Documents/neuro/report/report
+[11:28:56] Recipe step env: {}
+[11:28:56] cwd: /home/josh/Documents/neuro/report
+[11:28:56] LaTeX build process spawned. PID: 14256.
+[11:29:01] PDF file watcher - file changed: /home/josh/Documents/neuro/report/report.pdf
+[11:29:01] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:01] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:03] PDF file watcher - file changed: /home/josh/Documents/neuro/report/report.pdf
+[11:29:03] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:03] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:07] PDF file watcher - file changed: /home/josh/Documents/neuro/report/report.pdf
+[11:29:07] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:07] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:11] PDF file watcher - file changed: /home/josh/Documents/neuro/report/report.pdf
+[11:29:11] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:11] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:18] PDF file watcher - file changed: /home/josh/Documents/neuro/report/report.pdf
+[11:29:18] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:18] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:41] PDF file watcher - file changed: /home/josh/Documents/neuro/report/report.pdf
+[11:29:41] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:41] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:51] LaTeX log parsed with 4 messages.
+[11:29:51] Recipe of length 1 finished. PID: 14256.
+[11:29:51] Successfully built /home/josh/Documents/neuro/report/report.tex.
+[11:29:51] Refresh PDF viewer for /home/josh/Documents/neuro/report/report.pdf
+[11:29:51] Refresh PDF viewer for /home/josh/Documents/neuro/report/report.pdf
+[11:29:51] Parse fls file.
+[11:29:51] Fls file found: /home/josh/Documents/neuro/report/report.fls
+[11:29:51] Parse aux file: /home/josh/Documents/neuro/report/report.aux
+[11:29:51] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:51] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:51] Handle data type: loaded
+[11:29:51] Handle data type: loaded
+[11:29:51] Handle data type: loaded
+[11:29:51] Handle data type: loaded
+[11:29:51] Handle data type: loaded
+[11:29:51] Handle data type: loaded
+[11:29:51] Handle data type: loaded
+[11:29:53] PDF file watcher - file changed: /home/josh/Documents/neuro/report/report.pdf
+[11:29:53] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:53] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:53] Handle data type: loaded
+[11:29:56] Current workspace folders: ["file:///home/josh/Documents/neuro/report"]
+[11:29:56] Current workspaceRootDir: /home/josh/Documents/neuro/report
+[11:29:56] Found root file from active editor: /home/josh/Documents/neuro/report/report.tex
+[11:29:56] Keep using the same root file: /home/josh/Documents/neuro/report/report.tex
+[11:29:56] PDF command invoked.
+[11:29:56] Serving PDF file at http://localhost:37489/viewer.html?file=pdf..JTJGaG9tZSUyRmpvc2glMkZEb2N1bWVudHMlMkZuZXVybyUyRnJlcG9ydCUyRnJlcG9ydC5wZGY
+[11:29:56] The encoded path is /home/josh/Documents/neuro/report/report.pdf
+[11:29:56] Open PDF tab for /home/josh/Documents/neuro/report/report.pdf
+[11:29:56] Handle data type: open
+[11:29:56] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:29:57] Handle data type: request_params
+[11:29:57] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[11:29:57] Handle data type: loaded
+[11:30:01] PDF command invoked.
+[11:30:01] Serving PDF file at http://localhost:37489/viewer.html?file=pdf..JTJGaG9tZSUyRmpvc2glMkZEb2N1bWVudHMlMkZuZXVybyUyRnJlcG9ydCUyRnJlcG9ydC5wZGY
+[11:30:01] The encoded path is /home/josh/Documents/neuro/report/report.pdf
+[11:30:01] Open PDF tab for /home/josh/Documents/neuro/report/report.pdf
+[11:30:01] Handle data type: open
+[11:30:01] Preview PDF file: /home/josh/Documents/neuro/report/report.pdf
+[11:30:01] Handle data type: request_params
+[11:30:01] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[11:30:01] Handle data type: loaded

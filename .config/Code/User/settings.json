@@ -1,0 +1,130 @@
+{
+  "java.home": "/usr/bin/jdk-11.0.6+10",
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+      {
+        "before": ["j", "k"],
+        "after": ["<Esc>"]
+      },
+      {
+        "before": ["k", "j"],
+        "after": ["<Esc>"]
+      }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+      {
+        "before": ["<C-n>"],
+        "commands": [":nohl"]
+      },
+      {
+        "before": ["x"],
+        "after": ["\"", "_", "x"],
+      },
+      {
+        "before": ["c"],
+        "after": ["\"", "_", "c"]
+      },
+      {
+        "before": ["<C-l>"],
+        "after": ["/", "'", "'", "<cr>"],
+      },
+      {
+        "before": ["<space>"],
+        "after": ["z","a"]
+      },
+      {
+        "before": ["S"],
+        "after": ["c", "c"]
+      },
+      {
+          "before": [";"],
+          "after": [":"]
+      },
+      {
+          "before": ["j"],
+          "after": ["g", "j"]
+      },
+      {
+          "before": ["k"],
+          "after": ["g", "k"]
+      }
+    ],
+    "vim.leader": ",",
+    "vim.handleKeys": {
+      "<C-a>": false,
+      "<C-f>": false
+    },
+    "files.autoSave": "off",
+    "editor.fontFamily": "'FiraMono NF', 'Fira Mono for Powerline Regular', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "terminal.integrated.fontFamily": "'FiraMono NF'",
+    "sync.gist": "b87ec32ccbed099e59601cccfaa97b7a",
+    "python.jediEnabled": false,
+    "git.autofetch": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "cSpell.userWords": [
+      "Haar",
+      "Thresholding",
+      "behaviour",
+      "compositionally",
+      "lexing",
+      "sines",
+      "subsectioning"
+    ],
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "cSpell.language": "en-GB",
+    "cSpell.enableFiletypes": [
+      "!asciidoc",
+      "!c",
+      "!cpp",
+      "!csharp",
+      "!css",
+      "!go",
+      "!handlebars",
+      "!haskell",
+      "!html",
+      "!jade",
+      "!java",
+      "!javascript",
+      "!javascriptreact",
+      "!json",
+      "!jsonc",
+      "!less",
+      "!php",
+      "!restructuredtext",
+      "!rust",
+      "!scala",
+      "!scss",
+      "!typescript",
+      "!typescriptreact",
+      "!yaml",
+      "!yml",
+      "tex"
+    ],
+    "C_Cpp.updateChannel": "Insiders",
+    "editor.acceptSuggestionOnEnter": "off",
+    "git.enableSmartCommit": true,
+    "files.associations": {
+      "*.pl": "prolog"
+    },
+    "terminal.integrated.fontWeight": null,
+    "workbench.colorTheme": "Gruvbox Dark (Medium)",
+    "terminal.integrated.rendererType": "dom",
+    "window.zoomLevel": 0,
+    "python.languageServer": "Pylance",
+    "explorer.confirmDragAndDrop": false,
+    "gitlens.gitCommands.skipConfirmations": [
+      "fetch:command",
+      "stash-push:command",
+      "switch:command",
+      "branch-create:command"
+    ],
+    "explorer.confirmDelete": false,
+    "latex-workshop.latex.recipe.default": "lastUsed",
+  }

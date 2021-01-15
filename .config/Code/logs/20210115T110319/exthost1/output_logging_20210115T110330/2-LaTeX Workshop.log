@@ -1,0 +1,296 @@
+[11:03:30] Initializing LaTeX Workshop.
+[11:03:30] Extension root: /home/josh/.vscode/extensions/james-yu.latex-workshop-8.15.0
+[11:03:30] Creating PDF file watcher.
+[11:03:30] Creating LaTeX Workshop http and websocket server.
+[11:03:30] LaTeX Workshop initialized.
+[11:03:30] Current workspace folders: ["file:///home/josh/Documents/formal-notes/year-3/IPCV"]
+[11:03:30] Current workspaceRootDir: /home/josh/Documents/formal-notes/year-3/IPCV
+[11:03:30] Found root file from active editor: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[11:03:30] Root file changed: from undefined to /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[11:03:30] Start to find all dependencies.
+[11:03:30] Root file languageId: latex
+[11:03:30] Instantiating a new file watcher for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[11:03:30] Creating Bib file watcher.
+[11:03:30] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[11:03:30] Parse fls file.
+[11:03:30] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[11:03:30] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[11:03:30] Server created on 127.0.0.1:33815
+[11:03:30] Added to file watcher: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[11:03:30] LaTeX Workshop version: 8.15.0
+[11:03:30] Snippet data loaded.
+[11:03:30] Restoring the PDF viewer at the column 2 from the state: {"type":"state","state":{"path":"/home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf","scale":"auto","scrollMode":0,"spreadMode":0,"scrollTop":13448,"scrollLeft":0,"trim":0}}
+[11:03:31] Handle data type: open
+[11:03:32] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[11:03:32] Handle data type: request_params
+[11:03:32] Sending the settings of the PDF viewer for initialization: {"type":"params","scale":"auto","trim":0,"scrollMode":0,"spreadMode":0,"hand":false,"invertMode":{"enabled":false,"brightness":1,"grayscale":0.6,"hueRotate":180,"invert":0,"sepia":0},"bgColor":"#ffffff","keybindings":{"synctex":"ctrl-click"}}
+[11:03:32] Handle data type: loaded
+[11:54:32] Current workspace folders: ["file:///home/josh/Documents/formal-notes/year-3/IPCV"]
+[11:54:32] Current workspaceRootDir: /home/josh/Documents/formal-notes/year-3/IPCV
+[11:54:32] Found root file from active editor: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[11:54:32] Keep using the same root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[11:54:53] Current workspace folders: ["file:///home/josh/Documents/formal-notes/year-3/IPCV"]
+[11:54:53] Current workspaceRootDir: /home/josh/Documents/formal-notes/year-3/IPCV
+[11:54:53] Found root file from active editor: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[11:54:53] Keep using the same root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:11] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:11] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:11] Parse fls file.
+[12:18:11] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:18:11] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:18:11] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:11] BUILD command invoked.
+[12:18:11] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:11] The languageId of the document: latex
+[12:18:11] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:11] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:11] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:18:11] Recipe step env: {}
+[12:18:11] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:18:11] LaTeX build process spawned. PID: 25112.
+[12:18:14] LaTeX log parsed with 1 messages.
+[12:18:14] Recipe of length 1 finished. PID: 25112.
+[12:18:14] Successfully built /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex.
+[12:18:14] Refresh PDF viewer for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:18:14] Parse fls file.
+[12:18:14] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:18:14] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:18:14] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:18:14] Handle data type: loaded
+[12:18:26] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:26] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:26] Parse fls file.
+[12:18:26] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:18:26] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:18:26] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:26] BUILD command invoked.
+[12:18:26] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:26] The languageId of the document: latex
+[12:18:26] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:26] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:26] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:18:26] Recipe step env: {}
+[12:18:26] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:18:26] LaTeX build process spawned. PID: 25160.
+[12:18:26] Cannot parse a TeX file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:26] Fall back to regex-based completion.
+[12:18:27] LaTeX log parsed with 5 messages.
+[12:18:27] Recipe returns with error: 12/null. PID: 25160. message: Latexmk: This is Latexmk, John Collins, 26 Dec. 2019, version: 4.67.
+Rule 'pdflatex': File changes, etc:
+   Changed files, or newly in use since previous run(s):
+      '/home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex'
+      'ipcv.tex'
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="/home/josh/Documents/formal-notes/year-3/IPCV"  "/home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex"'
+------------
+Latexmk: Log file says output to 'ipcv.pdf'
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/josh/Documents/formal-notes/year-3/IPCV/ipcv.log' for details
+Latexmk: Use the -f option to force complete processing,
+ unless error was exceeding maximum runs, or warnings treated as errors.
+.
+[12:18:27] The environment variable $PATH: /home/josh/.zinit/polaris/sbin:/home/josh/.zinit/polaris/bin:/home/josh/anaconda3/bin:/home/josh/bin:/usr/local/bin:/home/josh/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/josh/.fzf/bin
+[12:18:27] The environment variable $SHELL: /usr/bin/zsh
+[12:18:27] Cleaning auxiliary files and retrying build after toolchain error.
+[12:18:27] File cleaned: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:18:27] File cleaned: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.log
+[12:18:27] File cleaned: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fdb_latexmk
+[12:18:27] File cleaned: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.toc
+[12:18:27] File cleaned: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:18:27] File cleaned: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.out
+[12:18:27] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:18:27] Recipe step env: {}
+[12:18:27] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:18:27] LaTeX build process spawned. PID: 25171.
+[12:18:28] LaTeX log parsed with 6 messages.
+[12:18:28] Recipe returns with error: 12/null. PID: 25171. message: Latexmk: This is Latexmk, John Collins, 26 Dec. 2019, version: 4.67.
+Rule 'pdflatex': The following rules & subrules became out-of-date:
+      'pdflatex'
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="/home/josh/Documents/formal-notes/year-3/IPCV"  "/home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex"'
+------------
+Latexmk: References changed.
+Latexmk: Log file says output to 'ipcv.pdf'
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/home/josh/Documents/formal-notes/year-3/IPCV/ipcv.log' for details
+Latexmk: Use the -f option to force complete processing,
+ unless error was exceeding maximum runs, or warnings treated as errors.
+.
+[12:18:28] The environment variable $PATH: /home/josh/.zinit/polaris/sbin:/home/josh/.zinit/polaris/bin:/home/josh/anaconda3/bin:/home/josh/bin:/usr/local/bin:/home/josh/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/josh/.fzf/bin
+[12:18:28] The environment variable $SHELL: /usr/bin/zsh
+[12:18:35] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:35] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:35] Parse fls file.
+[12:18:35] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:18:35] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:18:35] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:35] BUILD command invoked.
+[12:18:35] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:35] The languageId of the document: latex
+[12:18:35] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:35] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:18:35] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:18:35] Recipe step env: {}
+[12:18:35] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:18:35] LaTeX build process spawned. PID: 25193.
+[12:18:37] LaTeX log parsed with 1 messages.
+[12:18:37] Recipe of length 1 finished. PID: 25193.
+[12:18:37] Successfully built /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex.
+[12:18:37] Refresh PDF viewer for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:18:37] Parse fls file.
+[12:18:37] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:18:37] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:18:37] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:18:37] Handle data type: loaded
+[12:22:06] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:06] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:06] Parse fls file.
+[12:22:06] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:22:06] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:22:06] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:06] BUILD command invoked.
+[12:22:06] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:06] The languageId of the document: latex
+[12:22:06] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:06] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:06] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:22:06] Recipe step env: {}
+[12:22:06] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:22:06] LaTeX build process spawned. PID: 25290.
+[12:22:07] LaTeX log parsed with 1 messages.
+[12:22:07] Recipe of length 1 finished. PID: 25290.
+[12:22:07] Successfully built /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex.
+[12:22:07] Refresh PDF viewer for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:22:07] Parse fls file.
+[12:22:07] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:22:07] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:22:07] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:22:07] Handle data type: loaded
+[12:22:20] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:20] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:20] Parse fls file.
+[12:22:20] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:22:20] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:22:20] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:20] BUILD command invoked.
+[12:22:20] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:20] The languageId of the document: latex
+[12:22:20] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:20] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:20] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:22:20] Recipe step env: {}
+[12:22:20] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:22:20] LaTeX build process spawned. PID: 25334.
+[12:22:21] LaTeX log parsed with 1 messages.
+[12:22:21] Recipe of length 1 finished. PID: 25334.
+[12:22:21] Successfully built /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex.
+[12:22:21] Refresh PDF viewer for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:22:21] Parse fls file.
+[12:22:21] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:22:21] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:22:21] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:22:21] Handle data type: loaded
+[12:22:29] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:29] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:29] Parse fls file.
+[12:22:29] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:22:29] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:22:29] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:29] BUILD command invoked.
+[12:22:29] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:29] The languageId of the document: latex
+[12:22:29] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:29] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:29] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:22:29] Recipe step env: {}
+[12:22:29] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:22:29] LaTeX build process spawned. PID: 25353.
+[12:22:30] LaTeX log parsed with 1 messages.
+[12:22:30] Recipe of length 1 finished. PID: 25353.
+[12:22:30] Successfully built /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex.
+[12:22:30] Refresh PDF viewer for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:22:30] Parse fls file.
+[12:22:30] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:22:30] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:22:30] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:22:30] Handle data type: loaded
+[12:22:37] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:37] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:37] Parse fls file.
+[12:22:37] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:22:37] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:22:37] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:37] BUILD command invoked.
+[12:22:37] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:37] The languageId of the document: latex
+[12:22:37] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:37] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:22:37] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:22:37] Recipe step env: {}
+[12:22:37] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:22:37] LaTeX build process spawned. PID: 25373.
+[12:22:38] LaTeX log parsed with 1 messages.
+[12:22:38] Recipe of length 1 finished. PID: 25373.
+[12:22:38] Successfully built /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex.
+[12:22:38] Refresh PDF viewer for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:22:38] Parse fls file.
+[12:22:38] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:22:38] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:22:38] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:22:38] Handle data type: loaded
+[12:23:22] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:23:22] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:23:22] Parse fls file.
+[12:23:22] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:23:22] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:23:22] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:23:22] BUILD command invoked.
+[12:23:22] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:23:22] The languageId of the document: latex
+[12:23:22] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:23:22] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[12:23:22] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[12:23:22] Recipe step env: {}
+[12:23:22] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[12:23:22] LaTeX build process spawned. PID: 25478.
+[12:23:23] LaTeX log parsed with 1 messages.
+[12:23:23] Recipe of length 1 finished. PID: 25478.
+[12:23:23] Successfully built /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex.
+[12:23:23] Refresh PDF viewer for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:23:23] Parse fls file.
+[12:23:23] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[12:23:23] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[12:23:23] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[12:23:23] Handle data type: loaded
+[13:35:27] File watcher - file changed: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[13:35:27] Parsing a file and its subfiles: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[13:35:27] Parse fls file.
+[13:35:27] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[13:35:27] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[13:35:27] Auto build started detecting the change of a file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[13:35:27] BUILD command invoked.
+[13:35:27] The document of the active editor: file:///home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[13:35:27] The languageId of the document: latex
+[13:35:27] Building root file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[13:35:27] Build root file /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex
+[13:35:27] Recipe step 1: latexmk, -synctex=1,-interaction=nonstopmode,-file-line-error,-pdf,-outdir=/home/josh/Documents/formal-notes/year-3/IPCV,/home/josh/Documents/formal-notes/year-3/IPCV/ipcv
+[13:35:27] Recipe step env: {}
+[13:35:27] cwd: /home/josh/Documents/formal-notes/year-3/IPCV
+[13:35:27] LaTeX build process spawned. PID: 26887.
+[13:35:29] LaTeX log parsed with 1 messages.
+[13:35:29] Recipe of length 1 finished. PID: 26887.
+[13:35:29] Successfully built /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.tex.
+[13:35:29] Refresh PDF viewer for /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[13:35:29] Parse fls file.
+[13:35:29] Fls file found: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.fls
+[13:35:29] Parse aux file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.aux
+[13:35:29] Preview PDF file: /home/josh/Documents/formal-notes/year-3/IPCV/ipcv.pdf
+[13:35:29] Handle data type: loaded

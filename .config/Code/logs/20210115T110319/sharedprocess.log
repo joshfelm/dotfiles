@@ -1,0 +1,8 @@
+[2021-01-15 11:03:26.137] [sharedprocess] [info] main {"machineId":"6b23a2a8dc338ab76b127016bd3b856f50fe9ea12036efd05239d4f4773c6a2c","windowId":4}
+[2021-01-15 11:03:30.286] [sharedprocess] [info] Installing extension: vscjava.vscode-java-dependency
+[2021-01-15 11:03:31.071] [sharedprocess] [info] Downloaded extension: vscjava.vscode-java-dependency undefined
+[2021-01-15 11:03:31.307] [sharedprocess] [info] Extracted extension to /home/josh/.vscode/extensions/.vscjava.vscode-java-dependency-0.17.0: vscjava.vscode-java-dependency
+[2021-01-15 11:03:31.307] [sharedprocess] [info] Renamed to /home/josh/.vscode/extensions/vscjava.vscode-java-dependency-0.17.0
+[2021-01-15 11:03:31.308] [sharedprocess] [info] Installation completed. vscjava.vscode-java-dependency
+[2021-01-15 11:03:31.318] [sharedprocess] [info] Extensions installed successfully: vscjava.vscode-java-dependency
+[2021-01-15 11:04:06.150] [sharedprocess] [info] Starting to clean up unused language packs.
