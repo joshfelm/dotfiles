@@ -1,4 +1,0 @@
-[2021-01-14 18:11:46.515] [renderer1] [error] [File Watcher (node.js)] Error: ENOENT: no such file or directory, stat '/home/josh/Documents/formal-notes/year-3/IPCV/.vscode'
-[2021-01-14 18:12:03.680] [renderer1] [error] Network Error: Error: Network Error
-    at e.exports (/snap/code/52/usr/share/code/resources/app/node_modules.asar/tas-client-umd/lib/tas-client-umd.js:1:7511)
-    at XMLHttpRequest.p.onerror (/snap/code/52/usr/share/code/resources/app/node_modules.asar/tas-client-umd/lib/tas-client-umd.js:1:6478)

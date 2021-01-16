@@ -1,2 +1,0 @@
-[2021-01-14 12:19:22:881] [/home/josh/Documents/formal-notes/year-3/IPCV] Git Command failed: /usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --show-toplevel • not a git repository (or any of the parent directories): .git • 59 ms 
-[2021-01-14 12:19:23:000] [/home/josh/Documents/formal-notes/year-3/IPCV] Git Command failed: /usr/bin/git -c core.quotepath=false -c color.ui=false rev-parse --show-toplevel • not a git repository (or any of the parent directories): .git • 5 ms 
