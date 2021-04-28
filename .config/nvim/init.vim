@@ -212,6 +212,7 @@ highlight SignColumn ctermbg=233
 
 "---VIMTEX--- {{{
 " let g:vimtex_compiler_progname = 'nvr'
+let g:tex_flavor = 'latex'
 " }}}
 
 "---AYU {{{
@@ -221,8 +222,8 @@ set termguicolors
 " }}}
 
 "---VIM-COMMANDS--- {{{
-:command! Init tabnew ~/.rcs/init.vim
-:command! Src source ~/.rcs/init.vim
+:command! Init tabnew ~/.config/nvim/init.vim
+:command! Src source ~/.config/nvim/init.vim
 :command! -nargs=1 Up call s:Usepack(<f-args>)
 :command! -nargs=1 Imp call s:Import(<f-args>)
 " }}}

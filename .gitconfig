@@ -31,3 +31,15 @@
     autoupdate = true
 [rebase]
     autosquash = true
+[merge]
+    tool = unityyamlmerge
+[mergetool "unityyamlmerge"]
+    trustExitCode = false
+    cmd = '/home/josh/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Tools/UnityYAMLMerge' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGE"
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[status]
+	showUntrackedFiles = no

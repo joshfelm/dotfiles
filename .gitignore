@@ -1,6 +1,10 @@
 .Xdefaults
 .config/plugged
 .config/Code
+.config/Microsoft
+.config/teams
+.config/pulse
+.config/Unity*
 .bash_history
 .bash_logout
 .cabal
