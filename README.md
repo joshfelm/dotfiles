@@ -33,7 +33,7 @@ This bash script will auto copy the files into the right place for you:
 
 ```bash
 sudo cp -r $HOME/.themes/Matcha-dark-azul/ $HOME/.themes/MacOS_Dark/ /usr/share/themes/
-sudo cp -r $HOME/.icons/OSX-ElCap/ $HOME/.icons/Flat-Remix-Dark/ /usr/share/icons/
+sudo cp -r $HOME/.themes/OSX-ElCap/ $HOME/.themes/Flat-Remix-Dark/ /usr/share/icons/
 ```
 
 This script will install the fonts:
