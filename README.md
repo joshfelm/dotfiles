@@ -1,5 +1,26 @@
 # My Dotfiles
 
+## Setup dotfiles on new system
+Add this to .bashrc or .zshrc
+```
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+```
+
+Next, clone the dotfiles into a **bare** repository:
+```
+git clone --bare git@github.com:fxlmo/dotfiles.git $HOME/.cfg
+```
+
+Checkout config to home:
+```
+config checkout
+```
+
+Stop shell from showing untracked files:
+```
+config config --local status.showUntrackedFiles no
+```
+
 ## Themes
 Here's a backup of all my shit in case of terrible failure.
 
