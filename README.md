@@ -1,6 +1,14 @@
 # My Dotfiles
 Here's a backup of all my shit in case of terrible failure.
 
+## Setup keys
+```
+ssh-keygen -t ed25519 -C josh.felmeden@outlook.com
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+```
+
 ## Setup dotfiles on new system
 Add this to .bashrc or .zshrc
 ```
@@ -9,7 +17,11 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 Next, clone the dotfiles into a **bare** repository:
 ```
+SSH
 git clone --bare git@github.com:fxlmo/dotfiles.git $HOME/.cfg
+
+HTTPS
+git clone --bare https://github.com:fxlmo/dotfiles.git $HOME/.cfg
 ```
 
 Checkout config to home:
