@@ -4,12 +4,12 @@ Here's a backup of all my shit in case of terrible failure.
 ## Setup dotfiles on new system
 Add this to .bashrc or .zshrc
 ```
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ```
 
 Next, clone the dotfiles into a **bare** repository:
 ```
-git clone --bare git@github.com:fxlmo/dotfiles.git $HOME/.cfg
+git clone --bare git@github.com:fxlmo/dotfiles.git $HOME/.dotfiles
 ```
 
 Checkout config to home:
@@ -19,7 +19,7 @@ config checkout
 
 Stop shell from showing untracked files:
 ```
-config config --local status.showUntrackedFiles no
+config config status.showUntrackedFiles no
 ```
 
 ## Themes
