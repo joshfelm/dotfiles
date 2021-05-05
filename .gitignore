@@ -3,6 +3,7 @@
 .config/Code
 .config/Microsoft
 .config/teams
+.config/dconf/
 .config/pulse
 .config/Unity*
 .bash_history
