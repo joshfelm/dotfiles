@@ -12,7 +12,7 @@ xclip -selection clipboard < ~/.ssh/id_ed25519.pub
 ## Setup dotfiles on new system
 Add this to .bashrc or .zshrc
 ```
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 ```
 
 Next, clone the dotfiles into a **bare** repository:
@@ -31,7 +31,7 @@ config checkout
 
 Stop shell from showing untracked files:
 ```
-config config --local status.showUntrackedFiles no
+config config status.showUntrackedFiles no
 ```
 
 ## Themes
