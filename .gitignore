@@ -1,6 +1,7 @@
 .Xdefaults
 .config/plugged
 .config/Code
+.config/monitor*
 .config/Microsoft
 .config/teams
 .config/dconf/
