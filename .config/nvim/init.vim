@@ -152,7 +152,9 @@ inoremap kj <ESC>
 " }}}
 
 "---NERDTREE---{{{
-map <C-n> :NERDTreeToggle<CR>
+map <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 "}}}
 
 "---FUNCTIONS---{{{
