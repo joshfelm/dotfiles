@@ -36,7 +36,7 @@
 .tex*
 .thunderbird
 .vim
-.vscode
+.vscode/*
 .wget-hsts
 .z
 .zinit

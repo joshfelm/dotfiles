@@ -81,6 +81,7 @@ let g:BASH_Ctrl_j = 'off'
 nnoremap <C-l> :let @/=""<cr>
 nnoremap J mzJ`z
 nnoremap K gt
+nnoremap <C-K> gT
 
 set clipboard=unnamed
 
@@ -414,6 +415,12 @@ augroup configgroup
 let g:rehash256 = 1
 let g:molokai_original = 1
 "}}}
-"
+
+"{{{ ---FUNCTIONS
+"Search current working directory for word under cursor (used for xhci
+"searching mostly, might remove later)
+nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
+
+"}}}
 packloadall
 " vim:foldmethod=marker:foldlevel=0

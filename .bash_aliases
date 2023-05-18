@@ -1,8 +1,8 @@
 alias v='nvim'
 alias src='source ~/.bashrc'
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias sshpi='ssh pi@80.5.39.27'
-alias python=python3
+# alias python=python3
 alias open=xdg-open
 alias x=exit
 alias tmux='tmux -2'
@@ -36,3 +36,5 @@ alias l='ls -CF'
 alias container='make -C ~/docker/seL4-CAmkES-L4v-dockerfiles user HOST_DIR=$(pwd)'
 alias buildenv='docker run -it --rm -v /scratch/seL4:/host:z \
     ghcr.io/sel4devkit/maaxboard:latest'
+alias vimdiff='nvim -d'
+# alias aarch64-none-elf-gcc='/home/jfelmeden/cp/gcc-arm-10.2-2020.11-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc'
