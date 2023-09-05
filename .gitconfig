@@ -22,7 +22,7 @@
     pr = push gerrit HEAD:refs/for/master
     mt = mergetool
 [user]
-    email = josh.felmeden@outlook.com
+    email = josh.felmeden@capgemini.com
     name = Josh Felmeden
 [core]
     editor = nvim
@@ -31,13 +31,20 @@
     autoupdate = true
 [rebase]
     autosquash = true
-[merge]
-    tool = unityyamlmerge
-[mergetool "unityyamlmerge"]
-    trustExitCode = false
-    cmd = '/home/josh/Unity/Hub/Editor/2019.4.18f1/Editor/Data/Tools/UnityYAMLMerge' merge -p "$BASE" "$REMOTE" "$LOCAL" "$MERGE"
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
+[difftool]
+    prompt = true
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[credential]
+	helper = store
+[safe]
+	directory = .
+	directory = ../../../
+	directory = /home/adunne/backups/netbsd_merge_conflicts_23_03_23/netbsd/src

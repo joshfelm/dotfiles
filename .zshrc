@@ -99,6 +99,7 @@ ZSH_CUSTOM=$ZSH/custom
 # source aliases and oh my zsh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
+source $HOME/.bash_aliases
 
 
 # User configuration

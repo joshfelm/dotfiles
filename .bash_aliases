@@ -8,9 +8,6 @@ alias x=exit
 alias tmux='tmux -2'
 #alias v='vim'
 alias f='find . -name'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
 alias home='cd ~'
 alias g='git'
 alias chrome="/opt/google/chrome/google-chrome &"
@@ -37,4 +34,17 @@ alias container='make -C ~/docker/seL4-CAmkES-L4v-dockerfiles user HOST_DIR=$(pw
 alias buildenv='docker run -it --rm -v /scratch/seL4:/host:z \
     ghcr.io/sel4devkit/maaxboard:latest'
 alias vimdiff='nvim -d'
-# alias aarch64-none-elf-gcc='/home/jfelmeden/cp/gcc-arm-10.2-2020.11-x86_64-aarch64-none-elf/bin/aarch64-none-elf-gcc'
+
+getdate() {
+    sudo date -s "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | sed -n 's/^ *Date: *//p')"
+}
+# alias r='repo'
+# up a directory up to 100 dirs
+alias_str=".."
+cmd_str="cd .."
+for i in $(seq 1 100);
+do
+    alias ${alias_str}="$cmd_str"
+    alias_str="$alias_str."
+    cmd_str="$cmd_str/.."
+done
