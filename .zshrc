@@ -9,6 +9,7 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export FZF_BASE="$HOME/.fzf"
 export PATH=~/anaconda3/bin:$PATH
+export TERM=screen-256color
 
 # list of plugins
 plugins=(
@@ -21,6 +22,7 @@ plugins=(
   ruby
   z
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 # autosuggestion settings

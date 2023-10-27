@@ -21,6 +21,9 @@
     rc = rebase --continue
     pr = push gerrit HEAD:refs/for/master
     mt = mergetool
+	s = difftool
+	s = nvimdiff
+	s = vimdiff
 [user]
     email = josh.felmeden@capgemini.com
     name = Josh Felmeden
@@ -36,15 +39,16 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-[difftool]
-    prompt = true
 [diff]
     tool = nvimdiff
+; [difftool]
+;     prompt = true
 [difftool "nvimdiff"]
     cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [credential]
 	helper = store
 [safe]
 	directory = .
-	directory = ../../../
 	directory = /home/adunne/backups/netbsd_merge_conflicts_23_03_23/netbsd/src
+	directory = .
+	directory = /home/adunne/netbsd/src

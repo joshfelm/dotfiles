@@ -30,3 +30,5 @@ fi
 #if [ -d "$HOME/cp-manifest/sel4cp" ] ; then
 #    PATH="$HOME/cp-manifest/compiler/bin:$PATH"
 #fi
+#
+export PATH="$HOME/mk-manifest/compiler/bin:$PATH" 
