@@ -9,6 +9,7 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export FZF_BASE="$HOME/.fzf"
 export PATH=~/anaconda3/bin:$PATH
+export TERM=screen-256color
 
 # list of plugins
 plugins=(
@@ -28,7 +29,7 @@ plugins=(
 ZSH_AUTOSUGGEST_STRATEGY="history"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/josh/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -100,6 +101,7 @@ ZSH_CUSTOM=$ZSH/custom
 # source aliases and oh my zsh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.aliases
+# source $HOME/.bash_aliases
 
 
 # User configuration
@@ -132,9 +134,3 @@ alias src="source $HOME/.zshrc"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/josh/google-cloud-sdk/path.zsh.inc' ]; then . '/home/josh/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/josh/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/josh/google-cloud-sdk/completion.zsh.inc'; fi
