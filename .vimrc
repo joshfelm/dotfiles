@@ -5,10 +5,6 @@ endif
 
 set autoindent
 
-" map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-"split navigations
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> :let @/=""<cr>
@@ -80,13 +76,13 @@ nnoremap ; :
 vnoremap ; :
 inoremap jk <ESC>
 inoremap kj <ESC>
-" }}}
 
-"---FUNCTIONS---{{{
-function! s:Usepack(package)
-    execute "normal! magg/Other\<cr>o\\usepackage{". a:package. "}\<esc>`a"
-endfunction
-"}}}
+"
+nnoremap H ^
+vnoremap H ^
+nnoremap L $
+vnoremap L $
+" }}}
 
 "---autocommands--- {{{
 augroup configgroup

@@ -9,17 +9,23 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export FZF_BASE="$HOME/.fzf"
 export PATH=~/anaconda3/bin:$PATH
+export PATH=/home/jfelmeden/microkit_libc/experimentation/zig:$PATH #add zig to path
 export TERM=screen-256color
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
 
 # list of plugins
 plugins=(
-  bundler
   dotenv
-  macos
+  fd
   fzf
-  rake
-  rbenv
-  ruby
+  git
+  ripgrep
+  tmux
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -38,6 +44,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="gruvbox"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 SOLARIZED_THEME="dark"
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk||kj
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +75,7 @@ HYPHEN_INSENSITIVE="true"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="true"
@@ -87,16 +94,10 @@ COMPLETION_WAITING_DOTS="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-HIST_STAMPS="dd/mm/yyyy"
+HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM=$ZSH/custom
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
 
 # source aliases and oh my zsh
 source $ZSH/oh-my-zsh.sh
@@ -107,6 +108,9 @@ source $HOME/.bash_aliases
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
+
+# Don't allow tmux to share history
+setopt nosharehistory
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -123,8 +127,6 @@ fi
 
 # Enable fzf easier
 source $HOME/.fzf_zsh
-
-# source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 alias zshrc="nvim $HOME/.zshrc"
 alias ohmyzsh="cd ~/.oh-my-zsh"

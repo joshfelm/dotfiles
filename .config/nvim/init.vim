@@ -77,7 +77,6 @@ let g:BASH_Ctrl_j = 'off'
 " nnoremap <C-j> <C-w>j
 " nnoremap <C-k> <C-w>k
 
-
 nnoremap <C-l> :let @/=""<cr>
 nnoremap J mzJ`z
 nnoremap K gt
@@ -98,7 +97,6 @@ nnoremap <leader>- yypVr-<Esc>==
 " Make pasting easier
 inoremap <c-v> <c-V>
 inoremap <c-z> <ESC>ui
-" inoremap <c-BS> <c-w>
 inoremap <C-s> <ESC>:w<ENTER>a
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
@@ -134,10 +132,6 @@ autocmd Filetype css setlocal tabstop=2
 :set shiftwidth=4
 :set expandtab
 
-" Fix ctrl backspace (doesn't work)
-" noremap! <C-BS> <C-w>
-inoremap <c-h> <c-w>
-
 " Make searching better
 set smartcase
 set ignorecase
@@ -150,6 +144,13 @@ nnoremap ; :
 vnoremap ; :
 inoremap jk <ESC>
 inoremap kj <ESC>
+
+" SOL and EOL easier
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L $
+
 " }}}
 
 "---NERDTREE---{{{
