@@ -1,5 +1,4 @@
 alias v='nvim'
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias sshpi='ssh pi@80.5.39.27'
 alias python=python3
 alias pip=pip3
@@ -7,8 +6,6 @@ alias open=xdg-open
 alias x=exit
 alias tmux='tmux -2'
 alias v='nvim'
-alias f='find . -name'
-alias dbox='cd ~/Documents/Dropbox'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'

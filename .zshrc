@@ -12,6 +12,7 @@ export PATH=~/anaconda3/bin:$PATH
 export PATH=/home/jfelmeden/microkit_libc/experimentation/zig:$PATH #add zig to path
 export TERM=screen-256color
 
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -117,7 +118,7 @@ setopt nosharehistory
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
   export EDITOR='mvim'
 fi
@@ -128,11 +129,22 @@ fi
 # Enable fzf easier
 source $HOME/.fzf_zsh
 
+
+
 alias zshrc="nvim $HOME/.zshrc"
 alias ohmyzsh="cd ~/.oh-my-zsh"
 alias src="source $HOME/.zshrc"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# # fix fzf jumping on zsh-z
+# unalias z 2> /dev/null
+# z() {
+#     [ $# -gt 0 ] && zshz "$*" && return
+#     cd "$(zshz -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
+# }
+
+# unalias fd 2> /dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
