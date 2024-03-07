@@ -7,6 +7,7 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$PATH:/opt/nvim/" 
 export FZF_BASE="$HOME/.fzf"
 export PATH=~/anaconda3/bin:$PATH
 export PATH=/home/jfelmeden/microkit_libc/experimentation/zig:$PATH #add zig to path

@@ -25,7 +25,7 @@
 	s = nvimdiff
 	s = vimdiff
 [user]
-    email = josh.felmeden@capgemini.com
+	email = josh.felmeden@outlook.com
     name = Josh Felmeden
 [core]
     editor = nvim

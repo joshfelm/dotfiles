@@ -10,3 +10,14 @@
 [submodule "tpm"]
 	path = tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule ".config/ranger/colorschemes/ranger"]
+	path = .config/ranger/colorschemes/dracula/ranger
+	url = git@github.com:dracula/ranger.git
+[submodule ".config/ranger/plugins/ranger_devicons"]
+	path = .config/ranger/plugins/ranger_devicons
+	url = https://github.com/alexanderjeurissen/ranger_devicons
+[submodule ".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+	path = .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".tmux/plugins/zsh-syntax-highlighting"]
+	path = .tmux/plugins/zsh-syntax-highlighting

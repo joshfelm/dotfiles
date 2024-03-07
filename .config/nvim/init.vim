@@ -10,13 +10,14 @@ Plug 'urso/haskell_syntax.vim'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'rhysd/vim-grammarous'
+Plug 'catppuccin/nvim'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'tmhedberg/SimpylFold'
 " Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf'
 Plug 'SirVer/ultisnips'
 Plug 'kana/vim-operator-user'
@@ -32,20 +33,26 @@ let g:deoplete#enable_at_startup = 1
 Plug 'tpope/vim-commentary'
 Plug 'lervag/vimtex'
 Plug 'w0rp/ale'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-sensible'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'hankchiutw/nerdtree-ranger.vim'
 Plug 'WolfgangMehner/vim-plugins'
 Plug 'Yggdroot/indentLine'
 Plug 'danro/rename.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'autozimu/LanguageClient-neovim', {
-     \ 'branch': 'next',
-     \ 'do': 'bash install.sh',
-     \ }
-Plug 'maximbaz/lightline-ale'
+Plug 'ryanoasis/vim-devicons'
+"Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': 'bash install.sh',
+"     \ }
+" Plug 'maximbaz/lightline-ale'
 Plug 'easymotion/vim-easymotion'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -63,6 +70,16 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }}}
 
+" ---TREE-SITTER--- {{{
+lua <<EOF
+  require('nvim-treesitter.configs').setup {
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+  highlight = { enable = true},
+  indent = { enable = true }
+}
+EOF
+"  }}}
+
 "---GENERIC-VIM--- {{{
 if $TERM == "xterm-256color"
     set t_Co=256
@@ -70,14 +87,7 @@ endif
 
 let g:BASH_Ctrl_j = 'off'
 
-" map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-" \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-" \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-"split navigations
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-
-nnoremap <C-l> :let @/=""<cr>
+nnoremap <C-l> :nohl<cr>
 nnoremap J mzJ`z
 nnoremap K gt
 nnoremap <C-K> gT
@@ -86,9 +96,6 @@ set clipboard=unnamed
 
 "Change leader to ","
 let mapleader=","
-
-" Keep the cursor in place while joining lines
-" nnoremap J mzJ`z
 
 " Add a heading/subheading to current line
 nnoremap <leader>= yypVr=<Esc>==
@@ -109,14 +116,11 @@ set foldenable
 set foldlevelstart=10 "open most folds by default
 set foldnestmax=10 "max 10 nested folds
 nnoremap <space> za
-
-let g:ruby_host_prog = '/var/lib/gems/2.5.0/gems/neovim-0.8.0/exe/neovim-ruby-host'
-set guifont=Go
+set updatetime=200
 
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
-
 
 " Title
 set title
@@ -156,7 +160,7 @@ vnoremap L $
 "---NERDTREE---{{{
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-e> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 let NERDTreeMapActivateNode='<space>'
@@ -169,23 +173,12 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 "}}}
 
-"---FUNCTIONS---{{{
-function! s:Usepack(package)
-    execute "normal! magg/Other\<cr>o\\usepackage{". a:package. "}\<esc>`a"
-endfunction
-
-function! s:Import(import)
-    execute "normal! magg/import\<cr>o\"". a:import ."\"\<esc>`a"
-endfunction
+"---MOLOKAI {{{
+" :colo molokai
+colorscheme catppuccin-mocha
+let g:rehash256 = 1
+let g:molokai_original = 1
 "}}}
-
-" ---DEOPLETE--- {{{
-" inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <silent><expr> <C-j> pumvisible() ? "\<C-Y>" : "\<CR>"
-
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-" }}}
 
 "---GRAMMAROUS--- {{{
 let g:grammarous#hooks = {}
@@ -223,19 +216,12 @@ let g:UltiSnipsEditSplit='context'
 "---GITGUTTER---{{{
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
-let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_override_sign_column_highlight=1
 highlight SignColumn ctermbg=233
 "}}}
 
 "---VIMTEX--- {{{
-" let g:vimtex_compiler_progname = 'nvr'
 let g:tex_flavor = 'latex'
-" }}}
-
-"---AYU {{{
-set termguicolors
-" let ayucolor="dark"
-" :colo sublimemonokai
 " }}}
 
 "---VIM-COMMANDS--- {{{
@@ -255,32 +241,6 @@ let g:AutoPairsFlyMode = 0
 let g:AutoPairsShortcutBackInsert = '<M-b>'
 " }}}
 
-"---LIGHTLINE_ALE {{{
-let g:lightline = {
-    \ 'colorscheme': 'one',
-    \ 'component_expand': {
-    \ 'linter_checking': 'lightline#ale#checking',
-    \ 'linter_warnings': 'lightline#ale#warnings',
-    \ 'linter_errors': 'lightline#ale#errors',
-    \ 'linter_ok': 'lightline#ale#ok',
-    \ },
-    \ 'component_type': {
-    \     'linter_checking': 'left',
-    \     'linter_warnings': 'warning',
-    \     'linter_errors': 'error',
-    \     'linter_ok': 'left',
-    \ },
-    \ 'active': { 
-    \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'readonly', 'filename', 'modified', 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]]
-    \ },
-    \ 'component_function': {
-    \   'wordcount': 'Wcount',
-    \ },
-    \ }
-
-" }}}
-
 "---FZF---{{{
 let $FZF_DEFAULT_COMMAND = 'find . ! -readable -prune -o -not -path "*/\.git/*" -printf "%P\\n"'
 nmap <silent> <leader>f :FZF ~<cr>
@@ -288,7 +248,7 @@ nmap <silent> <leader>F :FZF<cr>
 "}}}
 
 "---ALE--- {{{
-autocmd User ALELint highlight ALEErrorSign guifg=#fb4934 guibg=#3c3836 gui=bold
+let g:ale_enabled = 1
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
 nmap <F8> <Plug>(ale_fix)
@@ -298,15 +258,15 @@ highlight clear ALEError
 highlight ALEError guibg=DarkRed 
 highlight ALEErrorSign guibg=#b30404 guifg=#e8d94f
 let g:ale_fixers = {
-            \    '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \    'haskell': ['brittany'],
+            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+            \   'c': ['clangd'],
+            \   'vim': ['vimls'],
             \}
 let g:ale_vim_vint_show_style_issues = 1
 let g:ale_echo_cursor = 1
 let g:ale_echo_msg_error_str = 'Error'
 let g:ale_echo_msg_format = '%code: %%s'
 let g:ale_echo_msg_warning_str = 'Warning'
-let g:ale_enabled = 1
 let g:ale_fix_on_save = 0
 let g:ale_keep_list_window_open = 0
 let g:ale_lint_delay = 200
@@ -316,7 +276,8 @@ let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_text_changed = 1
 let g:ale_linter_aliases = {}
 let g:ale_linters = {
-\   'c': ['clang'],
+\   'c': ['clangd'],
+\   'vim': ['vimls'],
 \}
 let g:ale_open_list = 0
 let g:ale_set_highlights = 1    "enable highlights"
@@ -327,14 +288,39 @@ let g:ale_sign_column_always = 0
 let g:ale_sign_error = '✗'
 let g:ale_sign_offset = 10000
 let g:ale_sign_warning = '⚡︎'
-let g:ale_statusline_format = ['x %d', '⚡︎%d', '']
+let g:ale_statusline_format = ['✗ %d', '⚡︎%d', '']
 let g:ale_warn_about_trailing_whitespace = 0
-let g:ale_completion_enabled = 1
+let g:ale_completion_enabled = 0
+" call deoplete#custom#option('sources', {
+" \ '_': ['ale', 'clangd'],
+" \})
+
+let g:ale_floating_preview= 1
+autocmd User ALELint highlight ALEErrorSign guifg=#fb4934 guibg=#3c3836 gui=bold
+nnoremap <silent> gd :ALEGoToDefinition<CR>
+nnoremap <silent> <leader>gd :tabnew % <Bar> tabprevious <Bar> ALEGoToDefinition<CR>
+nnoremap <silent> gh :ALEHover<CR>
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+nnoremap <silent> <F2> :ALERename<CR>
 " }}}
 
-" ---LIGHTLINE--- {{{
-set laststatus=2				" Enable lightline
+" ---DEOPLETE--- {{{
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#source('_', 'sources', ['ale'])
+autocmd CompleteDone * silent! pclose!
+"  }}}
+
+" ---AIRLINE--- {{{
+" set laststatus=2				" Enable lightline
 set noshowmode					" Turn off -- Insert--
+let g:airline_theme='base16_dracula'
+let g:airline#extensions#hunks#non_zero_only = 0
+let g:airline_powerline_fonts = 1
+let g:airline_section_z = airline#section#create(['%p%%% '])
+let g:airline_section_b = airline#section#create([' %{airline#util#wrap(airline#extensions#hunks#get_hunks(),100)}%{airline#util#wrap(airline#extensions#branch#get_head(),80)}'])
+let g:airline_section_warning = airline#section#create(['ale_warning_count', 'syntastic-warn', 'languageclient_warning_count'])
+let g:airline_symbols.branch=''
+let g:airline_symbols.dirty='+'
 " }}}
 
 "---AYU--- {{{
@@ -410,12 +396,6 @@ augroup configgroup
     augroup END
 " }}}
 
-"---MOLOKAI {{{
-" :colo molokai
-:colo gruvbox
-let g:rehash256 = 1
-let g:molokai_original = 1
-"}}}
 
 "{{{ ---FUNCTIONS
 "Search current working directory for word under cursor (used for xhci
@@ -423,5 +403,5 @@ let g:molokai_original = 1
 nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
 
 "}}}
-packloadall
+finish
 " vim:foldmethod=marker:foldlevel=0
