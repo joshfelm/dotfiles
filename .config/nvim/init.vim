@@ -306,7 +306,7 @@ nnoremap <silent> <F2> :ALERename<CR>
 
 " ---DEOPLETE--- {{{
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#source('_', 'sources', ['ale'])
+call deoplete#custom#source('ale', 'rank', 999)
 autocmd CompleteDone * silent! pclose!
 "  }}}
 

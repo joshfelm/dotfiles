@@ -4,7 +4,7 @@
 
 SetMacro( 'AUTHOR',       'Josh Felmeden' )
 SetMacro( 'AUTHORREF',    '' )
-SetMacro( 'EMAIL',        'josh.felmeden@capgemini.com' )
+SetMacro( 'EMAIL',        'josh.felmeden@outlook.com' )
 SetMacro( 'ORGANIZATION', '' )
 SetMacro( 'COMPANY',      'Capgemini' )
 SetMacro( 'COPYRIGHT',    'Copyright (c) |YEAR|, |AUTHOR|' )
