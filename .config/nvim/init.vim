@@ -11,10 +11,12 @@ Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'rhysd/vim-grammarous'
 Plug 'catppuccin/nvim'
+Plug 'tpope/vim-repeat'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tmhedberg/SimpylFold'
 " Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 "Plug 'itchyny/lightline.vim'
@@ -73,9 +75,9 @@ filetype plugin indent on    " required
 " ---TREE-SITTER--- {{{
 lua <<EOF
   require('nvim-treesitter.configs').setup {
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+  ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query" },
   highlight = { enable = true},
-  indent = { enable = true }
+  indent = { enable = true },
 }
 EOF
 "  }}}
@@ -171,6 +173,21 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+let g:NERDTreeGitStatusUseNerdFonts = 1
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'M',
+                \ 'Staged'    :'+',
+                \ 'Untracked' :'U',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'D',
+                \ 'Dirty'     :'●',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
 "}}}
 
 "---MOLOKAI {{{
@@ -217,6 +234,10 @@ let g:UltiSnipsEditSplit='context'
 nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 let g:gitgutter_override_sign_column_highlight=1
+let g:gitgutter_sign_added = '▐'
+let g:gitgutter_sign_modified = ''
+highlight GitGutterChange guifg=#add8e6 
+highlight GitGutterAdd guifg=#b8bb26
 highlight SignColumn ctermbg=233
 "}}}
 
@@ -259,8 +280,7 @@ highlight ALEError guibg=DarkRed
 highlight ALEErrorSign guibg=#b30404 guifg=#e8d94f
 let g:ale_fixers = {
             \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \   'c': ['clangd'],
-            \   'vim': ['vimls'],
+            \   'c': ['clang-tidy'],
             \}
 let g:ale_vim_vint_show_style_issues = 1
 let g:ale_echo_cursor = 1
@@ -277,6 +297,7 @@ let g:ale_lint_on_text_changed = 1
 let g:ale_linter_aliases = {}
 let g:ale_linters = {
 \   'c': ['clangd'],
+\   'python': ['jedils', 'pylint'],
 \   'vim': ['vimls'],
 \}
 let g:ale_open_list = 0
@@ -298,7 +319,7 @@ let g:ale_completion_enabled = 0
 let g:ale_floating_preview= 1
 autocmd User ALELint highlight ALEErrorSign guifg=#fb4934 guibg=#3c3836 gui=bold
 nnoremap <silent> gd :ALEGoToDefinition<CR>
-nnoremap <silent> <leader>gd :tabnew % <Bar> tabprevious <Bar> ALEGoToDefinition<CR>
+nnoremap <silent> <leader>gd :tabnew %<CR><c-o>:ALEGoToDefinition<CR>gT
 nnoremap <silent> gh :ALEHover<CR>
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 nnoremap <silent> <F2> :ALERename<CR>
