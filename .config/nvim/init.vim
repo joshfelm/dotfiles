@@ -235,7 +235,7 @@ nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
 let g:gitgutter_override_sign_column_highlight=1
 let g:gitgutter_sign_added = '▐'
-let g:gitgutter_sign_modified = ''
+let g:gitgutter_sign_modified = '▐'
 highlight GitGutterChange guifg=#add8e6 
 highlight GitGutterAdd guifg=#b8bb26
 highlight SignColumn ctermbg=233
@@ -349,7 +349,7 @@ let ayucolor="dark"
 "}}}
 
 "---INDENT-GUIDE--- {{{
-let g:indentLine_color_term = 5		" Makes indent guide use colorscheme colors
+" let g:indentLine_color_term = 5		" Makes indent guide use colorscheme colors
 let g:indentLine_char = '¦'			" Change indent char
 let g:indentLine_enabled = 1			" Enable indent highlight
 let g:indentLine_showFirstIndentLevel = 1
@@ -402,27 +402,27 @@ augroup configgroup
     autocmd BufNewFile, BufRead *.py setlocal shitwidth=4
     autocmd BufNewFile, BufRead *.py setlocal textwidth=79
     autocmd BufNewFile, BufRead *.py setlocal expandtab
-    autocmd BufNewFile, BufRead *.py setlocal autoindent
-    autocmd BufNewFile, BufRead *.py setlocal fileformat=unix
-    augroup END
-    augroup vimrc
-        au!
-        au VimEnter * inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
-    augroup END
+        autocmd BufNewFile, BufRead *.py setlocal autoindent
+        autocmd BufNewFile, BufRead *.py setlocal fileformat=unix
+        augroup END
+        augroup vimrc
+            au!
+            au VimEnter * inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"
+        augroup END
 
-    augroup reload_vimrc
+        augroup reload_vimrc
 
-    autocmd!
-    autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
-    augroup END
-" }}}
+        autocmd!
+        autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+        augroup END
+    " }}}
 
 
-"{{{ ---FUNCTIONS
-"Search current working directory for word under cursor (used for xhci
-"searching mostly, might remove later)
-nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
+    "{{{ ---FUNCTIONS
+    "Search current working directory for word under cursor (used for xhci
+    "searching mostly, might remove later)
+    nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
 
-"}}}
-finish
+    "}}}
+    finish
 " vim:foldmethod=marker:foldlevel=0
