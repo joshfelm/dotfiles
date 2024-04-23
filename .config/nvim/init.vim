@@ -6,21 +6,15 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.config/plugged')
 
-Plug 'urso/haskell_syntax.vim'
-Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
 Plug 'rhysd/vim-grammarous'
-Plug 'catppuccin/nvim'
 Plug 'tpope/vim-repeat'
-" Plug 'ayu-theme/ayu-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/indentpython.vim'
-Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'nvim-tree/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'kevinhwang91/rnvimr'
 Plug 'tmhedberg/SimpylFold'
-" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-"Plug 'itchyny/lightline.vim'
-Plug 'junegunn/fzf'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'kana/vim-operator-user'
 Plug 'haya14busa/vim-operator-flashy'
@@ -32,7 +26,7 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 Plug 'lervag/vimtex'
 Plug 'w0rp/ale'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
@@ -42,19 +36,15 @@ Plug 'tpope/vim-sensible'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'hankchiutw/nerdtree-ranger.vim'
 Plug 'WolfgangMehner/vim-plugins'
 Plug 'Yggdroot/indentLine'
 Plug 'danro/rename.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ryanoasis/vim-devicons'
-"Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': 'bash install.sh',
-"     \ }
-" Plug 'maximbaz/lightline-ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'shatur/neovim-session-manager'
+Plug 'goolord/alpha-nvim'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -72,14 +62,495 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }}}
 
-" ---TREE-SITTER--- {{{
+"---LUA--- {{{
 lua <<EOF
-  require('nvim-treesitter.configs').setup {
-  ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query" },
-  highlight = { enable = true},
-  indent = { enable = true },
-}
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+
+    require('nvim-treesitter.configs').setup({
+        ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query" },
+        highlight = { enable = true},
+        indent = { enable = true },
+    }) 
+
+    require('catppuccin').setup({
+        custom_highlights = function(colors)
+        return {
+            Date = { fg = colors.blue },
+        }
+    end
+
+    })
+
+    local function my_on_attach(bufnr)
+        local api = require "nvim-tree.api"
+
+        local function opts(desc)
+            return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+        end
+
+        local api = require("nvim-tree.api")
+
+        local function edit_or_open()
+          local node = api.tree.get_node_under_cursor()
+
+          if node.nodes ~= nil then
+            -- expand or collapse folder
+            api.node.open.edit()
+          else
+            -- open file
+            api.node.open.edit()
+            -- Close the tree if file was opened
+            api.tree.close()
+          end
+        end
+
+        -- open as vsplit on current node
+        local function vsplit_preview()
+          local node = api.tree.get_node_under_cursor()
+
+          if node.nodes ~= nil then
+            -- expand or collapse folder
+            api.node.open.edit()
+          else
+            -- open file as vsplit
+            api.node.open.vertical()
+          end
+
+          -- Finally refocus on tree if it was lost
+          api.tree.focus()
+        end
+
+        -- global keymap
+        vim.api.nvim_set_keymap("n", "<C-E>", ":NvimTreeToggle<cr>", {silent = true, noremap = false})
+        -- default mappings {{{
+
+        vim.keymap.set('n', '<C-]>',   api.tree.change_root_to_node,        opts('CD'))
+        --vim.keymap.set('n', '<C-e>',   api.node.open.replace_tree_buffer,   opts('Open: In Place'))
+        vim.keymap.set('n', '<C-k>',   api.node.show_info_popup,            opts('Info'))
+        vim.keymap.set('n', '<C-r>',   api.fs.rename_sub,                   opts('Rename: Omit Filename'))
+        vim.keymap.set('n', '<C-t>',   api.node.open.tab,                   opts('Open: New Tab'))
+        vim.keymap.set('n', '<C-v>',   api.node.open.vertical,              opts('Open: Vertical Split'))
+        vim.keymap.set('n', '<C-x>',   api.node.open.horizontal,            opts('Open: Horizontal Split'))
+        vim.keymap.set('n', '<BS>',    api.node.navigate.parent_close,      opts('Close Directory'))
+        vim.keymap.set('n', '<CR>',    api.node.open.edit,                  opts('Open'))
+        vim.keymap.set('n', '<Tab>',   api.node.open.preview,               opts('Open Preview'))
+        vim.keymap.set('n', '>',       api.node.navigate.sibling.next,      opts('Next Sibling'))
+        vim.keymap.set('n', '<',       api.node.navigate.sibling.prev,      opts('Previous Sibling'))
+        vim.keymap.set('n', '.',       api.node.run.cmd,                    opts('Run Command'))
+        vim.keymap.set('n', '-',       api.tree.change_root_to_parent,      opts('Up'))
+        vim.keymap.set('n', 'a',       api.fs.create,                       opts('Create File Or Directory'))
+        vim.keymap.set('n', 'bd',      api.marks.bulk.delete,               opts('Delete Bookmarked'))
+        vim.keymap.set('n', 'bt',      api.marks.bulk.trash,                opts('Trash Bookmarked'))
+        vim.keymap.set('n', 'bmv',     api.marks.bulk.move,                 opts('Move Bookmarked'))
+        vim.keymap.set('n', 'B',       api.tree.toggle_no_buffer_filter,    opts('Toggle Filter: No Buffer'))
+        vim.keymap.set('n', 'c',       api.fs.copy.node,                    opts('Copy'))
+        vim.keymap.set('n', 'C',       api.tree.toggle_git_clean_filter,    opts('Toggle Filter: Git Clean'))
+        vim.keymap.set('n', '[c',      api.node.navigate.git.prev,          opts('Prev Git'))
+        vim.keymap.set('n', ']c',      api.node.navigate.git.next,          opts('Next Git'))
+        vim.keymap.set('n', 'd',       api.fs.remove,                       opts('Delete'))
+        vim.keymap.set('n', 'D',       api.fs.trash,                        opts('Trash'))
+        vim.keymap.set('n', 'E',       api.tree.expand_all,                 opts('Expand All'))
+        vim.keymap.set('n', 'e',       api.fs.rename_basename,              opts('Rename: Basename'))
+        vim.keymap.set('n', ']e',      api.node.navigate.diagnostics.next,  opts('Next Diagnostic'))
+        vim.keymap.set('n', '[e',      api.node.navigate.diagnostics.prev,  opts('Prev Diagnostic'))
+        vim.keymap.set('n', 'F',       api.live_filter.clear,               opts('Live Filter: Clear'))
+        vim.keymap.set('n', 'f',       api.live_filter.start,               opts('Live Filter: Start'))
+        vim.keymap.set('n', 'gy',      api.fs.copy.absolute_path,           opts('Copy Absolute Path'))
+        vim.keymap.set('n', 'ge',      api.fs.copy.basename,                opts('Copy Basename'))
+        vim.keymap.set('n', 'I',       api.tree.toggle_gitignore_filter,    opts('Toggle Filter: Git Ignore'))
+        vim.keymap.set('n', 'J',       api.node.navigate.sibling.last,      opts('Last Sibling'))
+        vim.keymap.set('n', 'K',       api.node.navigate.sibling.first,     opts('First Sibling'))
+        vim.keymap.set('n', 'L',       api.node.open.toggle_group_empty,    opts('Toggle Group Empty'))
+        vim.keymap.set('n', 'M',       api.tree.toggle_no_bookmark_filter,  opts('Toggle Filter: No Bookmark'))
+        vim.keymap.set('n', 'm',       api.marks.toggle,                    opts('Toggle Bookmark'))
+        vim.keymap.set('n', 'o',       api.node.open.edit,                  opts('Open'))
+        vim.keymap.set('n', 'O',       api.node.open.no_window_picker,      opts('Open: No Window Picker'))
+        vim.keymap.set('n', 'p',       api.fs.paste,                        opts('Paste'))
+        vim.keymap.set('n', 'P',       api.node.navigate.parent,            opts('Parent Directory'))
+        vim.keymap.set('n', 'q',       api.tree.close,                      opts('Close'))
+        vim.keymap.set('n', 'r',       api.fs.rename,                       opts('Rename'))
+        vim.keymap.set('n', 'R',       api.tree.reload,                     opts('Refresh'))
+        vim.keymap.set('n', 's',       api.node.run.system,                 opts('Run System'))
+        vim.keymap.set('n', 'S',       api.tree.search_node,                opts('Search'))
+        vim.keymap.set('n', 'u',       api.fs.rename_full,                  opts('Rename: Full Path'))
+        vim.keymap.set('n', 'U',       api.tree.toggle_custom_filter,       opts('Toggle Filter: Hidden'))
+        vim.keymap.set('n', 'W',       api.tree.collapse_all,               opts('Collapse'))
+        vim.keymap.set('n', 'x',       api.fs.cut,                          opts('Cut'))
+        vim.keymap.set('n', 'y',       api.fs.copy.filename,                opts('Copy Name'))
+        vim.keymap.set('n', 'Y',       api.fs.copy.relative_path,           opts('Copy Relative Path'))
+        vim.keymap.set('n', '<2-LeftMouse>',  api.node.open.edit,           opts('Open'))
+        vim.keymap.set('n', '<2-RightMouse>', api.tree.change_root_to_node, opts('CD'))
+        --}}}
+        -- custom mappings
+        vim.keymap.set("n","?",         api.tree.toggle_help,           opts('Help'))
+        vim.keymap.set("n", "l",        edit_or_open,                   opts("Edit or Open"))
+        vim.keymap.set("n", "L",        vsplit_preview,                 opts("Vsplit Preview"))
+        vim.keymap.set("n", "h",        api.node.navigate.parent_close, opts("Close"))
+        vim.keymap.set("n", "H",        api.tree.collapse_all,          opts("Collapse All"))
+        vim.keymap.set('n', "<C-h>",       api.tree.toggle_hidden_filter,       opts('Toggle Filter: Hidden'))
+    end
+
+    require("nvim-tree").setup({
+        filters = {
+            dotfiles = false,
+            git_clean = false,
+            no_buffer = false,
+            custom = {
+                "node_modules", -- filter out node_modules directory
+                ".git", -- filter out .git directory
+            },
+            exclude = {},
+        },
+        disable_netrw = true,
+        hijack_netrw = true,
+        --open_on_setup = false,
+        open_on_tab = false,
+        hijack_cursor = false,
+        update_cwd = true,
+        hijack_directories = {
+            enable = true,
+            auto_open = true,
+        },
+        diagnostics = {
+            enable = true,
+            icons = {
+                hint = "",
+                info = "",
+                warning = "",
+                error = "",
+            },
+        },
+        update_focused_file = {
+            enable = true,
+            update_cwd = true,
+            ignore_list = {},
+        },
+        git = {
+            enable = true,
+            ignore = true,
+            timeout = 500,
+        },
+        view = {
+            width = 30,
+            --height = 30,
+            --hide_root_folder = false,
+            side = "left",
+            --auto_resize = true,
+            --mappings = {
+                --custom_only = false,
+            --},
+            number = false,
+            relativenumber = false,
+        },
+        actions = {
+            --quit_on_open = true,
+            --window_picker = { enable = true },
+        },
+        renderer = {
+            highlight_git = true,
+            root_folder_modifier = ":t",
+            icons = {
+                show = {
+                    file = true,
+                    folder = true,
+                    folder_arrow = true,
+                    git = true,
+                },
+                glyphs = {
+                    default = "",
+                    symlink = "",
+                    git = {
+                        unstaged = "●",
+                        staged = "+",
+                        unmerged = "═",
+                        renamed = "R",
+                        deleted = "D",
+                        untracked = "U",
+                        ignored = "I",
+                    },
+                    folder = {
+                        default = "",
+                        open = "",
+                        empty = "",
+                        empty_open = "",
+                        symlink = "",
+                    },
+                },
+                
+            },
+        },
+
+        on_attach = my_on_attach,
+    })
+
+    local Path = require('plenary.path')
+    local config = require('session_manager.config')
+    require('session_manager').setup({
+      sessions_dir = Path:new(vim.fn.stdpath('data'), 'sessions'), -- The directory where the session files will be saved.
+      session_filename_to_dir = session_filename_to_dir, -- Function that replaces symbols into separators and colons to transform filename into a session directory.
+      dir_to_session_filename = dir_to_session_filename, -- Function that replaces separators and colons into special symbols to transform session directory into a filename. Should use `vim.loop.cwd()` if the passed `dir` is `nil`.
+      autoload_mode = config.AutoloadMode.Disabled, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+      autosave_last_session = true, -- Automatically save last session on exit and on session switch.
+      autosave_ignore_not_normal = true, -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+      autosave_ignore_dirs = {}, -- A list of directories where the session will not be autosaved.
+      autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
+        'gitcommit',
+        'gitrebase',
+      },
+      autosave_ignore_buftypes = {}, -- All buffers of these bufer types will be closed before the session is saved.
+      autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
+      max_path_length = 80,  -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
+    })
+
+    local alpha = require('alpha')
+    require('alpha.term')
+
+    local header = {
+       "                                                     ",
+       "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
+       "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
+       "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
+       "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
+       "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
+       "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
+       "                                                     ",
+    }
+    local make_header = function()
+        local lines = {}
+        for i, line_chars in pairs(header) do
+          local hi = i > 10 and "Bulbasaur" .. (i - 10) or "PokemonLogo" .. i
+          local line = {
+            type = "text",
+            val = line_chars,
+            opts = {
+              hl = "AlphaSpecialKey" .. i,
+              shrink_margin = false,
+              position = "center",
+            },
+          }
+          table.insert(lines, line)
+        end
+
+        local output = {
+          type = "group",
+          val = lines,
+          opts = { position = "center" },
+        }
+
+        return output
+    end
+
+    local margin_fix = vim.fn.floor(vim.fn.winwidth(0) / 2 - 46 / 2)
+
+    local marginTopPercent = 0.05
+    local headerPadding = vim.fn.max({ 4, vim.fn.floor(vim.fn.winheight(0) * marginTopPercent) })
+
+    local padding = function(value)
+        return { type = "padding", val = value }
+    end
+
+    local button = function(sc, txt, keybind, padding)
+        local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
+        local text = padding and (" "):rep(padding) .. txt or txt
+
+        local offset = padding and padding + 3 or 3
+
+        local opts = {
+          width = 46,
+          shortcut = sc,
+          cursor = -1,
+          align_shortcut = "right",
+          hl_shortcut = "AlphaButtonShortcut",
+          hl = {
+            { "AlphaButtonIcon", 0, margin_fix + offset },
+            {
+              "AlphaButton",
+              offset,
+              #text,
+            },
+          },
+        }
+
+        if keybind then
+          opts.keymap = { "n", sc_, keybind, { noremap = true, silent = true } }
+        end
+
+        return {
+          type = "button",
+          val = text,
+          on_press = function()
+            local key = vim.api.nvim_replace_termcodes(sc_, true, false, true)
+            vim.api.nvim_feedkeys(key, "normal", false)
+          end,
+          opts = opts,
+        }
+    end
+
+    local thingy = io.popen('echo "$(date +%a) $(date +%d) $(date +%b)" | tr -d "\n"')
+    local date = thingy:read("*a")
+    thingy:close()
+
+
+    local heading = {
+        type = "text",
+        val = "· Today is " .. date .. " ·",
+        opts = {
+            position = "center",
+            hl = "Date",
+        },
+    }
+
+    local terminal = {
+        type = "terminal",
+        command = vim.fn.expand("$HOME") .. "/.config/nvim/thisisfine.sh",
+        width = 46,
+        height = 25,
+        opts = {
+            redraw = true,
+            window_config = {},
+        },
+    }
+
+    local section = {
+        heading = heading,
+        terminal = make_header(),
+        buttons = {
+          type = "group",
+          val = {
+            button( "o", "  Open file", ":RnvimrToggle<CR>"),
+            button( "l", "  Restore Session"  , ":SessionManager load_last_session<CR>"),
+            button( "u", "  Update Plugins"  , ":PlugUpdate<CR>"),
+            button( "r", "  Recent files"   , ":Telescope oldfiles<CR>"),
+            button( "s", "  Settings" , ":e $MYVIMRC<CR>"),
+            button( "q", "  Quit NVIM", ":qa<CR>"),
+          },
+          opts = {
+            spacing = 1,
+          },
+        },
+    }
+
+    local config = {
+        layout = {
+          padding(headerPadding),
+          section.terminal,
+          padding(4),
+          section.heading,
+          padding(2),
+          section.buttons,
+        },
+        opts = {
+          margin = margin_fix,
+        },
+    }
+
+    alpha.setup(config)
+
+    -- Send config to alpha
+    alpha.setup(config)
+
+    -- Disable folding on alpha buffer
+    vim.cmd([[
+        autocmd FileType alpha IndentLinesDisable
+        autocmd FileType alpha setlocal nofoldenable
+    ]])
 EOF
+"  }}}
+
+" ---NVIMTREE--- {{{
+nnoremap <leader>n :NvimTreeFocus<CR>
+nnoremap <C-e> :NvimTreeToggle<CR>
+" Start nvimtree when Vim is started without file arguments.
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NvimTreeOpen | endif
+"  }}}
+
+" ---RNVIMR (explorer)--- {{{
+" Make Ranger replace Netrw and be the file explorer
+let g:rnvimr_enable_ex = 1
+
+" Make Ranger to be hidden after picking a file
+let g:rnvimr_enable_picker = 1
+
+" Replace `$EDITOR` candidate with this command to open the selected file
+let g:rnvimr_edit_cmd = 'drop'
+
+" Disable a border for floating window
+let g:rnvimr_draw_border = 0
+
+" Hide the files included in gitignore
+let g:rnvimr_hide_gitignore = 1
+
+" Change the border's color
+let g:rnvimr_border_attr = {'fg': 14, 'bg': -1}
+
+" Make Neovim wipe the buffers corresponding to the files deleted by Ranger
+let g:rnvimr_enable_bw = 1
+
+" Add a shadow window, value is equal to 100 will disable shadow
+let g:rnvimr_shadow_winblend = 70
+
+" Draw border with both
+let g:rnvimr_ranger_cmd = ['ranger', '--cmd=set draw_borders both']
+
+" Link CursorLine into RnvimrNormal highlight in the Floating window
+highlight link RnvimrNormal CursorLine
+
+nnoremap <silent> <M-o> :RnvimrToggle<CR>
+tnoremap <silent> <M-o> <C-\><C-n>:RnvimrToggle<CR>
+
+" Resize floating window by all preset layouts
+tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+
+" Resize floating window by special preset layouts
+tnoremap <silent> <M-l> <C-\><C-n>:RnvimrResize 1,8,9,11,5<CR>
+
+" Resize floating window by single preset layout
+tnoremap <silent> <M-y> <C-\><C-n>:RnvimrResize 6<CR>
+
+" Map Rnvimr action
+let g:rnvimr_action = {
+            \ '<C-t>': 'NvimEdit tabedit',
+            \ '<C-x>': 'NvimEdit split',
+            \ '<C-v>': 'NvimEdit vsplit',
+            \ 'gw': 'JumpNvimCwd',
+            \ 'yw': 'EmitRangerCwd'
+            \ }
+
+" Add views for Ranger to adapt the size of floating window
+let g:rnvimr_ranger_views = [
+            \ {'minwidth': 90, 'ratio': []},
+            \ {'minwidth': 50, 'maxwidth': 89, 'ratio': [1,1]},
+            \ {'maxwidth': 49, 'ratio': [1]}
+            \ ]
+
+" Customize the initial layout
+let g:rnvimr_layout = {
+            \ 'relative': 'editor',
+            \ 'width': float2nr(round(0.7 * &columns)),
+            \ 'height': float2nr(round(0.7 * &lines)),
+            \ 'col': float2nr(round(0.15 * &columns)),
+            \ 'row': float2nr(round(0.15 * &lines)),
+            \ 'style': 'minimal'
+            \ }
+
+" Customize multiple preset layouts
+" '{}' represents the initial layout
+let g:rnvimr_presets = [
+            \ {'width': 0.600, 'height': 0.600},
+            \ {},
+            \ {'width': 0.800, 'height': 0.800},
+            \ {'width': 0.950, 'height': 0.950},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0, 'row': 0.5},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0},
+            \ {'width': 0.500, 'height': 0.500, 'col': 0.5, 'row': 0.5},
+            \ {'width': 0.500, 'height': 1.000, 'col': 0, 'row': 0},
+            \ {'width': 0.500, 'height': 1.000, 'col': 0.5, 'row': 0},
+            \ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0},
+            \ {'width': 1.000, 'height': 0.500, 'col': 0, 'row': 0.5}
+            \ ]
 "  }}}
 
 "---GENERIC-VIM--- {{{
@@ -142,9 +613,6 @@ autocmd Filetype css setlocal tabstop=2
 set smartcase
 set ignorecase
 
-" I don't remember why I did this
-cnoreabbrev W w
-
 " Make it easier to hit command
 nnoremap ; :
 vnoremap ; :
@@ -159,42 +627,9 @@ vnoremap L $
 
 " }}}
 
-"---NERDTREE---{{{
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-e> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-let NERDTreeMapActivateNode='<space>'
-
-" Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-
-let g:NERDTreeGitStatusUseNerdFonts = 1
-
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'M',
-                \ 'Staged'    :'+',
-                \ 'Untracked' :'U',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'D',
-                \ 'Dirty'     :'●',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
-"}}}
-
-"---MOLOKAI {{{
-" :colo molokai
+"---CATPPUCCIN {{{
 colorscheme catppuccin-mocha
 let g:rehash256 = 1
-let g:molokai_original = 1
 "}}}
 
 "---GRAMMAROUS--- {{{
@@ -248,8 +683,6 @@ let g:tex_flavor = 'latex'
 "---VIM-COMMANDS--- {{{
 :command! Init tabnew ~/.config/nvim/init.vim
 :command! Src source ~/.config/nvim/init.vim
-:command! -nargs=1 Up call s:Usepack(<f-args>)
-:command! -nargs=1 Imp call s:Import(<f-args>)
 " }}}
 
 "---C-SUPPORT--- {{{
@@ -263,9 +696,17 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 " }}}
 
 "---FZF---{{{
-let $FZF_DEFAULT_COMMAND = 'find . ! -readable -prune -o -not -path "*/\.git/*" -printf "%P\\n"'
-nmap <silent> <leader>f :FZF ~<cr>
-nmap <silent> <leader>F :FZF<cr>
+" let $FZF_DEFAULT_COMMAND = 'find . ! -readable -prune -o -not -path "*/\.git/*" -printf "%P\\n"'
+" nmap <silent> <leader>f :FZF ~<cr>
+" nmap <silent> <leader>F :FZF<cr>
+"}}}
+
+"---TELESCOPE---{{{
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 "}}}
 
 "---ALE--- {{{
@@ -312,9 +753,6 @@ let g:ale_sign_warning = '⚡︎'
 let g:ale_statusline_format = ['✗ %d', '⚡︎%d', '']
 let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_completion_enabled = 0
-" call deoplete#custom#option('sources', {
-" \ '_': ['ale', 'clangd'],
-" \})
 
 let g:ale_floating_preview= 1
 autocmd User ALELint highlight ALEErrorSign guifg=#fb4934 guibg=#3c3836 gui=bold
@@ -328,6 +766,7 @@ nnoremap <silent> <F2> :ALERename<CR>
 " ---DEOPLETE--- {{{
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 call deoplete#custom#source('ale', 'rank', 999)
+autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false) "disable on custom buffers
 autocmd CompleteDone * silent! pclose!
 "  }}}
 
@@ -344,17 +783,12 @@ let g:airline_symbols.branch=''
 let g:airline_symbols.dirty='+'
 " }}}
 
-"---AYU--- {{{
-let ayucolor="dark"
-"}}}
-
 "---INDENT-GUIDE--- {{{
 " let g:indentLine_color_term = 5		" Makes indent guide use colorscheme colors
 let g:indentLine_char = '¦'			" Change indent char
 let g:indentLine_enabled = 1			" Enable indent highlight
 let g:indentLine_showFirstIndentLevel = 1
 autocmd BufRead,BufNewFile *.tex IndentLinesDisable
-" autocmd BufRead,BufNewFile *.tex colorscheme ayu
 autocmd BufEnter *.json IndentLinesDisable
 " }}}
 
@@ -413,10 +847,9 @@ augroup configgroup
         augroup reload_vimrc
 
         autocmd!
-        autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
+        " autocmd BufWritePost ~/.config/nvim/init.vim source ~/.config/nvim/init.vim
         augroup END
     " }}}
-
 
     "{{{ ---FUNCTIONS
     "Search current working directory for word under cursor (used for xhci
