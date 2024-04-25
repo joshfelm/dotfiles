@@ -1,7 +1,6 @@
 alias n='nvim'
 alias src='source ~/.bashrc'
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias sshpi='ssh pi@80.5.39.27'
 # alias python=python3
 alias open=xdg-open
 alias x=exit
@@ -10,7 +9,6 @@ alias v='vim'
 alias f='fdfind'
 alias home='cd ~'
 alias g='git'
-alias chrome="/opt/google/chrome/google-chrome &"
 alias st='git status'
 alias com='git commit -a'
 alias origin='git remote add origin'
@@ -22,7 +20,6 @@ alias u='git push -u origin --all'
 alias push='git push -u origin master'
 alias tags='git push -u origin --tags'
 alias bashrc='nvim $HOME/.bashrc'
-alias eclim='~/eclipse/java-2018-12/eclipse/eclimd'
 alias o='xdg-open'
 alias all='git add .'
 alias vimrc='nvim $HOME/.config/nvim/init.vim'
