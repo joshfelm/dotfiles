@@ -1,4 +1,4 @@
-alias v='nvim'
+alias n='nvim'
 alias src='source ~/.bashrc'
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias sshpi='ssh pi@80.5.39.27'
@@ -6,7 +6,7 @@ alias sshpi='ssh pi@80.5.39.27'
 alias open=xdg-open
 alias x=exit
 alias tmux='tmux -2'
-#alias v='vim'
+alias v='vim'
 alias f='fdfind'
 alias home='cd ~'
 alias g='git'
@@ -31,14 +31,12 @@ alias clr='clear'
 alias ll='exa -alF'
 alias la='exa -aF'
 alias l='exa -uF'
-alias container='make -C ~/docker/seL4-CAmkES-L4v-dockerfiles user HOST_DIR=$(pwd)'
-alias buildenv='docker run -it --rm -v /scratch/seL4:/host:z \
-    ghcr.io/sel4devkit/maaxboard:latest'
 alias vimdiff='nvim -d'
 
 getdate() {
     sudo date -s "$(wget --method=HEAD -qSO- --max-redirect=0 google.com 2>&1 | sed -n 's/^ *Date: *//p')"
 }
+
 # alias r='repo'
 # up a directory up to 100 dirs
 alias_str=".."
