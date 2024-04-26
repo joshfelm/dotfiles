@@ -102,9 +102,9 @@ HIST_STAMPS="dd.mm.yyyy"
 ZSH_CUSTOM=$ZSH/custom
 
 # source aliases and oh my zsh
-source $ZSH/oh-my-zsh.sh
-source $HOME/.aliases
-source $HOME/.bash_aliases
+[ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
+[ -f ~/.aliases ] && source $HOME/.aliases
+[ -f ~/.bash_aliases ] && source $HOME/.bash_aliases
 
 
 # User configuration
@@ -127,7 +127,7 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Enable fzf easier
+# Enable custom fzf zsh commands
 source $HOME/.fzf_zsh
 
 
@@ -137,15 +137,6 @@ alias ohmyzsh="cd ~/.oh-my-zsh"
 alias src="source $HOME/.zshrc"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# # fix fzf jumping on zsh-z
-# unalias z 2> /dev/null
-# z() {
-#     [ $# -gt 0 ] && zshz "$*" && return
-#     cd "$(zshz -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
-# }
-
-# unalias fd 2> /dev/null
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -284,6 +284,76 @@ lua <<EOF
         on_attach = my_on_attach,
     })
 
+     local previewers = require("telescope.previewers")
+      local sorters = require("telescope.sorters")
+      local actions = require("telescope.actions")
+    require("telescope").setup({
+        defaults = {
+          vimgrep_arguments = {
+            "rg",
+            "-L",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+          },
+          prompt_prefix = "   ",
+          selection_caret = "  ",
+          entry_prefix = "  ",
+          initial_mode = "insert",
+          selection_strategy = "reset",
+          sorting_strategy = "ascending",
+          layout_strategy = "horizontal",
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.55,
+              results_width = 0.8,
+            },
+            vertical = {
+              mirror = false,
+            },
+            width = 0.8,
+            height = 0.65,
+            preview_cutoff = 120,
+          },
+          file_sorter = sorters.get_fuzzy_file,
+          file_ignore_patterns = {
+            "node_modules",
+            ".git",
+          },
+          generic_sorter = sorters.get_generic_fuzzy_sorter,
+          path_display = { "truncate" },
+          winblend = 0,
+          border = {},
+          borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+          color_devicons = true,
+          set_env = {
+            ["COLORTERM"] = "truecolor",
+          },
+          file_previewer = previewers.vim_buffer_cat.new,
+          grep_previewer = previewers.vim_buffer_vimgrep.new,
+          qflist_previewer = previewers.vim_buffer_qflist.new,
+          buffer_previewer_maker = previewers.buffer_previewer_maker,
+          mappings = {
+            n = {
+              ["q"] = actions.close,
+            },
+          },
+          cache_picker = {
+            num_pickers = 50,
+          },
+          extensions = {
+            undo = {
+              side_by_side = true,
+              use_delta = false,
+            },
+          },
+        },
+      })
+
     local Path = require('plenary.path')
     local config = require('session_manager.config')
     require('session_manager').setup({
@@ -316,6 +386,7 @@ lua <<EOF
        "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
        "                                                     ",
     }
+
     local make_header = function()
         local lines = {}
         for i, line_chars in pairs(header) do
@@ -445,15 +516,31 @@ lua <<EOF
         },
     }
 
-    alpha.setup(config)
-
     -- Send config to alpha
     alpha.setup(config)
+
+    -- disable statusline in dashboard
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "alpha",
+        callback = function()
+          local old_laststatus = vim.opt.laststatus
+
+          vim.api.nvim_create_autocmd("BufUnload", {
+            buffer = 0,
+            callback = function()
+              vim.opt.laststatus = old_laststatus
+            end,
+          })
+
+          vim.opt.laststatus = 0
+        end,
+      })
 
     -- Disable folding on alpha buffer
     vim.cmd([[
         autocmd FileType alpha IndentLinesDisable
         autocmd FileType alpha setlocal nofoldenable
+        autocmd FileType TelescopePrompt IndentLinesDisable
     ]])
 EOF
 "  }}}
@@ -767,6 +854,7 @@ nnoremap <silent> <F2> :ALERename<CR>
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 call deoplete#custom#source('ale', 'rank', 999)
 autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false) "disable on custom buffers
+autocmd FileType TelescopePrompt IndentLinesDisable
 autocmd CompleteDone * silent! pclose!
 "  }}}
 
@@ -781,6 +869,8 @@ let g:airline_section_b = airline#section#create([' %{airline#util#wrap(airline#
 let g:airline_section_warning = airline#section#create(['ale_warning_count', 'syntastic-warn', 'languageclient_warning_count'])
 let g:airline_symbols.branch=''
 let g:airline_symbols.dirty='+'
+" let g:airline_exclude_filetypes = ["alpha", "vim"]
+
 " }}}
 
 "---INDENT-GUIDE--- {{{
