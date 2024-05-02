@@ -42,7 +42,7 @@ nnoremap k gk
 " Title
 set title
 execute "set titleold=Terminal"
-set backspace=indent,eol,start			" Make backspace work
+set backspace=indent,eol,start			" Make backspace work on everything
 syntax on					" Turn on highlighting
 set number					" Turn on line numbers
 set relativenumber
