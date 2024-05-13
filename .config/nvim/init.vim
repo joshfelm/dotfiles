@@ -6,6 +6,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.config/plugged')
 
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'rhysd/vim-grammarous'
 Plug 'tpope/vim-repeat'
 Plug 'neovim/nvim-lspconfig'
@@ -60,6 +61,9 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }}}
 
+
+set termguicolors
+
 "---LUA--- {{{
 lua <<EOF
     vim.g.mapleader = ","
@@ -67,6 +71,7 @@ lua <<EOF
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
+    require'colorizer'.setup()
         -- Set up nvim-cmp.
       local cmp = require'cmp'
       local lspkind = require('lspkind')
