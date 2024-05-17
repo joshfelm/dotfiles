@@ -121,7 +121,7 @@ setopt nosharehistory
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nvim'
 else
-  export EDITOR='mvim'
+  export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -129,8 +129,6 @@ fi
 
 # Enable custom fzf zsh commands
 source $HOME/.fzf_zsh
-
-
 
 alias zshrc="nvim $HOME/.zshrc"
 alias ohmyzsh="cd ~/.oh-my-zsh"

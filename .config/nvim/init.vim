@@ -6,6 +6,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.config/plugged')
 
+Plug 'morhetz/gruvbox'
 Plug 'rhysd/vim-grammarous'
 Plug 'tpope/vim-repeat'
 Plug 'neovim/nvim-lspconfig'
@@ -61,9 +62,11 @@ filetype plugin indent on    " required
 " }}}
 
 "---LUA--- {{{
+set pumheight=12
+
 lua <<EOF
     vim.g.mapleader = ","
-    vim.g["pumheight"] = 12
+    --vim.g["pumheight"] = 12
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
 
@@ -746,7 +749,7 @@ lua <<EOF
             val = {
                 { type = "text",    val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
                 { type = "padding", val = 1 },
-                dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+                dashboard.button("e", "  New file", "<cmd>ene<CR>"),
                 dashboard.button("o", "  Open file", ":RnvimrToggle<CR>"),
                 dashboard.button("l", "  Restore Last Session"  , ":SessionManager load_last_session<CR>"),
                 dashboard.button("c", "  Load CWD Session"  , ":SessionManager load_current_dir_session<CR>"),
@@ -927,6 +930,8 @@ let g:rnvimr_presets = [
 "  }}}
 
 "---GENERIC-VIM--- {{{
+set termguicolors
+
 if $TERM == "xterm-256color"
     set t_Co=256
 endif
@@ -936,13 +941,13 @@ let g:BASH_Ctrl_j = 'off'
 nnoremap <C-l> :nohl<cr>
 nnoremap J mzJ`z
 nnoremap K gt
+nnoremap <C-J> gt
 nnoremap <C-K> gT
 
 set clipboard=unnamed
 
 "Change leader to ","
 let mapleader=","
-
 " Add a heading/subheading to current line
 nnoremap <leader>= yypVr=<Esc>==
 nnoremap <leader>- yypVr-<Esc>==
@@ -1001,7 +1006,7 @@ vnoremap L $
 " }}}
 
 "---CATPPUCCIN {{{
-colorscheme catppuccin-mocha
+colorscheme gruvbox
 let g:rehash256 = 1
 "}}}
 
@@ -1081,6 +1086,8 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <C-S-P> <cmd>Telescope<cr>
+" nnoremap <C-P> <cmd>Telescope<cr>
 "}}}
 
 "---ALE--- {{{
@@ -1230,11 +1237,11 @@ augroup configgroup
         augroup END
     " }}}
 
-    "{{{ ---FUNCTIONS
-    "Search current working directory for word under cursor (used for xhci
-    "searching mostly, might remove later)
-    nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
+"{{{ ---FUNCTIONS
+"Search current working directory for word under cursor (used for xhci
+"searching mostly, might remove later)
+nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
 
-    "}}}
-    finish
+"}}}
+finish
 " vim:foldmethod=marker:foldlevel=0
