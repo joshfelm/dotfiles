@@ -3,7 +3,40 @@
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule ".oh-my-zsh/custom/plugins/zsh-autosuggestions"]
 	path = .oh-my-zsh/custom/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
+	url = git@github.com:zsh-users/zsh-autosuggestions.git
+	branch = main
 [submodule ".oh-my-zsh/custom/themes/powerlevel10k"]
 	path = .oh-my-zsh/custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "tpm"]
+	path = tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule ".config/ranger/colorschemes/ranger"]
+	path = .config/ranger/colorschemes/dracula/ranger
+	url = git@github.com:dracula/ranger.git
+[submodule ".config/ranger/plugins/ranger_devicons"]
+	path = .config/ranger/plugins/ranger_devicons
+	url = git@github.com:alexanderjeurissen/ranger_devicons.git
+[submodule ".oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
+	path = .oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule ".tmux/plugins/zsh-syntax-highlighting"]
+	path = .tmux/plugins/zsh-syntax-highlighting
+[submodule ".tmux/plugins/tmux-catppuccin"]
+	path = .tmux/plugins/tmux-catppuccin
+	url = git@github.com:joshfelm/tmux-catppuccin.git
+[submodule ".oh-my-zsh/custom/plugins/zsh-z"]
+	path = .oh-my-zsh/custom/plugins/zsh-z
+	url = git@github.com:agkozak/zsh-z.git
+[submodule ".tmux/plugins/tpm"]
+	path = .tmux/plugins/tpm
+	url = git@github.com:tmux-plugins/tpm.git
+[submodule ".tmux/plugins/tmux-sensible"]
+	path = .tmux/plugins/tmux-sensible
+	url = git@github.com:tmux-plugins/tmux-sensible.git
+[submodule ".tmux/plugins/tmux"]
+	path = .tmux/plugins/tmux
+	url = git@github.com:joshfelm/tmux-catppuccin.git
+[submodule ".config/ranger/colorschemes/dracula"]
+	path = .config/ranger/colorschemes/dracula
+	url = https://github.com/dracula/ranger.git

@@ -6,8 +6,16 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.config/plugged')
 
+Plug 'morhetz/gruvbox'
 Plug 'rhysd/vim-grammarous'
 Plug 'tpope/vim-repeat'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'onsails/lspkind.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'nvim-tree/nvim-tree.lua'
@@ -18,17 +26,8 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'SirVer/ultisnips'
 Plug 'kana/vim-operator-user'
 Plug 'haya14busa/vim-operator-flashy'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
 Plug 'tomtom/tcomment_vim'
 Plug 'lervag/vimtex'
-Plug 'w0rp/ale'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -63,9 +62,185 @@ filetype plugin indent on    " required
 " }}}
 
 "---LUA--- {{{
+set pumheight=12
+
 lua <<EOF
+    vim.g.mapleader = ","
+    --vim.g["pumheight"] = 12
     vim.g.loaded_netrw = 1
     vim.g.loaded_netrwPlugin = 1
+
+        -- Set up nvim-cmp.
+      local cmp = require'cmp'
+      local lspkind = require('lspkind')
+
+      local kind_icons = {
+          Text = "",
+          Method = "󰆧",
+          Function = "󰊕",
+          Constructor = "",
+          Field = "󰇽",
+          Variable = "󰂡",
+          Class = "󰠱",
+          Interface = "",
+          Module = "",
+          Property = "󰜢",
+          Unit = "",
+          Value = "󰎠",
+          Enum = "",
+          Keyword = "󰌋",
+          Snippet = "",
+          Color = "󰏘",
+          File = "󰈙",
+          Reference = "",
+          Folder = "󰉋",
+          EnumMember = "",
+          Constant = "󰏿",
+          Struct = "",
+          Event = "",
+          Operator = "󰆕",
+          TypeParameter = "󰅲",
+    }
+
+      cmp.setup({
+        snippet = {
+          -- REQUIRED - you must specify a snippet engine
+          expand = function(args)
+            --vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+            -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+            vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+          end,
+        },
+        window = {
+          -- completion = cmp.config.window.bordered(),
+          -- documentation = cmp.config.window.bordered(),
+        },
+        formatting = {
+          --format = function(entry, vim_item)
+          --  vim_item.abbr = string.sub(vim_item.abbr, 1, 45)
+          --  return vim_item
+          --end
+          fields = {"abbr", "kind", "menu"},
+          format = lspkind.cmp_format({
+            mode = 'symbol',
+            maxwidth = 50,
+            ellipsis_char = '...',
+            show_labelDetails=true,
+            before = function (entry, vim_item)
+                return vim_item
+            end
+          })
+        },
+        mapping = cmp.mapping.preset.insert({
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-a>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.abort(),
+          ['<TAB>'] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        }),
+        sources = cmp.config.sources({
+        { 
+            name = "nvim_lsp",
+            max_item_count = 200,
+        },
+          -- { name = 'vsnip' }, -- For vsnip users.
+          -- { name = 'luasnip' }, -- For luasnip users.
+          { name = 'ultisnips' }, -- For ultisnips users.
+        }, {
+          -- { name = 'snippy' }, -- For snippy users.
+          { name = 'buffer', max_item_count = 5},
+        }),
+      })
+      -- Set configuration for specific filetype.
+      cmp.setup.filetype('gitcommit', {
+        sources = cmp.config.sources({
+          { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+        }, {
+          { name = 'buffer' },
+        })
+      })
+
+      -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline({ '/', '?' }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer', max_item_count = 0 }
+        }
+      })
+
+      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path', }
+        }, {
+          { name = 'cmdline' }
+        }),
+        matching = { disallow_symbol_nonprefix_matching = false }
+      })
+
+      -- Set up lspconfig.
+      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+      require('lspconfig')['clangd'].setup {
+        capabilities = capabilities
+      }
+    local nvim_lsp = require('lspconfig')
+
+    nvim_lsp.clangd.setup {
+        cmd = {'clangd', '--background-index'},
+        init_options = {
+            clangdFileStatus = true,
+            clangdSemanticHighlighting = true
+        },
+        filetypes = {'c', 'cpp', 'cxx', 'cc'},
+        settings = {
+            root_dir = vim.loop.cwd(),
+            ['clangd'] = {
+                ['compilationDatabasePath'] = 'build/',
+                ['fallbackFlags'] = {'-std=c++17'}
+            }
+        }
+    }
+
+    function vim.getVisualSelection()
+        vim.cmd('noau normal! "vy"')
+        local text = vim.fn.getreg('v')
+        vim.fn.setreg('v', {})
+
+        text = string.gsub(text, "\n", "")
+        if #text > 0 then
+            return text
+        else
+            return ''
+        end
+    end
+
+    --vim.keymap.set("n", "<leader>fa", "<CMD>Telescope live_grep default_text="..vim.fn.expand('<cword>').."<CR>", {noremap = true, silent=false, expr = true})
+    local tb = require('telescope.builtin')
+    vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').grep_string()<cr>]], { silent = true, noremap = true })
+    vim.keymap.set('v', '<leader>fw', function()
+        local text = vim.getVisualSelection()
+        tb.grep_string({ search = text })
+    end, { silent = true, noremap = true })
+
+    vim.api.nvim_create_autocmd('LspAttach', {
+        desc = 'LSP actions',
+        callback = function()
+            local bufmap = function(mode, lhs, rhs)
+                local opts = {buffer = true, silent = true, noremap = false}
+                vim.keymap.set(mode, lhs, rhs, opts)
+            end
+
+            bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
+            bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+            bufmap("n", "gr", "<cmd>Telescope lsp_references<CR>")
+            bufmap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" )
+        end
+
+    })
 
     require('nvim-treesitter.configs').setup({
         ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query" },
@@ -89,7 +264,9 @@ lua <<EOF
             return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
         end
 
-        local api = require("nvim-tree.api")
+        api.events.subscribe(api.events.Event.TreeOpen, function ()
+            vim.wo.statusline = ' '
+        end)
 
         local function edit_or_open()
           local node = api.tree.get_node_under_cursor()
@@ -122,7 +299,6 @@ lua <<EOF
         end
 
         -- global keymap
-        vim.api.nvim_set_keymap("n", "<C-E>", ":NvimTreeToggle<cr>", {silent = true, noremap = false})
         -- default mappings {{{
 
         vim.keymap.set('n', '<C-]>',   api.tree.change_root_to_node,        opts('CD'))
@@ -191,6 +367,7 @@ lua <<EOF
         vim.keymap.set('n', "<C-h>",       api.tree.toggle_hidden_filter,       opts('Toggle Filter: Hidden'))
     end
 
+    vim.api.nvim_set_keymap("n", "<C-E>", ":NvimTreeToggle<cr>", {silent = true, noremap = false})
     require("nvim-tree").setup({
         filters = {
             dotfiles = false,
@@ -284,9 +461,9 @@ lua <<EOF
         on_attach = my_on_attach,
     })
 
-     local previewers = require("telescope.previewers")
-      local sorters = require("telescope.sorters")
-      local actions = require("telescope.actions")
+    local previewers = require("telescope.previewers")
+    local sorters = require("telescope.sorters")
+    local actions = require("telescope.actions")
     require("telescope").setup({
         defaults = {
           vimgrep_arguments = {
@@ -300,7 +477,7 @@ lua <<EOF
             "--smart-case",
           },
           prompt_prefix = "   ",
-          selection_caret = "  ",
+          selection_caret = "> ",
           entry_prefix = "  ",
           initial_mode = "insert",
           selection_strategy = "reset",
@@ -376,148 +553,255 @@ lua <<EOF
     local alpha = require('alpha')
     require('alpha.term')
 
-    local header = {
-       "                                                     ",
-       "  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ",
-       "  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ",
-       "  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ",
-       "  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ",
-       "  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ",
-       "  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ",
-       "                                                     ",
-    }
+        config = function()
+        local path_ok, plenary_path = pcall(require, "plenary.path")
+        if not path_ok then
+            return
+        end
 
-    local make_header = function()
-        local lines = {}
-        for i, line_chars in pairs(header) do
-          local hi = i > 10 and "Bulbasaur" .. (i - 10) or "PokemonLogo" .. i
-          local line = {
+        local dashboard = require("alpha.themes.dashboard")
+        local cdir = vim.fn.getcwd()
+        local if_nil = vim.F.if_nil
+
+        local nvim_web_devicons = {
+            enabled = true,
+            highlight = true,
+        }
+
+        local function get_extension(fn)
+            local match = fn:match("^.+(%..+)$")
+            local ext = ""
+            if match ~= nil then
+                ext = match:sub(2)
+            end
+            return ext
+        end
+
+        local function icon(fn)
+            local nwd = require("nvim-web-devicons")
+            local ext = get_extension(fn)
+            return nwd.get_icon(fn, ext, { default = true })
+        end
+
+        local function file_button(fn, sc, short_fn, autocd)
+            short_fn = short_fn or fn
+            local ico_txt
+            local fb_hl = {}
+
+            if nvim_web_devicons.enabled then
+                local ico, hl = icon(fn)
+                local hl_option_type = type(nvim_web_devicons.highlight)
+                if hl_option_type == "boolean" then
+                    if hl and nvim_web_devicons.highlight then
+                        table.insert(fb_hl, { hl, 0, #ico })
+                    end
+                end
+                if hl_option_type == "string" then
+                    table.insert(fb_hl, { nvim_web_devicons.highlight, 0, #ico })
+                end
+                ico_txt = ico .. "  "
+            else
+                ico_txt = ""
+            end
+            local cd_cmd = (autocd and " | cd %:p:h" or "")
+            local file_button_el = dashboard.button(sc, ico_txt .. short_fn,
+                "<cmd>e " .. vim.fn.fnameescape(fn) .. cd_cmd .. " <CR>")
+            local fn_start = short_fn:match(".*[/\\]")
+            if fn_start ~= nil then
+                table.insert(fb_hl, { "Comment", #ico_txt - 2, #fn_start + #ico_txt })
+            end
+            file_button_el.opts.hl = fb_hl
+            return file_button_el
+        end
+
+        local default_mru_ignore = { "gitcommit" }
+
+        local mru_opts = {
+            ignore = function(path, ext)
+                return (string.find(path, "COMMIT_EDITMSG")) or (vim.tbl_contains(default_mru_ignore, ext))
+            end,
+            autocd = false
+        }
+
+        --- @param start number
+        --- @param cwd string? optional
+        --- @param items_number number? optional number of items to generate, default = 10
+        local function mru(start, cwd, items_number, opts)
+            opts = opts or mru_opts
+            items_number = if_nil(items_number, 10)
+
+            local oldfiles = {}
+            for _, v in pairs(vim.v.oldfiles) do
+                if #oldfiles == items_number then
+                    break
+                end
+                local cwd_cond
+                if not cwd then
+                    cwd_cond = true
+                else
+                    cwd_cond = vim.startswith(v, cwd)
+                end
+                local ignore = (opts.ignore and opts.ignore(v, get_extension(v))) or false
+                if (vim.fn.filereadable(v) == 1) and cwd_cond and not ignore then
+                    oldfiles[#oldfiles + 1] = v
+                end
+            end
+            local target_width = 35
+
+            local tbl = {}
+            for i, fn in ipairs(oldfiles) do
+                local short_fn
+                if cwd then
+                    short_fn = vim.fn.fnamemodify(fn, ":.")
+                else
+                    short_fn = vim.fn.fnamemodify(fn, ":~")
+                end
+
+                if #short_fn > target_width then
+                    short_fn = plenary_path.new(short_fn):shorten(1, { -2, -1 })
+                    if #short_fn > target_width then
+                        short_fn = plenary_path.new(short_fn):shorten(1, { -1 })
+                    end
+                end
+
+                local shortcut = tostring(i + start - 1)
+
+                local file_button_el = file_button(fn, shortcut, short_fn, opts.autocd)
+                tbl[i] = file_button_el
+            end
+            return {
+                type = "group",
+                val = tbl,
+                opts = {},
+            }
+        end
+
+        local header = {
             type = "text",
-            val = line_chars,
+            --val = {
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠐⠒⠒⠒⠂⠀⠤⠤⠤⣄⣀⡀⠘⢆⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⡿⠋⣀⣔⣒⣉⣀⠤⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠎⠀⣀⣀⡤⠤⠤⠄⠀⠒⠒⠒⠒⠀⠀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣉⣽⢾⡇⠀⠀⠀⠀⠀⢰⣿⣟⣵⣿⢿⣿⣛⣿⣿⣻⢿⣦⠤⠀⠀⠀⠀⠀⠀⠀⠠⣾⢾⣍⣁⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⡴⠶⠛⠋⠉⠁⠀⢠⡏⠀⠀⠀⠀⠰⣲⡿⡟⠋⢹⣿⠟⠛⠉⠉⠙⢻⣗⢻⣇⠀⠀⠀⠀⠀⠀⠀⠀⠈⣧⠀⠀⠉⠉⠛⠳⠶⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⠀⠀⠀⢀⣤⠶⠟⠋⠉⠀⠀⠀⠀⠀⠀⠀⠀⡾⠀⠀⠀⠀⠀⠀⠀⠁⢀⡴⠋⠀⠀⠀⠀⠀⢀⠿⣿⣸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⡆⠀⠀⠀⠀⠀⠀⠀⠈⠉⠛⠶⢦⣀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⢀⣠⠞⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣟⣿⡟⣿⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⢦⡀⠀⠀⠀",
+            --    "⠀⠀⣴⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⣶⣿⣾⣾⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⢷⡄⠀",
+            --    "⠀⣼⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠴⠖⠚⠛⣛⠻⢧⣤⣤⣄⣀⡠⣤⣤⣶⣶⣶⣾⣿⣿⣳⣝⣿⡿⣻⣽⢺⣿⣿⣿⣶⣶⣶⡤⣀⣤⣤⣤⠟⢛⡛⠛⠒⠶⢤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡄",
+            --    "⢰⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⡴⠋⠀⠀⠀⠀⡴⠁⠀⠀⠀⠉⠉⠛⠛⠾⠯⣟⣻⡿⠿⣟⣯⣿⣿⣷⣿⣿⡇⡏⣻⣿⣟⡿⠯⠗⠛⠋⠉⠁⠀⠀⠀⠱⡄⠀⠀⠀⠈⠳⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧",
+            --    "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⡜⠀⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣾⣯⣹⣷⣝⢿⣿⣿⣻⣵⣏⣿⣧⣤⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⠀⠀⠀⠀⠀⠸⡀⠀⠀⠀⠀⠀⠀⠀⠀⢸",
+            --    "⢸⠀⠀⠀⠀⠀⠀⠀⠀⢀⠁⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠯⣷⣿⣿⣿⣷⣷⣿⣿⣽⣸⡯⠏⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⢁⠀⠀⠀⠀⠀⠀⠀⠀⢸",
+            --    "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠘⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⡉⠩⡏⡏⣟⢿⡿⣿⣽⣇⡯⠉⡉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠀⠀⠀⠀⠀⠀⠀⠀⢸",
+            --    "⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⡇⣿⣷⣿⣿⢿⠏⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸",
+            --    "⠀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣶⢶⣶⢄⠀⠀⢠⣾⢻⣿⣽⣯⣿⣸⣸⣿⣆⠀⠀⣠⢴⣶⢶⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡆",
+            --    "⠀⢁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡿⣾⣯⣿⢸⣷⣄⣴⣯⡺⣝⡿⡿⣿⣽⡿⣻⣶⢀⣾⣧⢿⡞⣿⣽⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⠁",
+            --    "⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⠀⠟⠈⠇⠀⠙⢿⣯⠟⠀⢏⣿⣿⣿⡟⣇⠹⢿⣿⠟⠁⠸⠃⠸⠃⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀",
+            --    "⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠘⣼⣽⣿⣦⣿⠀⠈⠀⠀⠀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀",
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠨⣟⣿⣯⡼⡧⣴⣶⣿⠿⠿⠿⠿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⡜⡿⡿⣫⣻⡝⠒⠉⠉⠈⠈⠉⠉⠘⠙⢿⣿⣏⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣿⢿⠟⠘⣿⣿⣗⣻⣦⡀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢧⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠲⣤⣀⣀⣀⣀⣀⣠⣤⣶⣾⡿⠿⠛⠉⠀⠀⠀⠀⠀⢺⣿⣷⣝⢿⣶⣄⣀⡀⠀⠠⢴⣿⣽⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+            --    "⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠙⠛⠛⠋⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⢿⣶⣝⡿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+            --},
+            val = {
+                "",
+                "",
+                "",
+                "███    ██ ███████  ██████  ██    ██ ██ ███    ███ ",
+                "████   ██ ██      ██    ██ ██    ██ ██ ████  ████ ",
+                "██ ██  ██ █████   ██    ██ ██    ██ ██ ██ ████ ██ ",
+                "██  ██ ██ ██      ██    ██  ██  ██  ██ ██  ██  ██ ",
+                "██   ████ ███████  ██████    ████   ██ ██      ██ ",
+                "                                                  ",
+                "",
+            },
             opts = {
-              hl = "AlphaSpecialKey" .. i,
-              shrink_margin = false,
-              position = "center",
+                position = "center",
+                hl = "AlphaHeader",
+                -- wrap = "overflow";
             },
-          }
-          table.insert(lines, line)
-        end
-
-        local output = {
-          type = "group",
-          val = lines,
-          opts = { position = "center" },
         }
 
-        return output
-    end
-
-    local margin_fix = vim.fn.floor(vim.fn.winwidth(0) / 2 - 46 / 2)
-
-    local marginTopPercent = 0.05
-    local headerPadding = vim.fn.max({ 4, vim.fn.floor(vim.fn.winheight(0) * marginTopPercent) })
-
-    local padding = function(value)
-        return { type = "padding", val = value }
-    end
-
-    local button = function(sc, txt, keybind, padding)
-        local sc_ = sc:gsub("%s", ""):gsub("SPC", "<leader>")
-        local text = padding and (" "):rep(padding) .. txt or txt
-
-        local offset = padding and padding + 3 or 3
-
-        local opts = {
-          width = 46,
-          shortcut = sc,
-          cursor = -1,
-          align_shortcut = "right",
-          hl_shortcut = "AlphaButtonShortcut",
-          hl = {
-            { "AlphaButtonIcon", 0, margin_fix + offset },
-            {
-              "AlphaButton",
-              offset,
-              #text,
+        local section_mru = {
+            type = "group",
+            val = {
+                {
+                    type = "text",
+                    val = "Recent files",
+                    opts = {
+                        hl = "SpecialComment",
+                        shrink_margin = false,
+                        position = "center",
+                    },
+                },
+                { type = "padding", val = 1 },
+                {
+                    type = "group",
+                    val = function()
+                        return { mru(0, cdir) }
+                    end,
+                    opts = { shrink_margin = false },
+                },
             },
-          },
         }
 
-        if keybind then
-          opts.keymap = { "n", sc_, keybind, { noremap = true, silent = true } }
-        end
-
-        return {
-          type = "button",
-          val = text,
-          on_press = function()
-            local key = vim.api.nvim_replace_termcodes(sc_, true, false, true)
-            vim.api.nvim_feedkeys(key, "normal", false)
-          end,
-          opts = opts,
-        }
-    end
-
-    local thingy = io.popen('echo "$(date +%a) $(date +%d) $(date +%b)" | tr -d "\n"')
-    local date = thingy:read("*a")
-    thingy:close()
-
-
-    local heading = {
-        type = "text",
-        val = "· Today is " .. date .. " ·",
-        opts = {
+        local buttons = {
+            type = "group",
+            val = {
+                { type = "text",    val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
+                { type = "padding", val = 1 },
+                dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+                dashboard.button("o", "  Open file", ":RnvimrToggle<CR>"),
+                dashboard.button("l", "  Restore Last Session"  , ":SessionManager load_last_session<CR>"),
+                dashboard.button("c", "  Load CWD Session"  , ":SessionManager load_current_dir_session<CR>"),
+                dashboard.button("u", "  Update Plugins"  , ":PlugUpdate<CR>"),
+                dashboard.button("r", "  Recent files"   , ":Telescope oldfiles<CR>"),
+                dashboard.button("s", "  Settings" , ":e $MYVIMRC<CR>"),
+                dashboard.button("f f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
+                dashboard.button("f g", "󰊄  Live grep", "<cmd>Telescope live_grep<CR>"),
+                dashboard.button("q", "  Quit NVIM", "<cmd>qa<CR>"),
+            },
             position = "center",
-            hl = "Date",
-        },
-    }
+        }
+        local footer = {
+            type = "text",
+            val = function()
+                return "[" .. cdir .. "]"
+            end,
+            opts = {
+                position = "center",
+                hl = "AlphaFooter"
+            },
+        }
 
-    local terminal = {
-        type = "terminal",
-        command = vim.fn.expand("$HOME") .. "/.config/nvim/thisisfine.sh",
-        width = 46,
-        height = 25,
-        opts = {
-            redraw = true,
-            window_config = {},
-        },
-    }
+        local config = {
+            layout = {
+                header,
+                { type = "padding", val = 2 },
+                section_mru,
+                { type = "padding", val = 2 },
+                buttons,
+                { type = "padding", val = 2 },
+                footer,
+            },
+            opts = {
+                margin = 5,
+                setup = function()
+                    vim.api.nvim_create_autocmd('DirChanged', {
+                        pattern = '*',
+                        group = "alpha_temp",
+                        callback = function()
+                            cdir = vim.fn.getcwd()
+                            require('alpha').redraw()
+                            vim.cmd('AlphaRemap')
+                        end,
+                    })
+                end,
+            },
+        }
 
-    local section = {
-        heading = heading,
-        terminal = make_header(),
-        buttons = {
-          type = "group",
-          val = {
-            button( "o", "  Open file", ":RnvimrToggle<CR>"),
-            button( "l", "  Restore Session"  , ":SessionManager load_last_session<CR>"),
-            button( "u", "  Update Plugins"  , ":PlugUpdate<CR>"),
-            button( "r", "  Recent files"   , ":Telescope oldfiles<CR>"),
-            button( "s", "  Settings" , ":e $MYVIMRC<CR>"),
-            button( "q", "  Quit NVIM", ":qa<CR>"),
-          },
-          opts = {
-            spacing = 1,
-          },
-        },
-    }
-
-    local config = {
-        layout = {
-          padding(headerPadding),
-          section.terminal,
-          padding(4),
-          section.heading,
-          padding(2),
-          section.buttons,
-        },
-        opts = {
-          margin = margin_fix,
-        },
-    }
-
-    -- Send config to alpha
-    alpha.setup(config)
+        require 'alpha'.setup(config)
+    end
+    config()
 
     -- disable statusline in dashboard
       vim.api.nvim_create_autocmd("FileType", {
@@ -536,6 +820,12 @@ lua <<EOF
         end,
       })
 
+      vim.api.nvim_exec(
+        [[
+        au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
+        ]],
+        false
+        )
     -- Disable folding on alpha buffer
     vim.cmd([[
         autocmd FileType alpha IndentLinesDisable
@@ -547,7 +837,6 @@ EOF
 
 " ---NVIMTREE--- {{{
 nnoremap <leader>n :NvimTreeFocus<CR>
-nnoremap <C-e> :NvimTreeToggle<CR>
 " Start nvimtree when Vim is started without file arguments.
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NvimTreeOpen | endif
@@ -641,6 +930,8 @@ let g:rnvimr_presets = [
 "  }}}
 
 "---GENERIC-VIM--- {{{
+set termguicolors
+
 if $TERM == "xterm-256color"
     set t_Co=256
 endif
@@ -650,13 +941,13 @@ let g:BASH_Ctrl_j = 'off'
 nnoremap <C-l> :nohl<cr>
 nnoremap J mzJ`z
 nnoremap K gt
+nnoremap <C-J> gt
 nnoremap <C-K> gT
 
 set clipboard=unnamed
 
 "Change leader to ","
 let mapleader=","
-
 " Add a heading/subheading to current line
 nnoremap <leader>= yypVr=<Esc>==
 nnoremap <leader>- yypVr-<Esc>==
@@ -715,7 +1006,7 @@ vnoremap L $
 " }}}
 
 "---CATPPUCCIN {{{
-colorscheme catppuccin-mocha
+colorscheme gruvbox
 let g:rehash256 = 1
 "}}}
 
@@ -790,72 +1081,77 @@ let g:AutoPairsShortcutBackInsert = '<M-b>'
 
 "---TELESCOPE---{{{
 " Find files using Telescope command-line sugar.
+nnoremap <leader>tt <cmd>Telescope<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <C-S-P> <cmd>Telescope<cr>
+" nnoremap <C-P> <cmd>Telescope<cr>
 "}}}
 
 "---ALE--- {{{
-let g:ale_enabled = 1
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
-nmap <F8> <Plug>(ale_fix)
-highlight clear ALEWarning
-highlight ALEWarningSign guibg=NONE guifg=Yellow
-highlight clear ALEError
-highlight ALEError guibg=DarkRed 
-highlight ALEErrorSign guibg=#b30404 guifg=#e8d94f
-let g:ale_fixers = {
-            \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-            \   'c': ['clang-tidy'],
-            \}
-let g:ale_vim_vint_show_style_issues = 1
-let g:ale_echo_cursor = 1
-let g:ale_echo_msg_error_str = 'Error'
-let g:ale_echo_msg_format = '%code: %%s'
-let g:ale_echo_msg_warning_str = 'Warning'
-let g:ale_fix_on_save = 0
-let g:ale_keep_list_window_open = 0
-let g:ale_lint_delay = 200
-let g:ale_lint_on_enter = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_text_changed = 1
-let g:ale_linter_aliases = {}
-let g:ale_linters = {
-\   'c': ['clangd'],
-\   'python': ['jedils', 'pylint'],
-\   'vim': ['vimls'],
-\}
-let g:ale_open_list = 0
-let g:ale_set_highlights = 1    "enable highlights"
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_set_signs = 1
-let g:ale_sign_column_always = 0
-let g:ale_sign_error = '✗'
-let g:ale_sign_offset = 10000
-let g:ale_sign_warning = '⚡︎'
-let g:ale_statusline_format = ['✗ %d', '⚡︎%d', '']
-let g:ale_warn_about_trailing_whitespace = 0
-let g:ale_completion_enabled = 0
-
-let g:ale_floating_preview= 1
-autocmd User ALELint highlight ALEErrorSign guifg=#fb4934 guibg=#3c3836 gui=bold
-nnoremap <silent> gd :ALEGoToDefinition<CR>
-nnoremap <silent> <leader>gd :tabnew %<CR><c-o>:ALEGoToDefinition<CR>gT
-nnoremap <silent> gh :ALEHover<CR>
-let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
-nnoremap <silent> <F2> :ALERename<CR>
+" let g:ale_enabled = 0
+" nmap <silent> <leader>aj :ALENext<cr>
+" nmap <silent> <leader>ak :ALEPrevious<cr>
+" nmap <F8> <Plug>(ale_fix)
+" highlight clear ALEWarning
+" highlight ALEWarningSign guibg=NONE guifg=Yellow
+" highlight clear ALEError
+" highlight ALEError guibg=DarkRed 
+" highlight ALEErrorSign guibg=#b30404 guifg=#e8d94f
+" let g:ale_fixers = {
+"             \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+"             \   'c': ['clang-tidy'],
+"             \}
+" let g:ale_vim_vint_show_style_issues = 1
+" let g:ale_echo_cursor = 1
+" let g:ale_echo_msg_error_str = 'Error'
+" let g:ale_echo_msg_format = '%code: %%s'
+" let g:ale_echo_msg_warning_str = 'Warning'
+" let g:ale_fix_on_save = 0
+" let g:ale_keep_list_window_open = 0
+" let g:ale_lint_delay = 200
+" let g:ale_lint_on_enter = 1
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_insert_leave = 1
+" let g:ale_lint_on_text_changed = 1
+" let g:ale_linter_aliases = {}
+" let g:ale_linters = {
+" \   'c': ['clangd'],
+" \   'python': ['jedils', 'pylint'],
+" \   'vim': ['vimls'],
+" \}
+" let g:ale_open_list = 0
+" let g:ale_set_highlights = 1    "enable highlights"
+" let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 0
+" let g:ale_set_signs = 1
+" let g:ale_sign_column_always = 0
+" let g:ale_sign_error = '✗'
+" let g:ale_sign_offset = 10000
+" let g:ale_sign_warning = '⚡︎'
+" let g:ale_statusline_format = ['✗ %d', '⚡︎%d', '']
+" let g:ale_warn_about_trailing_whitespace = 0
+" let g:ale_completion_enabled = 0
+"
+" let g:ale_floating_preview= 1
+" autocmd User ALELint highlight ALEErrorSign guifg=#fb4934 guibg=#3c3836 gui=bold
+" " nnoremap <silent> gd :ALEGoToDefinition<CR>
+" " nnoremap <silent> <leader>gd :tabnew %<CR><c-o>:ALEGoToDefinition<CR>gT
+" " nnoremap <silent> gh :ALEHover<CR>
+" let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+" nnoremap <silent> <F2> :ALERename<CR>
 " }}}
 
 " ---DEOPLETE--- {{{
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-call deoplete#custom#source('ale', 'rank', 999)
-autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false) "disable on custom buffers
-autocmd FileType TelescopePrompt IndentLinesDisable
-autocmd CompleteDone * silent! pclose!
+" call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+" call deoplete#custom#source('ale', 'rank', 999)
+" call deoplete#custom#source('ale', 'rank', 999)
+" let g:deoplete#lsp#handler_enabled
+" autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false) "disable on custom buffers
+" autocmd FileType TelescopePrompt IndentLinesDisable
+" autocmd CompleteDone * silent! pclose!
 "  }}}
 
 " ---AIRLINE--- {{{
@@ -941,11 +1237,11 @@ augroup configgroup
         augroup END
     " }}}
 
-    "{{{ ---FUNCTIONS
-    "Search current working directory for word under cursor (used for xhci
-    "searching mostly, might remove later)
-    nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
+"{{{ ---FUNCTIONS
+"Search current working directory for word under cursor (used for xhci
+"searching mostly, might remove later)
+nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
 
-    "}}}
-    finish
+"}}}
+finish
 " vim:foldmethod=marker:foldlevel=0

@@ -25,3 +25,10 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+# set PATH so it includes user's private bin if it exists
+#if [ -d "$HOME/cp-manifest/sel4cp" ] ; then
+#    PATH="$HOME/cp-manifest/compiler/bin:$PATH"
+#fi
+#
+export PATH="$HOME/mk-manifest/compiler/bin:$PATH" 
