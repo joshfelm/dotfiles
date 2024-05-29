@@ -6,7 +6,7 @@
  * Configuration For Rofi Version: 1.7.3
  **/
 
-@theme "/usr/local/share/rofi/themes/spotlight-dark.rasi"
+@theme "/usr/local/share/rofi/themes/tokyonight.rasi"
 
 configuration {
 	/*---------- General setting ----------*/

@@ -231,4 +231,8 @@ bar {
 #     }
 # }
 
+# autostart
+exec swaymsg "workspace 1; exec kitty;"
+exec swaymsg "workspace 1; exec firefox;"
+
 include /etc/sway/config.d/*
