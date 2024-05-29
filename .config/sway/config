@@ -85,6 +85,11 @@ input type:touchpad {
     # Start your launcher
     bindsym $mod+r exec $menu
 
+    # media control
+    bindsym XF86AudioRaiseVolume exec pamixer -i 5 && pamixer --get-volume > $WOBSOCK
+    bindsym XF86AudioLowerVolume exec pamixer -d 5 && pamixer --get-volume > $WOBSOCK
+    bindsym XF86AudioMute exec pamixer --toggle-mute # no graphical output here
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
@@ -212,10 +217,10 @@ mode "resize" {
 #
 # Status Bar:
 #
-
 bar { 
-     swaybar_command waybar
+    swaybar_command waybar
 }
+
 # Read `man 5 sway-bar` for more information about this section.
 # bar {
 #     position top
@@ -232,6 +237,7 @@ bar {
 # }
 
 # autostart
+exec swaymsg "scratchpad; exec slack;"
 exec swaymsg "workspace 1; exec kitty;"
 exec swaymsg "workspace 1; exec firefox;"
 

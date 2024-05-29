@@ -7,7 +7,7 @@
   padding: 0;
   margin: 0;
   font-family: Noto;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 window#waybar {
@@ -228,6 +228,7 @@ window#waybar.hidden {
 #backlight {
   background-color: #fab387;
 }
+
 
 #clock {
   font-family: JetBrainsMono Nerd Font;
