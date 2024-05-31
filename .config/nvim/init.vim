@@ -6,6 +6,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.config/plugged')
 
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'morhetz/gruvbox'
 Plug 'rhysd/vim-grammarous'
 Plug 'tpope/vim-repeat'
@@ -63,6 +64,7 @@ filetype plugin indent on    " required
 
 "---LUA--- {{{
 set pumheight=12
+set termguicolors
 
 lua <<EOF
     vim.g.mapleader = ","
@@ -149,6 +151,8 @@ lua <<EOF
           -- { name = 'luasnip' }, -- For luasnip users.
           { name = 'ultisnips' }, -- For ultisnips users.
         }, {
+          { name = 'path' }, -- For filepath.
+        },{
           -- { name = 'snippy' }, -- For snippy users.
           { name = 'buffer', max_item_count = 5},
         }),
@@ -204,6 +208,9 @@ lua <<EOF
             }
         }
     }
+      require('lspconfig')['pyright'].setup {
+        capabilities = capabilities
+      }
 
     function vim.getVisualSelection()
         vim.cmd('noau normal! "vy"')
@@ -256,6 +263,8 @@ lua <<EOF
     end
 
     })
+
+    require'colorizer'.setup()
 
     local function my_on_attach(bufnr)
         local api = require "nvim-tree.api"
@@ -930,8 +939,6 @@ let g:rnvimr_presets = [
 "  }}}
 
 "---GENERIC-VIM--- {{{
-set termguicolors
-
 if $TERM == "xterm-256color"
     set t_Co=256
 endif
@@ -1175,7 +1182,7 @@ let g:indentLine_char = '¦'			" Change indent char
 let g:indentLine_enabled = 1			" Enable indent highlight
 let g:indentLine_showFirstIndentLevel = 1
 autocmd BufRead,BufNewFile *.tex IndentLinesDisable
-autocmd BufEnter *.json IndentLinesDisable
+autocmd BufEnter *.json,*.md IndentLinesDisable
 " }}}
 
 "---autocommands--- {{{
@@ -1209,9 +1216,9 @@ augroup configgroup
     " autocmd BufEnter *.tex setlocal fo+=t
     autocmd BufEnter *.tex let g:AutoPairs={'(':')', '[':']', '{':'}','"':'"', '$':'$', '`':"'", '``':'"'}
     autocmd FileType vim let g:AutoPairs={'(':')', '[':']', '{':'}',"'":"'", '`':'`'}
-    autocmd BufEnter *.tex setlocal concealcursor=""
-    autocmd BufEnter *.tex setlocal conceallevel=0
-    autocmd BufEnter *.tex hi! link Conceal Normal
+    autocmd BufEnter *.md,*.tex setlocal concealcursor=""
+    autocmd BufEnter *.md,*.tex setlocal conceallevel=0
+    autocmd BufEnter *.md,*.tex hi! link Conceal Normal
     autocmd BufEnter *.tex highlight Conceal guifg=#ffcd59
     autocmd BufEnter *.tex setlocal foldmethod=marker
     autocmd BufEnter *.tex inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Tab>"

@@ -7,7 +7,7 @@
   padding: 0;
   margin: 0;
   font-family: Noto;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 window#waybar {
@@ -152,6 +152,7 @@ window#waybar.hidden {
 #backlight,
 #clock,
 #custom-power,
+#custom-notification,
 #tray {
   border-radius: 30px;
   margin: 6px 3px;
@@ -165,6 +166,11 @@ window#waybar.hidden {
 }
 
 #custom-power:hover {
+  background-color: #f2cdcd;
+  color: #1e1e2e;
+}
+
+#custom-notification:hover {
   background-color: #f2cdcd;
   color: #1e1e2e;
 }
@@ -229,7 +235,6 @@ window#waybar.hidden {
   background-color: #fab387;
 }
 
-
 #clock {
   font-family: JetBrainsMono Nerd Font;
   background-color: #1e1e2e;
@@ -242,6 +247,11 @@ window#waybar.hidden {
 }
 
 #custom-power {
+  background-color: #1e1e2e;
+  color: #f2cdcd;
+}
+
+#custom-notification {
   background-color: #1e1e2e;
   color: #f2cdcd;
 }
