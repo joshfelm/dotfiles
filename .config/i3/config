@@ -199,6 +199,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 #
 # Resizing containers:
 #
+
+bindsym $mod+shift+r mode resize
 mode "resize" {
     # left will shrink the containers width
     # right will grow the containers width
@@ -247,6 +249,13 @@ default_floating_border pixel
 #     $col_focused_inactive_border   #7c6f64
 # }
 
+# You can also use any non-zero value if you'd like to have a border
+for_window [class=".*"] border pixel 2
+
+# smart_borders on
+smart_gaps on
+# border_radius 30
+# smart_gaps on
 gaps outer 10
 gaps inner 5
 
@@ -272,17 +281,27 @@ client.urgent            #cc241d            #cc241d            #fbf1c7  #cc241d 
 # }
 
 workspace 1 output HDMI-1-0
-workspace 2 output eDP-1
+workspace 2 output DP-1-0
+workspace 3 output eDP-1
 
-exec --no-startup-id xrandr --output eDP-1 --auto --output HDMI-1-0 --auto --rotate right --left-of eDP-1 &
+assign [class="kitty"] 1
+assign [class="Firefox"] 2
+assign [class="Slack"] 3
 
+for_window [class="Pavucontrol"] floating enable
+for_window [class="kitty"] smart_gaps on
+
+
+exec --no-startup-id xrandr --output HDMI-1-0 --auto --rotate left --output DP-1-0 --mode 1920x1080 --rate 143 --pos 1200x300  --output eDP-1 --auto --right-of DP-1-0 &
 # autostart
-exec --no-startup-id i3-msg 'workspace 2; exec slack'
-exec --no-startup-id i3-msg 'workspace 1; exec kitty'
-exec --no-startup-id i3-msg 'workspace 1; exec firefox'
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 exec --no-startup-id dunst
-exec --no-startup-id /home/jfelmeden/.config/polybar/init.sh
+exec --no-startup-id eww daemon
+exec --no-startup-id /home/jfelmeden/.config/eww/toggle_bar
 exec avizo-service
 exec --no-startup-id feh --bg-scale /home/jfelmeden/Pictures/mountain.jpg
+exec --no-startup-id i3-msg 'workspace 3; exec slack'
+exec --no-startup-id i3-msg 'workspace 1; exec kitty'
+exec --no-startup-id i3-msg 'workspace 2; exec firefox'
 exec i3-msg 'setxkbmap -layout gb'
 
