@@ -1,9 +1,60 @@
+[user]
+	email = josh.felmeden@outlook.com
+	name = Joshua Felmeden
+[core]
+    editor = nvim
+    pager = delta
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [color]
     filemode = false
-    diff = auto
-    status = auto
-    branch = auto
     pager = true
+[color "branch"]
+	current = yellow bold
+	local = green bold
+	remote = cyan bold
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+[color "status"]
+	added = green bold
+	changed = yellow bold
+	untracked = red bold
+[rerere]
+    enabled = true
+    autoupdate = true
+[rebase]
+    autosquash = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[diff]
+    tool = nvimdiff
+[difftool]
+	prompt = false
+[delta]
+	features = line-numbers decorations
+	line-numbers = true
+[delta "decorations"]
+	minus-style = red bold normal
+	plus-style = green bold normal
+	minus-emph-style = white bold red
+	minus-non-emph-style = red bold normal
+	plus-emph-style = white bold green
+	plus-non-emph-style = green bold normal
+	file-style = yellow bold none
+	file-decoration-style = yellow box
+	hunk-header-style = magenta bold
+	hunk-header-decoration-style = magenta box
+	minus-empty-line-marker-style = normal normal
+	plus-empty-line-marker-style = normal normal
+	line-numbers-right-format = "{np:^4}│ "
+[credential]
+	helper = store
 [alias]
     b = branch
     ci = commit
@@ -24,32 +75,3 @@
 	s = difftool
 	s = nvimdiff
 	s = vimdiff
-[user]
-	email = josh.felmeden@capgemini.com
-	name = josh-felm
-	name = Josh
-[core]
-    editor = nvim
-[rerere]
-    enabled = true
-    autoupdate = true
-[rebase]
-    autosquash = true
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-[diff]
-    tool = nvimdiff
-; [difftool]
-;     prompt = true
-[difftool "nvimdiff"]
-    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
-[credential]
-	helper = store
-[safe]
-	directory = .
-	directory = /home/adunne/backups/netbsd_merge_conflicts_23_03_23/netbsd/src
-	directory = .
-	directory = /home/adunne/netbsd/src
