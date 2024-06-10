@@ -24,7 +24,7 @@
   "widgets": ["title", "buttons-grid", "volume", "backlight", "notifications"],
   "widget-config": {
     "title": {
-      "text": "Notification Center",
+      "text": "Notifications",
       "clear-all-button": true,
       "button-text": "󰆴 Clear"
     },
@@ -33,7 +33,7 @@
     },
     "label": {
       "max-lines": 1,
-      "text": "Notification Center"
+      "text": "Notifications"
     },
     "mpris": {
       "image-size": 50,

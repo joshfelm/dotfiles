@@ -21,12 +21,9 @@ set $term kitty
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu rofi -show drun | xargs swaymsg exec --
 
-include /etc/sway/config-vars.d/*
-
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/mountain.jpg fill
 #
 # Example configuration:
 #
@@ -58,20 +55,23 @@ output * bg ~/Pictures/mountain.jpg fill
 #       middle_emulation enabled
 #   }
 
-input * {
-    xkb_layout "gb"
-}  
-
-input type:touchpad {
-    natural_scroll enabled
-    dwt enabled
-    tap enabled
-    middle_emulation enabled
-}
+# input type:touchpad {
+#     natural_scroll enabled
+#     dwt enabled
+#     tap enabled
+#     middle_emulation enabled
+# }
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+# Section "InputClass"
+#         Identifier "libinput touchpad catchall"
+#         MatchIsTouchpad "on"
+#         MatchDevicePath "/dev/input/event*"
+#         Driver "libinput"
+#         Option "NaturalScrolling" "True"
+# EndSection
 ### Key bindings
 #
 # Basics:
@@ -99,14 +99,16 @@ input type:touchpad {
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
+    # floating_modifier $mod normal
+    floating_modifier $mod
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-#
+#     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# #
 # Moving around:
 #
     # Move your focus around
@@ -221,43 +223,38 @@ mode "resize" {
 #
 # Status Bar:
 #
-bar { 
-    swaybar_command waybar
-}
+# bar { 
+#     i3_command waybar
+# }
 
 # swayfx
-blur enable
-blur_passes 5
-corner_radius 10
-default_dim_inactive 0.1
-shadows enable
 
 # borders and whatnot
-font Noto 12
+font Noto Sans
 default_border pixel
 default_floating_border pixel
-set {
-    $col_urgent                    #cc241d
-    $col_focused                   #458588
-    $col_unfocused                 #282828
-    $col_focused_inactive          #665c54
-    $col_text_dark                 #bdae93
-    $col_text_light                #fbf1c7
-    $col_text_lightest             #fbf1c7
-    $col_urgent_border             #cc241d
-    $col_focused_border            #ebdbb2
-    $col_unfocused_border          #3c3836
-    $col_focused_inactive_border   #7c6f64
-}
+# set {
+#     $col_urgent                    #cc241d
+#     $col_focused                   #458588
+#     $col_unfocused                 #282828
+#     $col_focused_inactive          #665c54
+#     $col_text_dark                 #bdae93
+#     $col_text_light                #fbf1c7
+#     $col_text_lightest             #fbf1c7
+#     $col_urgent_border             #cc241d
+#     $col_focused_border            #ebdbb2
+#     $col_unfocused_border          #3c3836
+#     $col_focused_inactive_border   #7c6f64
+# }
 
 gaps outer 10
 gaps inner 5
 
 # class                  border                        background             text                indicator              child_border
-client.focused           $col_focused_border           $col_focused           $col_text_light      $col_focused           $col_focused_border
-client.focused_inactive  $col_focused_inactive_border  $col_focused_inactive  $col_text_dark  $col_focused_inactive  $col_focused_inactive_border
-client.unfocused         $col_unfocused_border         $col_unfocused         $col_text_dark     $col_unfocused         $col_unfocused_border
-client.urgent            $col_urgent_border            $col_urgent            $col_text_lightest  $col_urgent            $col_urgent_border
+client.focused           #ebdbb2           #458588           #fbf1c7      #458588           #ebdbb2
+client.focused_inactive  #7c6f64  #665c54  #bdae93  #665c54  #7c6f64
+client.unfocused         #3c3836         #282828         #bdae93     #282828         #3c3836
+client.urgent            #cc241d            #cc241d            #fbf1c7  #cc241d            #cc241d
 
 # Read `man 5 sway-bar` for more information about this section.
 # bar {
@@ -274,10 +271,18 @@ client.urgent            $col_urgent_border            $col_urgent            $c
 #     }
 # }
 
-# autostart
-exec swaymsg "workspace 1; exec kitty;"
-exec swaymsg "workspace 1; exec firefox;"
-exec swaync
-exec avizo-service
+workspace 1 output HDMI-1-0
+workspace 2 output eDP-1
 
-include /etc/sway/config.d/*
+exec --no-startup-id xrandr --output eDP-1 --auto --output HDMI-1-0 --auto --rotate right --left-of eDP-1 &
+
+# autostart
+exec --no-startup-id i3-msg 'workspace 2; exec slack'
+exec --no-startup-id i3-msg 'workspace 1; exec kitty'
+exec --no-startup-id i3-msg 'workspace 1; exec firefox'
+exec --no-startup-id dunst
+exec --no-startup-id /home/jfelmeden/.config/polybar/init.sh
+exec avizo-service
+exec --no-startup-id feh --bg-scale /home/jfelmeden/Pictures/mountain.jpg
+exec i3-msg 'setxkbmap -layout gb'
+

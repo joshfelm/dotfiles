@@ -6,6 +6,7 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call plug#begin('~/.config/plugged')
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'norcalli/nvim-colorizer.lua'
 Plug 'morhetz/gruvbox'
 Plug 'rhysd/vim-grammarous'
@@ -377,6 +378,9 @@ lua <<EOF
     end
 
     vim.api.nvim_set_keymap("n", "<C-E>", ":NvimTreeToggle<cr>", {silent = true, noremap = false})
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, bufopts)
     require("nvim-tree").setup({
         filters = {
             dotfiles = false,

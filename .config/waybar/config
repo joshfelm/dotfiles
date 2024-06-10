@@ -8,6 +8,7 @@
     "reload_style_on_change": true,
     "modules-left": [
         "custom/logo",
+        "sway/workspaces",
         "wlr/taskbar",
     ],
     "modules-center": [
@@ -29,7 +30,7 @@
         "icon-size": 14,
         "tooltip-format": "{title}"
     },
-    "hyprland/workspaces": {
+    "sway/workspaces": {
         "on-click": "activate",
         "format": "{icon}",
         "format-icons": {
@@ -43,16 +44,9 @@
             "7": "",
             "8": "",
             "9": "",
-            "active": "",
+            "focused": "",
             "urgent": ""
         },
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-        }
     },
     "memory": {
         "interval": 5,
