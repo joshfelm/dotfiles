@@ -19,7 +19,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind.nvim'
 Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/indentpython.vim'
+" Plug 'vim-scripts/indentpython.vim'
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'kevinhwang91/rnvimr'
@@ -38,11 +38,12 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'WolfgangMehner/vim-plugins'
-Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'danro/rename.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'easymotion/vim-easymotion'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'shatur/neovim-session-manager'
 Plug 'goolord/alpha-nvim'
@@ -265,7 +266,22 @@ lua <<EOF
 
     })
 
+    require("ibl").setup()
     require'colorizer'.setup()
+    require'treesitter-context'.setup{
+      enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+      max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+      min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+      line_numbers = true,
+      multiline_threshold = 20, -- Maximum number of lines to show for a single context
+      trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+      mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
+      -- Separator between context and content. Should be a single character string, like '-'.
+      -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+      separator = nil,
+      zindex = 20, -- The Z-index of the context window
+      on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+    }
 
     local function my_on_attach(bufnr)
         local api = require "nvim-tree.api"
@@ -841,9 +857,7 @@ lua <<EOF
         )
     -- Disable folding on alpha buffer
     vim.cmd([[
-        autocmd FileType alpha IndentLinesDisable
         autocmd FileType alpha setlocal nofoldenable
-        autocmd FileType TelescopePrompt IndentLinesDisable
     ]])
 EOF
 "  }}}
@@ -1070,7 +1084,7 @@ let g:tex_flavor = 'latex'
 " }}}
 
 "---VIM-COMMANDS--- {{{
-:command! Init tabnew ~/.config/nvim/init.vim
+:command! Init call OpenOrSwitchTab("~/.config/nvim/init.vim")
 :command! Src source ~/.config/nvim/init.vim
 " }}}
 
@@ -1185,8 +1199,6 @@ let g:airline_symbols.dirty='+'
 let g:indentLine_char = '¦'			" Change indent char
 let g:indentLine_enabled = 1			" Enable indent highlight
 let g:indentLine_showFirstIndentLevel = 1
-autocmd BufRead,BufNewFile *.tex IndentLinesDisable
-autocmd BufEnter *.json,*.md IndentLinesDisable
 " }}}
 
 "---autocommands--- {{{
@@ -1202,6 +1214,7 @@ augroup configgroup
     autocmd FileType php setlocal listchars=tab:+\ ,eol:-
     autocmd FileType php setlocal formatprg=par\ -w80\ -T4
     autocmd FileType ruby setlocal tabstop=2
+    autocmd FileType lua setlocal tabstop=2
     autocmd FileType ruby setlocal shiftwidth=2
     autocmd FileType ruby setlocal softtabstop=2
     autocmd FileType ruby setlocal commentstring=#\ %s
@@ -1252,6 +1265,33 @@ augroup configgroup
 "Search current working directory for word under cursor (used for xhci
 "searching mostly, might remove later)
 nnoremap <C-S> *N:exe ":!grep -rnw . -e ".strpart(getreg('/'), 2, (strlen(getreg('/'))-4))<CR>
+function! OpenOrSwitchTab(file)
+    " Iterate over all the tabs
+    let l:file_exists = 0
+    let l:tab_number = 0
+    for l:tabnr in range(1, tabpagenr('$'))
+        call execute(l:tabnr . 'tabnext')
+        " Iterate over all the windows in the tab
+        for l:winid in tabpagebuflist(l:tabnr)
+            if bufnr(a:file) == l:winid
+                let l:file_exists = 1
+                let l:tab_number = l:tabnr
+                break
+            endif
+        endfor
+        if l:file_exists
+            break
+        endif
+    endfor
+
+    " If the file is already open, switch to the tab
+    if l:file_exists
+        execute l:tab_number . 'tabnext'
+    else
+        " Otherwise, open the file in a new tab
+        execute 'tabedit' a:file
+    endif
+endfunction
 
 "}}}
 finish

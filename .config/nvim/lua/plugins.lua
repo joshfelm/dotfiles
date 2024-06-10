@@ -1,0 +1,75 @@
+return {
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , lazy = false,
+    opts = {
+      terminal_colors = true, -- add neovim terminal colors
+      undercurl = true,
+      underline = true,
+      bold = true,
+      italic = {
+        strings = true,
+        emphasis = true,
+        comments = true,
+        operators = false,
+        folds = true,
+      },
+      strikethrough = true,
+      invert_selection = false,
+      invert_signs = false,
+      invert_tabline = false,
+      invert_intend_guides = false,
+      inverse = true, -- invert background for search, diffs, statuslines and errors
+      contrast = "", -- can be "hard", "soft" or empty string
+      palette_overrides = {},
+      overrides = {},
+      dim_inactive = false,
+      transparent_mode = false,
+    },
+    config = function()
+      vim.cmd([[colorscheme gruvbox]])
+    end
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function() vim.fn["mkdp#util#install"]() end,
+  },
+  {'norcalli/nvim-colorizer.lua', config=true},
+  {'rhysd/vim-grammarous'},
+  {'neovim/nvim-lspconfig'},
+  {'hrsh7th/cmp-nvim-lsp'},
+  {'hrsh7th/cmp-buffer'},
+  {'hrsh7th/cmp-path'},
+  {'hrsh7th/cmp-cmdline'},
+  {'hrsh7th/nvim-cmp', lazy = true},
+  {'onsails/lspkind.nvim'},
+  {'elkowar/yuck.vim'},
+  {'lewis6991/gitsigns.nvim'},
+  -- {'romgrk/barbar.nvim'},
+  {'nvim-tree/nvim-tree.lua', lazy = true},
+  {'nvim-tree/nvim-web-devicons', lazy = true},
+  {'kevinhwang91/rnvimr'}, --ranger 
+  {'tmhedberg/SimpylFold'},
+  {'nvim-telescope/telescope.nvim'},
+  {'SirVer/ultisnips'},
+  {'kana/vim-operator-user'},
+  {'yamatsum/nvim-cursorline'},
+  {'tomtom/tcomment_vim'},
+  {
+    'nvim-lualine/lualine.nvim',
+    requires = {'nvim-tree/nvim-web-devicons', opt = true }
+  },
+  {'honza/vim-snippets'},
+  {'tpope/vim-sensible'},
+  {'tpope/vim-fugitive'},
+  {'tpope/vim-surround'},
+  {'tpope/vim-repeat'},
+  {'lukas-reineke/indent-blankline.nvim', main = "ibl", opts={}, config=true},
+  {'jiangmiao/auto-pairs'},
+  {'easymotion/vim-easymotion'},
+  {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate"},
+  {'nvim-treesitter/nvim-treesitter-context'},
+  {'nvim-lua/plenary.nvim'},
+  {'shatur/neovim-session-manager'},
+  {'goolord/alpha-nvim'},
+}
