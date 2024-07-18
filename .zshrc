@@ -6,12 +6,24 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-export PATH="$PATH:/opt/nvim-linux64/bin"
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export RUSTUP_HOME='/opt/rust'
+export PATH="$PATH:/opt/rust/bin"
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin$PATH
+export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH="/opt/nvim-linux64/bin:$PATH"
 export FZF_BASE="$HOME/.fzf"
-export PATH=~/anaconda3/bin:$PATH
-export PATH=/home/jfelmeden/microkit_libc/experimentation/zig:$PATH #add zig to path
 export TERM=screen-256color
+
+# nvidia
+# export WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1
+# export WLR_RENDERER=vulkan
+
+# yocto variables
+SSH_AUTH_SOCK=/ssh.socket
+TEGRA_KEYDIR=/build/ornx-keys
+BB_NUMBER_THREADS=8
+PARALLEL_MAKE=\ -j\ 10
 
 
 # Which plugins would you like to load?
@@ -27,11 +39,18 @@ plugins=(
   fzf
   git
   ripgrep
+  ssh-agent
   tmux
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
+
+# add ssh to path
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent lazy yes
+zstyle :omz:plugins:ssh-agent helper ksshaskpass
+zstyle :omz:plugins:ssh-agent identities github-office
 
 # autosuggestion settings
 ZSH_AUTOSUGGEST_STRATEGY="history"
@@ -99,7 +118,7 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$ZSH/custom
+# ZSH_CUSTOM=$ZSH/custom
 
 # source aliases and oh my zsh
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
