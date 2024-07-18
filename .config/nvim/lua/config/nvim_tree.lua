@@ -109,9 +109,15 @@ local function my_on_attach(bufnr)
 end
 
 vim.api.nvim_set_keymap("n", "<C-E>", ":NvimTreeToggle<cr>", {silent = true, noremap = false})
-local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, bufopts)
+-- don't show status line on nvimtree
+vim.api.nvim_exec(
+  [[
+  au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
+  ]],
+  false
+)
+
 require("nvim-tree").setup({
   filters = {
     dotfiles = false,
@@ -206,4 +212,5 @@ require("nvim-tree").setup({
 
   on_attach = my_on_attach,
 })
+
 

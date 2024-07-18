@@ -1,47 +1,42 @@
-vim.g.mapleader = ","
-vim.opt.pumheight = 12
-vim.g.pumwidth = 30
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.opt.termguicolors = true
-vim.opt.clipboard = "unnamed,unnamedplus"
 vim.cmd('au ColorScheme * hi clear SignColumn')
-
 
 -- Plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('vim_plugins')
+-- do general before plugins
+require('general')
+
+-- require('vim_plugins')
 require('lazy').setup('plugins')
 
 -- Other settings
--- generic setup
 require('mappings')
-require('general')
-
-require'ibl'.setup()
-require'colorizer'.setup()
 
 -- further plugin settings
-
-require('lsp_config')
-require('cmp_setup')
-require('nvim_tree')
-require('gitsigns_setup')
-require('telescope_setup')
-require('treesitter_setup')
-require('alpha_setup')
-require('session-manager')
-require('lualine_setup')
-require('nvim_cursorline')
+require'colorizer'.setup()
+require('config.ibl')
+require('config.lsp_config')
+require('config.cmp')
+require('config.nvim_tree')
+require('config.gitsigns')
+require('config.telescope')
+require('config.treesitter')
+require('config.alpha')
+require('config.session-manager')
+require('config.lualine')
+require('config.nvim_cursorline')
+require('config.barbar')

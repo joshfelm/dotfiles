@@ -2,6 +2,20 @@ local previewers = require("telescope.previewers")
 local sorters = require("telescope.sorters")
 local actions = require("telescope.actions")
 
+local bufmap = function(mode, lhs, rhs)
+    local opts = {silent = true, noremap = false}
+    vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+-- telescope
+bufmap("n", "<leader>tt", "<cmd>Telescope<cr>")
+bufmap("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+bufmap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
+bufmap("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
+bufmap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
+bufmap("n", "<C-S-P>", "<cmd>Telescope<cr>")
+
+
 require("telescope").setup({
   defaults = {
     vimgrep_arguments = {
@@ -20,19 +34,19 @@ require("telescope").setup({
     initial_mode = "insert",
     selection_strategy = "reset",
     sorting_strategy = "ascending",
-    layout_strategy = "horizontal",
+    layout_strategy = "flex",
     layout_config = {
       horizontal = {
         prompt_position = "top",
         preview_width = 0.55,
-        results_width = 0.8,
+        preview_cutoff = 120,
       },
       vertical = {
-        mirror = false,
+        prompt_position = "top",
+        mirror = true,
       },
       width = 0.8,
       height = 0.65,
-      preview_cutoff = 120,
     },
     file_sorter = sorters.get_fuzzy_file,
     file_ignore_patterns = {
@@ -80,10 +94,6 @@ end, { silent = true, noremap = true })
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function()
-    local bufmap = function(mode, lhs, rhs)
-        local opts = {buffer = true, silent = true, noremap = false}
-        vim.keymap.set(mode, lhs, rhs, opts)
-    end
 
     bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
     bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")

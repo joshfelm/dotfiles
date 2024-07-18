@@ -3,7 +3,6 @@ local bufmap = function(mode, lhs, rhs)
     vim.keymap.set(mode, lhs, rhs, opts)
 end
 
-
 -- ranger mappings
 bufmap("n", "<M-o>", ":RnvimrToggle<CR>")
 
@@ -15,25 +14,12 @@ bufmap("n", "<M-o>", ":RnvimrToggle<CR>")
 
 -- Resize floating window by single preset layout
 -- bufmap("t", "<M-y>", "<C-\><C-n>:RnvimrResize 6<CR>")
---
--- gitgutter mappings
-bufmap("n", "]h", "<CMD>GitGutterNextHunk<CR>")
-bufmap("n", "[h", "<CMD>GitGutterPrevHunk<CR>")
 
--- make gt work
--- bufmap("n", "gt", "<CMD>BufferNext<CR>")
--- bufmap("n", "gT", "<CMD>BufferPrevious<CR>")
-
-bufmap("n", "<C-E>", ":NvimTreeToggle<cr>")
-bufmap("n", "<leader>n", ":NvimTreeFocus<CR>")
 
 -- open vim diagnostic
-bufmap("n", "<leader>e", vim.diagnostic.open_float)
 bufmap("n", "]e", vim.diagnostic.goto_next)
 bufmap("n", "[e", vim.diagnostic.goto_prev)
 
--- quick fix diagnostic
-local local_opts = { noremap=true, silent=true }
 
 local function quickfix()
     vim.lsp.buf.code_action({
@@ -42,22 +28,12 @@ local function quickfix()
     })
 end
 
-vim.keymap.set('n', '<leader>qf', quickfix, local_opts)
+-- quick fix diagnostic
+bufmap('n', '<leader>qf', quickfix)
+bufmap('n', "<leader>l", require("lsp_lines").toggle)
 
-
--- telescope
-bufmap("n", "<leader>tt", "<cmd>Telescope<cr>")
-bufmap("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-bufmap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
-bufmap("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
-bufmap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
-bufmap("n", "<C-S-P>", "<cmd>Telescope<cr>")
-
-bufmap("n", "<C-l>", "<cmd>nohl<cr>")
+bufmap("n", "<leader>h", "<cmd>nohl<cr>")
 bufmap("n", "J", "mzJ`z")
-bufmap("n", "K", "gt")
--- bufmap("n", "<C-J>", "gt")
-bufmap("n", "<C-K>", "gT")
 
 -- Add a heading/subheading to current line
 bufmap("n",  "<leader>=", "yypVr=<Esc>==")
@@ -79,13 +55,10 @@ bufmap("n",  "j", "gj")
 bufmap("n",  "k", "gk")
 
 -- Make it easier to hit command
-bufmap("n",  ";", ":")
-bufmap("n",  ";", ":")
+bufmap({"n", "v"},  ";", ":")
 bufmap("i",  "jk", "<ESC>")
 bufmap("i",  "kj", "<ESC>")
 
 -- SOL and EOL easier
-bufmap("n",  "H", "^")
-bufmap("n",  "L", "$")
-bufmap("n",  "H", "^")
-bufmap("n",  "L", "$")
+bufmap({"n", "x", "o", "v"},  "H", "^")
+bufmap({"n", "x", "o", "v"},  "L", "$")

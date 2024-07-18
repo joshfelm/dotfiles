@@ -1,9 +1,16 @@
+local bufmap = function(mode, lhs, rhs)
+    local opts = {silent = true, noremap = false}
+    vim.keymap.set(mode, lhs, rhs, opts)
+end
+bufmap("n", "<C-E>", ":NvimTreeToggle<cr>")
+bufmap("n", "<leader>n", ":NvimTreeFocus<CR>")
+
 -- setup treesitter
 require('nvim-treesitter.configs').setup({
   ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query" },
   highlight = { enable = true},
   indent = { enable = true },
-}) 
+})
 require'treesitter-context'.setup{
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.

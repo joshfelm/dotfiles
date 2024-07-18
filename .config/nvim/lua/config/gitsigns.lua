@@ -25,9 +25,6 @@ require('gitsigns').setup {
     virt_text_priority = 100,
   },
   current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-  current_line_blame_formatter_opts = {
-    relative_time = false,
-  },
   sign_priority = 6,
   update_debounce = 100,
   status_formatter = nil, -- Use default
@@ -50,17 +47,17 @@ require('gitsigns').setup {
     end
 
     -- Navigation
-    map('n', ']c', function()
+    map('n', ']h', function()
       if vim.wo.diff then
-        vim.cmd.normal({']c', bang = true})
+        vim.cmd.normal({']h', bang = true})
       else
         gitsigns.nav_hunk('next')
       end
     end)
 
-    map('n', '[c', function()
+    map('n', '[h', function()
       if vim.wo.diff then
-        vim.cmd.normal({'[c', bang = true})
+        vim.cmd.normal({'[h', bang = true})
       else
         gitsigns.nav_hunk('prev')
       end
@@ -76,7 +73,6 @@ require('gitsigns').setup {
     map('n', '<leader>hR', gitsigns.reset_buffer)
     map('n', '<leader>hp', gitsigns.preview_hunk)
     map('n', '<leader>hb', function() gitsigns.blame_line{full=true} end)
-    map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
     map('n', '<leader>hd', gitsigns.diffthis)
     map('n', '<leader>hD', function() gitsigns.diffthis('~') end)
     map('n', '<leader>td', gitsigns.toggle_deleted)
