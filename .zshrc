@@ -1,19 +1,24 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 export RUSTUP_HOME='/opt/rust'
 export PATH="$PATH:/opt/rust/bin"
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin$PATH
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
+export PATH="$HOME/.local/share/nvim/distant.nvim/bin/:$PATH"
 export PATH="/opt/nvim-linux64/bin:$PATH"
+export DENO_INSTALL="/home/jfelmeden/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
 export FZF_BASE="$HOME/.fzf"
 export TERM=screen-256color
+
+nerdfetch
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # nvidia
 # export WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1

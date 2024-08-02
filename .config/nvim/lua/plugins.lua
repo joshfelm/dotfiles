@@ -29,12 +29,6 @@ return {
       vim.cmd([[colorscheme gruvbox]])
     end
   },
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function() vim.fn["mkdp#util#install"]() end,
-  },
   {'nvim-lua/plenary.nvim'},
   {'norcalli/nvim-colorizer.lua', config=true},
   {'rhysd/vim-grammarous'},
@@ -55,6 +49,18 @@ return {
   {'hrsh7th/cmp-cmdline'},
   {'hrsh7th/nvim-cmp', lazy = true},
   {'onsails/lspkind.nvim'},
+  {
+    "toppair/peek.nvim",
+    event = { "VeryLazy" },
+    build = "deno task --quiet build:fast",
+    config = function()
+        vim.api.nvim_create_user_command("PeekOpen", require("peek").open, {})
+        vim.api.nvim_create_user_command("PeekClose", require("peek").close, {})
+        require("peek").setup({
+          app = 'browser',
+        })
+    end,
+  },
   {'elkowar/yuck.vim'},
   {'romgrk/barbar.nvim'},
   {'nvim-tree/nvim-tree.lua', lazy = true},
@@ -152,5 +158,14 @@ return {
       { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
       { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
     }
+  },
+  {
+    'chipsenkbeil/distant.nvim',
+    branch = 'v0.3',
+    config = function()
+        require('distant'):setup({
+          ['network.private'] = true,
+        })
+    end
   }
 }

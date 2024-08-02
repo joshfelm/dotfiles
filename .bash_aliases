@@ -1,6 +1,7 @@
 alias n='nvim'
 alias src='source ~/.bashrc'
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cfglazy='lazygit --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # alias python=python3
 alias open=xdg-open
 alias x=exit

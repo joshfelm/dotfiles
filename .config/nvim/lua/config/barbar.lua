@@ -4,7 +4,11 @@ local bufmap = function(mode, lhs, rhs)
     local opts = {silent = true, noremap = false}
     vim.keymap.set(mode, lhs, rhs, opts)
 end
+--
 -- barbar mappings
+-- Move to previous/next
+bufmap('n', '<A-,>', '<CMD>BufferPrevious<CR>')
+bufmap('n', '<A-.>', '<CMD>BufferNext<CR>')
 -- Goto buffer in position...
 bufmap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
 bufmap('n', '<A-2>', '<Cmd>BufferGoto 2<CR>')
@@ -30,6 +34,7 @@ bufmap('n', '<A-c>', '<Cmd>BufferClose<CR>')
 --                 :BufferCloseBuffersRight
 bufmap('n', '<A-l>', '<Cmd>BufferCloseBuffersRight<CR>')
 bufmap('n', '<A-h>', '<Cmd>BufferCloseBuffersLeft<CR>')
+bufmap('n', '<A-s-c>', '<Cmd>BufferRestore<CR>')
 -- Magic buffer-picking mode
 bufmap('n', '<C-p>', '<Cmd>BufferPick<CR>')
 

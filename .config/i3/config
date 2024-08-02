@@ -21,6 +21,10 @@ set $term kitty
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu rofi -show drun | xargs swaymsg exec --
 
+set $powermenu exec $HOME/.config/rofi/powermenu/type-5/powermenu.sh
+
+set $fileManager nautilus
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -77,13 +81,34 @@ set $menu rofi -show drun | xargs swaymsg exec --
 # Basics:
 #
     # Start a terminal
-    bindsym $mod+t exec $term
+    bindsym $mod+Return exec $term; [floating] floating toggle
 
     # Kill focused window
     bindsym $mod+Shift+q kill
 
     # Start your launcher
     bindsym $mod+r exec $menu
+
+    # Power menu
+    bindsym $mod+p exec $powermenu
+
+    # start explorer
+    bindsym $mod+q exec $fileManager
+
+    # start browser
+    bindsym $mod+Shift+w exec firefox
+
+    # auto change monitors
+    bindsym $mod+Shift+a exec autorandr -c
+
+    # lock screen 
+    # bindsym $mod+Ctrl+l exec i3lock --nofork -i ~/Pictures/wallpapers/liquicity-mountain.png
+    bindsym $mod+Ctrl+l exec $HOME/.config/scripts/lock.sh
+
+    # music control
+    bindsym XF86AudioPlay exec playerctl play-pause
+    bindsym XF86AudioNext exec playerctl next
+    bindsym XF86AudioPrev exec playerctl previous
 
     # media control
     bindsym XF86AudioRaiseVolume exec volumectl -u up
@@ -104,6 +129,9 @@ set $menu rofi -show drun | xargs swaymsg exec --
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
+
+    bindsym --release $mod+Shift+s exec import ~/Pictures/screenshot.png
+    bindsym Print exec flameshot gui
 
     # Exit sway (logs you out of your Wayland session)
 #     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -127,6 +155,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+    bindsym $mod+Shift+Return move position center
     # Ditto, with arrow keys
     bindsym $mod+Shift+Left move left
     bindsym $mod+Shift+Down move down
@@ -232,9 +261,7 @@ mode "resize" {
 # swayfx
 
 # borders and whatnot
-font Noto Sans
-default_border pixel
-default_floating_border pixel
+font Noto
 # set {
 #     $col_urgent                    #cc241d
 #     $col_focused                   #458588
@@ -250,14 +277,15 @@ default_floating_border pixel
 # }
 
 # You can also use any non-zero value if you'd like to have a border
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 0
 
 # smart_borders on
+default_border none
+default_floating_border none
 smart_gaps on
-# border_radius 30
-# smart_gaps on
-gaps outer 10
-gaps inner 5
+border_radius 13
+gaps outer 5
+gaps inner 10
 
 # class                  border                        background             text                indicator              child_border
 client.focused           #ebdbb2           #458588           #fbf1c7      #458588           #ebdbb2
@@ -284,24 +312,27 @@ workspace 1 output HDMI-1-0
 workspace 2 output DP-1-0
 workspace 3 output eDP-1
 
-assign [class="kitty"] 1
-assign [class="Firefox"] 2
-assign [class="Slack"] 3
+# assign [class="kitty"] 1
+# assign [class="firefox"] 2
+# assign [class="Slack"] 3
 
 for_window [class="Pavucontrol"] floating enable
+for_window [class="Nautilus"] floating enable
 for_window [class="kitty"] smart_gaps on
+for_window [class="kitty"] smart_borders on
+
+for_window [class="avizo.*"] floating border pixel 0
+for_window [class="avizo.*"] border pixel 0
 
 
-exec --no-startup-id xrandr --output HDMI-1-0 --auto --rotate left --output DP-1-0 --mode 1920x1080 --rate 143 --pos 1200x300  --output eDP-1 --auto --right-of DP-1-0 &
 # autostart
-exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 exec --no-startup-id dunst
-exec --no-startup-id eww daemon
-exec --no-startup-id /home/jfelmeden/.config/eww/toggle_bar
-exec avizo-service
-exec --no-startup-id feh --bg-scale /home/jfelmeden/Pictures/mountain.jpg
-exec --no-startup-id i3-msg 'workspace 3; exec slack'
-exec --no-startup-id i3-msg 'workspace 1; exec kitty'
-exec --no-startup-id i3-msg 'workspace 2; exec firefox'
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+exec_always --no-startup-id autorandr -c
+exec --no-startup-id redshift
+# exec --no-startup-id avizo-service
+exec --no-startup-id "i3-msg 'workspace number 1; exec $term; workspace number 2; exec firefox; workspace number 3; exec slack'"
 exec i3-msg 'setxkbmap -layout gb'
+
+for_window [class="kitty"] floating enable, resize set 800px 500px, move position center
 

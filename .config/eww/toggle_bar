@@ -1,16 +1,19 @@
 #!/bin/bash
 
+NR_OF_MONITORS=$(xrandr -d :1 -q | grep ' connected' | wc -l)
+SCRNO=$((NR_OF_MONITORS - 1))
+
 LOCK=/tmp/eww_bar.lock
 if [ -f "$LOCK" ]; then
     eww close bar system calendar audio_ctl music_win primary secondary ternary > /dev/null
     # bspc config top_padding 3
-    dunstify -t 1000 --replace=1132 "Eww" "Bar closed..."
+    dunstify -t 3000 --replace=1132 "Eww" "Bar closed..."
     rm $LOCK
 else
     # eww open bar --screen 0 --id ternary
     # eww open bar --screen 1 --id secondary
-    eww open bar --screen 2 --id bar
+    eww open bar --screen $SCRNO --id bar
     # eww open-many bar:screen=2 bar:screen=1
-    dunstify -t 1000 --replace=1132 "Eww" "Bar launched..."
+    dunstify -t 3000 --replace=1132 "Eww" "Bar launched..."
     touch $LOCK
 fi

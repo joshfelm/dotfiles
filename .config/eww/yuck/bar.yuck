@@ -44,7 +44,7 @@
     (box :vexpand false :hexpand false :space-evenly false
      (button
          :class "${wifi_connected == "true" ? "wifi_icon" : "wifi_off_icon"}"
-         :wrap false :limit-width 12 "${wifi_connected == "true" ? "" : ""}")
+         :wrap false :limit-width 12 "${wifi_connected == "true" ? "" : "󰖪"}")
      (revealer :transition "slideright"
         :reveal wifi_rev
         :duration "350ms"
@@ -122,7 +122,7 @@
         :onhoverlost "${eww} update vol_reveal=false"
         :cursor "pointer"
    (box :space-evenly false :orientation "h" :spacing "3"
-    (button :onrightclick "pavucontrol" :onclick "${eww} open-many --toggle player" :class "volume_icon" "")
+    (button :onrightclick "pavucontrol" :onclick "pamixer -m" :class "volume_icon" "")
     (revealer :transition "slideleft"
        :reveal vol_reveal
        :duration "350ms"
