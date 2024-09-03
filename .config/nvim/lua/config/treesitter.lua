@@ -7,7 +7,7 @@ bufmap("n", "<leader>n", ":NvimTreeFocus<CR>")
 
 -- setup treesitter
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query" },
+  ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query", "bitbake", "rust", "cpp", "bash" },
   highlight = { enable = true},
   indent = { enable = true },
 })

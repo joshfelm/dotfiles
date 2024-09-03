@@ -30,7 +30,12 @@ end
 
 -- quick fix diagnostic
 bufmap('n', '<leader>qf', quickfix)
-bufmap('n', "<leader>l", require("lsp_lines").toggle)
+
+-- lsp lines setup
+-- bufmap('n', "<leader>l", require("lsp_lines").toggle)
+
+-- zenmode
+bufmap('n', "<leader>zm", require("zen-mode").toggle)
 
 bufmap("n", "<leader>h", "<cmd>nohl<cr>")
 bufmap("n", "J", "mzJ`z")
@@ -49,6 +54,9 @@ bufmap("n", "<space>", "za")
 -- Don't let x and c to spoil the yank register
 bufmap("n",  "x", '"_x')
 bufmap("n",  "c", '"_c')
+
+-- Map leader to copy into clipboard
+bufmap({"v", "n"},  "<leader>y", [["+y]])
 
 -- move vertically by visual line
 bufmap("n",  "j", "gj")

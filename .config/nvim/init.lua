@@ -28,6 +28,7 @@ require('mappings')
 
 -- further plugin settings
 require'colorizer'.setup()
+
 require('config.ibl')
 require('config.lsp_config')
 require('config.cmp')
@@ -38,5 +39,7 @@ require('config.treesitter')
 require('config.alpha')
 require('config.session-manager')
 require('config.lualine')
+require('config.obsidian')
+require('config.workflows')
 require('config.nvim_cursorline')
 require('config.barbar')

@@ -29,6 +29,8 @@ vim.g.pumwidth = 30
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
+vim.opt.swapfile = false
+vim.opt.undofile = true
 vim.opt.clipboard = "unnamed" -- set to unnamedplus to always yank to clipboard
 
 -- For folds
@@ -49,6 +51,7 @@ vim.opt.tabstop=4
 vim.opt.shiftwidth=4
 vim.opt.softtabstop=4
 vim.opt.expandtab=true
+vim.o.conceallevel = 2 -- set conceal level for obsidian plugin
 
 -- Make searching better
 vim.opt.smartcase=true

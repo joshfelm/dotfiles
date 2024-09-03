@@ -30,8 +30,7 @@ return {
     end
   },
   {'nvim-lua/plenary.nvim'},
-  {'norcalli/nvim-colorizer.lua', config=true},
-  {'rhysd/vim-grammarous'},
+  {'norcalli/nvim-colorizer.lua', config=true}, -- show colours in place
   {
     "neovim/nvim-lspconfig",
     -- cmd = "Mason",
@@ -43,13 +42,15 @@ return {
       "williamboman/mason-lspconfig.nvim",
     }
 	},
+  -- cmp: autocompletion
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/cmp-buffer'},
   {'hrsh7th/cmp-path'},
   {'hrsh7th/cmp-cmdline'},
   {'hrsh7th/nvim-cmp', lazy = true},
-  {'onsails/lspkind.nvim'},
+  {'onsails/lspkind.nvim'}, -- lsp icons
   {
+    -- markdown preview
     "toppair/peek.nvim",
     event = { "VeryLazy" },
     build = "deno task --quiet build:fast",
@@ -61,9 +62,8 @@ return {
         })
     end,
   },
-  {'elkowar/yuck.vim'},
-  {'romgrk/barbar.nvim'},
-  {'nvim-tree/nvim-tree.lua', lazy = true},
+  {'romgrk/barbar.nvim'}, -- tab handler
+  {'nvim-tree/nvim-tree.lua', lazy = true}, -- explorer
   {'nvim-tree/nvim-web-devicons', lazy = true},
   {'kevinhwang91/rnvimr'}, --ranger
   {'nvim-telescope/telescope.nvim'},
@@ -108,21 +108,17 @@ return {
       signs = false,
     }
   },
-  -- {
-  --   "folke/drop.nvim",
-  --   opts = {
-  --     theme = "binary",
-  --   }
-  -- },
   {
     'nvim-lualine/lualine.nvim',
     requires = {'nvim-tree/nvim-web-devicons', opt = true }
   },
+  -- invaluable vim plugins
   {'honza/vim-snippets'},
   {'tpope/vim-sensible'},
   {'tpope/vim-fugitive'},
   {'tpope/vim-surround'},
   {'tpope/vim-repeat'},
+  -- indent guide
   {
     'lukas-reineke/indent-blankline.nvim',
     main = "ibl",
@@ -140,32 +136,111 @@ return {
   {'nvim-treesitter/nvim-treesitter-context'},
   {'lewis6991/gitsigns.nvim'},
   {'shatur/neovim-session-manager'},
-  {'goolord/alpha-nvim'},
+  {'goolord/alpha-nvim'}, -- dashboard
   {'sindrets/diffview.nvim'},
-  { 'echasnovski/mini.trailspace', version = false, config = true },
-  {
-    'ErichDonGubler/lsp_lines.nvim', version = false, config = true,
-  },
+  { 'echasnovski/mini.trailspace', version = false, config = true }, -- complain about whitespace
+  -- {
+  --   'ErichDonGubler/lsp_lines.nvim', version = false, config = true, -- lsp show errors under line
+  -- },
   {
     'echasnovski/mini.ai', version = false, config = true,
   },
+  -- tmux integration
+  -- {
+  --   'christoomey/vim-tmux-navigator',
+  --   keys = {
+  --     { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+  --     { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+  --     { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+  --     { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+  --     { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+  --   }
+  -- },
+  -- zellij integration
   {
-    'christoomey/vim-tmux-navigator',
+    "https://git.sr.ht/~swaits/zellij-nav.nvim",
+    lazy = true,
+    event = "VeryLazy",
     keys = {
-      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+      { "<c-h>", "<cmd>ZellijNavigateLeft<cr>",  { silent = true, desc = "navigate left"  } },
+      { "<c-j>", "<cmd>ZellijNavigateDown<cr>",  { silent = true, desc = "navigate down"  } },
+      { "<c-k>", "<cmd>ZellijNavigateUp<cr>",    { silent = true, desc = "navigate up"    } },
+      { "<c-l>", "<cmd>ZellijNavigateRight<cr>", { silent = true, desc = "navigate right" } },
+    },
+    opts = {},
+  },
+  -- auto-save
+  {
+    "Pocco81/auto-save.nvim",
+    opts={},
+    config = true,
+  },
+  -- obsidian integration
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  -- zen mode
+  { "folke/twilight.nvim", },
+  {
+    "folke/zen-mode.nvim",
+    opts = {
+      window = {
+        width = 0.85,
+        options = {
+          number = false,
+        },
+      },
+      plugins = {
+        tmux = { enabled = true },
+        gitsigns = { enabled = true },
+        kitty = {
+          enabled = true,
+          font = "+2",
+        }
+      }
     }
   },
   {
-    'chipsenkbeil/distant.nvim',
-    branch = 'v0.3',
-    config = function()
-        require('distant'):setup({
-          ['network.private'] = true,
-        })
-    end
-  }
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+      {
+        "<leader>xX",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+        desc = "Buffer Diagnostics (Trouble)",
+      },
+      {
+        "<leader>cs",
+        "<cmd>Trouble symbols toggle focus=false<cr>",
+        desc = "Symbols (Trouble)",
+      },
+      {
+        "<leader>cl",
+        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+        desc = "LSP Definitions / references / ... (Trouble)",
+      },
+      {
+        "<leader>xL",
+        "<cmd>Trouble loclist toggle<cr>",
+        desc = "Location List (Trouble)",
+      },
+      {
+        "<leader>xQ",
+        "<cmd>Trouble qflist toggle<cr>",
+        desc = "Quickfix List (Trouble)",
+      },
+    },
+  },
 }

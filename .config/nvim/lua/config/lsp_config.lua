@@ -5,6 +5,31 @@ end
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+-- python
+require('lspconfig')['pyright'].setup {
+  capabilities = capabilities
+}
+
+-- bash
+require('lspconfig')['bashls'].setup {}
+
+-- rust
+require('lspconfig')['rust_analyzer'].setup {}
+
+-- bitbake
+-- require('lspconfig')['bitbake'].setup {}
+
+-- vim.api.nvim_create_autocmd({ "BufEnter" }, {
+--   pattern = { "*.bb", "*.bbappend", "*.bbclass", "*.inc", "conf/*.conf" },
+--   callback = function()
+--     vim.lsp.start({
+--       name = "bitbake",
+--       cmd = { "bitbake-language-server" }
+--     })
+--   end,
+-- })
+
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
 -- mason/mason-lspconfig/nvim-lspconfig
@@ -60,6 +85,19 @@ local server_opts = {
 		filetypes = { "python" }
 	},
 
+  ["rust_analyzer"] = {
+    diagnostics = { enable = "false" },
+  },
+
+  ["bash-language-server"] = {
+    cmd = {'bash-language-server', 'start'},
+  },
+
+  ["bitbake-language-server"] = {
+    name = "bitbake",
+    cmd = {"language-server-bitbake", "--stdio"}
+  },
+
 }
 
 local common_capabilities = vim.tbl_deep_extend(
@@ -79,6 +117,7 @@ local server_handlers = {
 }
 
 local mason_opts = {
+  PATH = "prepend",
 	ui = {
 		border = "rounded",
 		icons = {
@@ -101,8 +140,8 @@ require('mason-lspconfig').setup({
 -- Diagnostics
 vim.diagnostic.config({
   float = { source = "always", border = "rounded" },
-  virtual_text = false,
-  underline = false,
+  virtual_text = true,
+  underline = true,
   signs = true,
 })
 
@@ -122,10 +161,6 @@ end, { desc = 'Toggle Diagnostics' })
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
 	vim.lsp.handlers.hover, { border = "rounded" }
 )
--- python
-require('lspconfig')['pyright'].setup {
-  capabilities = capabilities
-}
 
 -- lua
 require'lspconfig'.lua_ls.setup {
