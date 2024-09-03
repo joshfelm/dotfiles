@@ -20,62 +20,9 @@ set $term kitty
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu rofi -show drun | xargs swaymsg exec --
-
 set $powermenu exec $HOME/.config/rofi/powermenu/type-5/powermenu.sh
-
 set $fileManager nautilus
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-
-# input type:touchpad {
-#     natural_scroll enabled
-#     dwt enabled
-#     tap enabled
-#     middle_emulation enabled
-# }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
-# Section "InputClass"
-#         Identifier "libinput touchpad catchall"
-#         MatchIsTouchpad "on"
-#         MatchDevicePath "/dev/input/event*"
-#         Driver "libinput"
-#         Option "NaturalScrolling" "True"
-# EndSection
 ### Key bindings
 #
 # Basics:
@@ -98,10 +45,13 @@ set $fileManager nautilus
     # start browser
     bindsym $mod+Shift+w exec firefox
 
-    # auto change monitors
-    bindsym $mod+Shift+a exec autorandr -c
+    # auto change monitors (default to mobile)
+    bindsym $mod+Shift+a exec autorandr -c --default horizontal
 
-    # lock screen 
+    # auto change monitors (will just connect to anything)
+    bindsym $mod+Shift+m exec ~/.config/scripts/monitors.sh
+
+    # lock screen
     # bindsym $mod+Ctrl+l exec i3lock --nofork -i ~/Pictures/wallpapers/liquicity-mountain.png
     bindsym $mod+Ctrl+l exec $HOME/.config/scripts/lock.sh
 
@@ -130,12 +80,12 @@ set $fileManager nautilus
     # Reload the configuration file
     bindsym $mod+Shift+c reload
 
-    bindsym --release $mod+Shift+s exec import ~/Pictures/screenshot.png
+    bindsym --release $mod+Shift+s exec flameshot gui
     bindsym Print exec flameshot gui
 
     # Exit sway (logs you out of your Wayland session)
-#     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+    # bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # #
 # Moving around:
 #
@@ -254,14 +204,15 @@ mode "resize" {
 #
 # Status Bar:
 #
-# bar { 
+# bar {
 #     i3_command waybar
 # }
 
 # swayfx
 
 # borders and whatnot
-font Noto
+font pango:SauceCodePro NFM 9
+
 # set {
 #     $col_urgent                    #cc241d
 #     $col_focused                   #458588
@@ -293,21 +244,6 @@ client.focused_inactive  #7c6f64  #665c54  #bdae93  #665c54  #7c6f64
 client.unfocused         #3c3836         #282828         #bdae93     #282828         #3c3836
 client.urgent            #cc241d            #cc241d            #fbf1c7  #cc241d            #cc241d
 
-# Read `man 5 sway-bar` for more information about this section.
-# bar {
-#     position top
-#
-#     # When the status_command prints a new line to stdout, swaybar updates.
-#     # The default just shows the current date and time.
-#     status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-#
-#     colors {
-#         statusline #ffffff
-#         background #323232
-#         inactive_workspace #32323200 #32323200 #5c5c5c
-#     }
-# }
-
 workspace 1 output HDMI-1-0
 workspace 2 output DP-1-0
 workspace 3 output eDP-1
@@ -317,21 +253,26 @@ workspace 3 output eDP-1
 # assign [class="Slack"] 3
 
 for_window [class="Pavucontrol"] floating enable
+for_window [class="Blueman"] floating enable, resize set 700px 400px, move position center
 for_window [class="Nautilus"] floating enable
-for_window [class="kitty"] smart_gaps on
-for_window [class="kitty"] smart_borders on
+# for_window [class="kitty"] smart_gaps on
+# for_window [class="kitty"] smart_borders on
 
 for_window [class="avizo.*"] floating border pixel 0
 for_window [class="avizo.*"] border pixel 0
 
-
 # autostart
 exec --no-startup-id dunst
 exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
-exec_always --no-startup-id autorandr -c
+exec --no-startup-id ~/.config/scripts/startup.sh
+
+exec_always --no-startup-id autorandr -c --default horizontal
 exec --no-startup-id redshift
-# exec --no-startup-id avizo-service
-exec --no-startup-id "i3-msg 'workspace number 1; exec $term; workspace number 2; exec firefox; workspace number 3; exec slack'"
+
+# avizo can be a bitch on multiple monitors
+exec --no-startup-id avizo-service
+
+exec --no-startup-id "i3-msg 'workspace number 1; exec firefox; workspace number 2; exec $term; workspace number 3; exec slack'"
 exec i3-msg 'setxkbmap -layout gb'
 
 for_window [class="kitty"] floating enable, resize set 800px 500px, move position center
