@@ -2,7 +2,7 @@
  *
  * Author : Aditya Shakya (adi1090x)
  * Github : @adi1090x
- * 
+ *
  * Configuration For Rofi Version: 1.7.3
  **/
 
@@ -21,6 +21,8 @@ configuration {
 /*	cache-dir: ;*/
 	steal-focus: false;
 /*	dpi: -1;*/
+
+    /* mouse settings */
 
 	/*---------- Matching setting ----------*/
 	matching: "normal";
@@ -171,7 +173,8 @@ configuration {
 	ml-row-right: "ScrollRight";
 	ml-row-up: "ScrollUp";
 	ml-row-down: "ScrollDown";
-	me-select-entry: "MousePrimary";
-	me-accept-entry: "MouseDPrimary";
+    hover-select: true;
+	me-select-entry: "";
+    me-accept-entry: [ MousePrimary, MouseSecondary, MouseDPrimary ];
 	me-accept-custom: "Control+MouseDPrimary";
 }
