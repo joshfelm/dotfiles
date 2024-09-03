@@ -1,0 +1,4 @@
+#!/bin/bash
+bat=/org/freedesktop/UPower/devices/battery_BAT0
+percent=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep -E "percentage" | awk -F'percentage:' '{gsub(/[ ]/, "", $2); print $2}')
+echo $percent

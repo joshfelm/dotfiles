@@ -1,3 +1,21 @@
+# Path stuff
+export RUSTUP_HOME='/opt/rust'
+export PATH="$PATH:/opt/rust/bin"
+export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin$PATH
+export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH="$HOME/.local/share/nvim/distant.nvim/bin/:$PATH"
+export PATH="$HOME/.local/bin/bitbake/bin:$PATH"
+export PATH="/opt/nvim-linux64/bin:$PATH"
+export DENO_INSTALL="/home/jfelmeden/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+export FZF_BASE="$HOME/.fzf"
+export TERM=screen-256color
+
+
+# print nerdfetch
+nerdfetch
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,33 +23,34 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH="$PATH:/opt/nvim-linux64/bin"
-export FZF_BASE="$HOME/.fzf"
-export PATH=~/anaconda3/bin:$PATH
-export PATH=/home/jfelmeden/microkit_libc/experimentation/zig:$PATH #add zig to path
-export TERM=screen-256color
+# nvidia
+# export WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1
+# export WLR_RENDERER=vulkan
 
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# yocto variables
+export DL_DIR="/home/jfelmeden/yocto.downloads"
+export SSTATE_DIR="/home/jfelmeden/yocto.sstate"
+export SSH_AUTH_SOCK="/ssh.socket"
+export BB_NUMBER_THREADS="15"
+export PARALLEL_MAKE="-j 16"
 
 # list of plugins
 plugins=(
   dotenv
-  fd
   fzf
   git
-  ripgrep
+  ssh-agent
   tmux
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
+
+# add ssh to path
+zstyle :omz:plugins:ssh-agent quiet yes
+zstyle :omz:plugins:ssh-agent lazy yes
+zstyle :omz:plugins:ssh-agent helper ksshaskpass
+zstyle :omz:plugins:ssh-agent identities ~/.ssh/github-office
 
 # autosuggestion settings
 ZSH_AUTOSUGGEST_STRATEGY="history"
@@ -47,12 +66,6 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 SOLARIZED_THEME="dark"
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk||kj
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -99,13 +112,12 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$ZSH/custom
+# ZSH_CUSTOM=$ZSH/custom
 
 # source aliases and oh my zsh
 [ -f $ZSH/oh-my-zsh.sh ] && source $ZSH/oh-my-zsh.sh
 [ -f ~/.aliases ] && source $HOME/.aliases
 [ -f ~/.bash_aliases ] && source $HOME/.bash_aliases
-
 
 # User configuration
 
@@ -119,7 +131,7 @@ setopt nosharehistory
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
+  export EDITOR='vim'
 else
   export EDITOR='nvim'
 fi
@@ -133,6 +145,8 @@ source $HOME/.fzf_zsh
 alias zshrc="nvim $HOME/.zshrc"
 alias ohmyzsh="cd ~/.oh-my-zsh"
 alias src="source $HOME/.zshrc"
+
+source ~/.ssh/.ssh-add-keys.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
