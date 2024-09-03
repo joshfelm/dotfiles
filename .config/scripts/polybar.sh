@@ -10,7 +10,7 @@ MONITOR=$m1 polybar -c ~/.config/polybar.old/config.ini main &
 
 if [ ${#monitor_array[@]} -gt 1 ]; then
     for m in "${monitor_array[@]:1}"; do
-        MONITOR=$m polybar -c ~/.config/polybar.old/config.ini panel &
+        MONITOR=$m polybar -c ~/.config/polybar.old/config.ini secondary &
     done
 fi
 

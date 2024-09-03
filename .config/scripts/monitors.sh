@@ -1,6 +1,8 @@
 #!/bin/bash
 
-## Function to display usage
+# TODO: allow different scale/resolutions with manual
+
+# Function to display usage
 usage() {
     echo "Usage: $0 [-d]"
     echo "  -d    Enable manual monitor selection"
@@ -23,13 +25,17 @@ disconnected_monitors=$(xrandr | grep 'connected' | awk '/disconnected/ {print $
 IFS=$'\n' read -d '' -r -a monitor_array <<< "$connected_monitors"
 IFS=$'\n' read -d '' -r -a dis_monitor_array <<< "$disconnected_monitors"
 
+# Use default order (order of detection)
+monitors=("${monitor_array[@]}")
+dis_monitors=("${dis_monitor_array}")
+
 if [ "$manual_selection" = true ]; then
     # Display available monitors
     echo "Connected monitors:"
     echo "$connected_monitors" | nl
 
     # Ask user for monitor order
-    echo "Enter the numbers of the monitors in the order you want them (left to right), separated by spaces:"
+    echo "Enter the number of the monitor you want to be the primary"
     read -a monitor_order
 
     # Validate input
@@ -38,31 +44,17 @@ if [ "$manual_selection" = true ]; then
         exit 1
     fi
 
-    # Convert numbers to monitor names
-    monitors=()
-    for num in "${monitor_order[@]}"; do
-        monitor=$(echo "$connected_monitors" | sed -n "${num}p")
-        if [ -z "$monitor" ]; then
-            echo "Invalid monitor number: $num. Exiting."
-            exit 1
-        fi
-        monitors+=("$monitor")
-    done
+    primary_monitor=$(echo "$connected_monitors" | sed -n "${monitor_order}p")
 else
-    # Use default order (order of detection)
-    monitors=("${monitor_array[@]}")
+    # Set the primary monitor (first in the list)
+    primary_monitor=${monitors[0]}
 fi
 
-dis_monitors=("${dis_monitor_array}")
 
-# Set the primary monitor (first in the list)
-primary_monitor=${monitors[0]}
+echo $primary_monitor
 
 # Set up the primary monitor
 xrandr --output "$primary_monitor" --primary --auto
-
-# Variable to keep track of the rightmost edge
-x_offset=0
 
 #  Disconntect irrelevant monitors
 for i in "${!dis_monitors[@]}"; do
@@ -70,22 +62,57 @@ for i in "${!dis_monitors[@]}"; do
     xrandr --output "$monitor" --off
 done
 
-
+mon_str=""
 # Set up each monitor
+prev_monitor=$primary_monitor
 for i in "${!monitors[@]}"; do
     monitor=${monitors[$i]}
     if [ $i -eq 0 ]; then
+        mon_str="$i. ${monitor}"
+    else
+        mon_str="${mon_str}\n$i. ${monitor}"
+    fi
+
+    if [ "$monitor" = "$primary_monitor" ]; then
+        mon_str="${mon_str} (p)"
         continue  # Skip the primary monitor as it's already set up
     fi
 
-    # Get the width of the previous monitor
-    prev_monitor=${monitors[$((i-1))]}
-    
+    # # Get the width of the previous monitor
+    # prev_monitor=${monitors[$((i-1))]}
+
+    attach_dir="--right-of"
+    if [ "$manual_selection" = true ]; then
+        echo "Attach $monitor to the ([l]eft [r]ight [u]p [d]own) of $prev_monitor (x to exit)"
+        read -a direction
+
+        # Validate input
+        if [ ${#monitor_order[@]} -eq 0 ]; then
+            echo "No input provided. Exiting."
+            exit 1
+        fi
+
+        case $direction in
+            l ) attach_dir="--left-of" ;;
+            r ) attach_dir="--right-of" ;;
+            u ) attach_dir="--above" ;;
+            d ) attach_dir="--below" ;;
+            * ) echo "Exiting"
+                exit 1 ;;
+        esac
+    fi
+
     # Set up the monitor to the right of the previous one
-    xrandr --output $monitor --auto --right-of $prev_monitor
+    xrandr --output $monitor --auto $attach_dir $prev_monitor
+    prev_monitor=$monitor
 done
 
+# run the polybar script
 $HOME/.config/scripts/polybar.sh
 
-echo "Monitor setup complete."
+# run background update
+feh --bg-fill ~/Pictures/wallpapers/liquicity-trees.png --bg-fill ~/Pictures/wallpapers/liquicity-mountain.png
 
+notify-send -a "monitors.sh" "Updated monitors!" "$mon_str"
+
+echo "Monitor setup complete."
