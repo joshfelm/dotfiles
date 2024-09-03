@@ -1,16 +1,19 @@
-# If you come from bash you might have to change your $PATH.
+# Path stuff
 export RUSTUP_HOME='/opt/rust'
 export PATH="$PATH:/opt/rust/bin"
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin$PATH
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH="$HOME/.local/share/nvim/distant.nvim/bin/:$PATH"
+export PATH="$HOME/.local/bin/bitbake/bin:$PATH"
 export PATH="/opt/nvim-linux64/bin:$PATH"
 export DENO_INSTALL="/home/jfelmeden/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export FZF_BASE="$HOME/.fzf"
 export TERM=screen-256color
 
+
+# print nerdfetch
 nerdfetch
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -25,25 +28,17 @@ fi
 # export WLR_RENDERER=vulkan
 
 # yocto variables
-SSH_AUTH_SOCK=/ssh.socket
-TEGRA_KEYDIR=/build/ornx-keys
-BB_NUMBER_THREADS=8
-PARALLEL_MAKE=\ -j\ 10
-
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+export DL_DIR="/home/jfelmeden/yocto.downloads"
+export SSTATE_DIR="/home/jfelmeden/yocto.sstate"
+export SSH_AUTH_SOCK="/ssh.socket"
+export BB_NUMBER_THREADS="15"
+export PARALLEL_MAKE="-j 16"
 
 # list of plugins
 plugins=(
   dotenv
-  fd
   fzf
   git
-  ripgrep
   ssh-agent
   tmux
   z
@@ -55,7 +50,7 @@ plugins=(
 zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent lazy yes
 zstyle :omz:plugins:ssh-agent helper ksshaskpass
-zstyle :omz:plugins:ssh-agent identities github-office
+zstyle :omz:plugins:ssh-agent identities ~/.ssh/github-office
 
 # autosuggestion settings
 ZSH_AUTOSUGGEST_STRATEGY="history"
@@ -71,12 +66,6 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 SOLARIZED_THEME="dark"
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk||kj
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -130,7 +119,6 @@ HIST_STAMPS="dd.mm.yyyy"
 [ -f ~/.aliases ] && source $HOME/.aliases
 [ -f ~/.bash_aliases ] && source $HOME/.bash_aliases
 
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -143,7 +131,7 @@ setopt nosharehistory
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
+  export EDITOR='vim'
 else
   export EDITOR='nvim'
 fi
@@ -157,6 +145,8 @@ source $HOME/.fzf_zsh
 alias zshrc="nvim $HOME/.zshrc"
 alias ohmyzsh="cd ~/.oh-my-zsh"
 alias src="source $HOME/.zshrc"
+
+source ~/.ssh/.ssh-add-keys.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
