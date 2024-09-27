@@ -47,7 +47,24 @@ return {
   {'hrsh7th/cmp-buffer'},
   {'hrsh7th/cmp-path'},
   {'hrsh7th/cmp-cmdline'},
-  {'hrsh7th/nvim-cmp', lazy = true},
+  {'saadparwaiz1/cmp_luasnip'},
+  {'hrsh7th/nvim-cmp', lazy = false},
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    config = function()
+        local luasnip = require('luasnip')
+        luasnip.config.set_config {
+            history = true,
+            updateevents = "TextChanged,TextChangedI",
+            enable_autosnippets = true,
+        }
+    end
+  },
   {'onsails/lspkind.nvim'}, -- lsp icons
   {
     -- markdown preview
@@ -65,7 +82,6 @@ return {
   {'romgrk/barbar.nvim'}, -- tab handler
   {'nvim-tree/nvim-tree.lua', lazy = true}, -- explorer
   {'nvim-tree/nvim-web-devicons', lazy = true},
-  {'kevinhwang91/rnvimr'}, --ranger
   {'nvim-telescope/telescope.nvim'},
   {
     'yamatsum/nvim-cursorline',
@@ -243,4 +259,36 @@ return {
       },
     },
   },
+  {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        "<leader>o",
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi at the current file",
+      },
+      {
+        -- Open in the current working directory
+        "<leader>cw",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open the file manager in nvim's working directory" ,
+      },
+      {
+        -- NOTE: this requires a version of yazi that includes
+        -- https://github.com/sxyazi/yazi/pull/1305 from 2024-07-18
+        '<c-up>',
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume the last yazi session",
+      },
+  },
+  opts = {
+    -- if you want to open yazi instead of netrw, see below for more info
+    open_for_directories = false,
+    keymaps = {
+      show_help = '<f1>',
+    },
+  },
+}
 }

@@ -110,14 +110,6 @@ end
 
 vim.api.nvim_set_keymap("n", "<C-E>", ":NvimTreeToggle<cr>", {silent = true, noremap = false})
 
--- don't show status line on nvimtree
-vim.api.nvim_exec(
-  [[
-  au BufEnter,BufWinEnter,WinEnter,CmdwinEnter * if bufname('%') == "NvimTree" | set laststatus=0 | else | set laststatus=2 | endif
-  ]],
-  false
-)
-
 require("nvim-tree").setup({
   filters = {
     dotfiles = false,

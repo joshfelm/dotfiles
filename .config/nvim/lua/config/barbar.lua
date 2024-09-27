@@ -46,10 +46,6 @@ bufmap("n", "gt", "<CMD>BufferNext<CR>")
 bufmap("n", "gT", "<CMD>BufferPrevious<CR>")
 
 require'barbar'.setup {
-  -- WARN: do not copy everything below into your config!
-  --       It is just an example of what configuration options there are.
-  --       The defaults are suitable for most people.
-
   -- Enable/disable animations
   animation = true,
 
@@ -93,10 +89,10 @@ require'barbar'.setup {
     button = '',
     -- Enables / disables diagnostic symbols
     diagnostics = {
-      [vim.diagnostic.severity.ERROR] = {enabled = true, icon = 'ﬀ'},
-      [vim.diagnostic.severity.WARN] = {enabled = false},
-      [vim.diagnostic.severity.INFO] = {enabled = false},
-      [vim.diagnostic.severity.HINT] = {enabled = true},
+      [vim.diagnostic.severity.ERROR] = {enabled = true, icon = ""},
+      [vim.diagnostic.severity.WARN] = {enabled = true, icon = ""},
+      [vim.diagnostic.severity.INFO] = {enabled = false, icon = ""},
+      [vim.diagnostic.severity.HINT] = {enabled = false},
     },
     gitsigns = {
       added = {enabled = false, icon = '+'},
@@ -127,7 +123,7 @@ require'barbar'.setup {
     -- Configure the icons on the bufferline based on the visibility of a buffer.
     -- Supports all the base icon options, plus `modified` and `pinned`.
     alternate = {filetype = {enabled = false}},
-    current = {buffer_index = true},
+    current = {buffer_index = false},
     inactive = {button = '×'},
     visible = {modified = {buffer_number = false}},
   },
@@ -144,10 +140,10 @@ require'barbar'.setup {
   minimum_padding = 1,
 
   -- Sets the maximum buffer name length.
-  maximum_length = 30,
+  maximum_length = 18,
 
   -- Sets the minimum buffer name length.
-  minimum_length = 0,
+  minimum_length = 15,
 
   -- If set, the letters for each buffer in buffer-pick mode will be
   -- assigned based on their name. Otherwise or in case all letters are
@@ -158,7 +154,11 @@ require'barbar'.setup {
   -- Set the filetypes which barbar will offset itself for
   sidebar_filetypes = {
     -- Use the default values: {event = 'BufWinLeave', text = '', align = 'left'}
-    NvimTree = true,
+    NvimTree = {
+      text = 'Files',
+      align = 'center',
+      event = 'BufWipeout'
+    },
   },
 
   -- New buffer letters are assigned in this order. This order is

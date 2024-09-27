@@ -17,6 +17,9 @@ require('lspconfig')['bashls'].setup {}
 -- rust
 require('lspconfig')['rust_analyzer'].setup {}
 
+-- markdown
+require('lspconfig')['marksman'].setup {}
+
 -- bitbake
 -- require('lspconfig')['bitbake'].setup {}
 
@@ -87,6 +90,10 @@ local server_opts = {
 
   ["rust_analyzer"] = {
     diagnostics = { enable = "false" },
+  },
+
+  ["marksman"] = {
+    name = "marksman",
   },
 
   ["bash-language-server"] = {
@@ -196,12 +203,5 @@ require'lspconfig'.lua_ls.setup {
   },
   on_attach = lsp_on_attach
 }
-
--- set gutter signs
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
 
 

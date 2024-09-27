@@ -207,7 +207,7 @@ local config = function()
         { type = "text",    val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
         { type = "padding", val = 1 },
         dashboard.button("e", "  New file", "<cmd>ene<CR>"),
-        dashboard.button("o", "  Open file", ":RnvimrToggle<CR>"),
+        dashboard.button("o", "  Open file", ":Yazi<CR>"),
         dashboard.button("l", "󰑙  Restore Last Session"  , ":SessionManager load_last_session<CR>"),
         dashboard.button("c", "  Load CWD Session"  , ":SessionManager load_current_dir_session<CR>"),
         dashboard.button("u", "  Plugins"  , "<cmd>Lazy<CR>"),

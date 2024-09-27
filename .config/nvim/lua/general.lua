@@ -24,7 +24,7 @@ end
 
 -- some general setup
 vim.g.mapleader = ","
-vim.opt.pumheight = 12
+vim.opt.pumheight = 40
 vim.g.pumwidth = 30
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -92,3 +92,11 @@ vim.api.nvim_create_autocmd("FileType", {
 	  vim.opt_local.spell = true
 	end
 })
+
+-- set gutter signs
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+

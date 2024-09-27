@@ -7,7 +7,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
-      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { "Failed to clone lazy.nvi\n", "ErrorMsg" },
       { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
@@ -20,7 +20,6 @@ vim.opt.rtp:prepend(lazypath)
 -- do general before plugins
 require('general')
 
--- require('vim_plugins')
 require('lazy').setup('plugins')
 
 -- Other settings
@@ -29,17 +28,4 @@ require('mappings')
 -- further plugin settings
 require'colorizer'.setup()
 
-require('config.ibl')
-require('config.lsp_config')
-require('config.cmp')
-require('config.nvim_tree')
-require('config.gitsigns')
-require('config.telescope')
-require('config.treesitter')
-require('config.alpha')
-require('config.session-manager')
-require('config.lualine')
-require('config.obsidian')
-require('config.workflows')
-require('config.nvim_cursorline')
-require('config.barbar')
+require('config')
