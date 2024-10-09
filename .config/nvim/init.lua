@@ -38,14 +38,14 @@ require('general')
 --     rocks = { enabled = false },
 -- })
 
-require('lazy').setup('plugins')
+require('lazy').setup({import = 'plugins'})
 
 vim.cmd([[colorscheme gruvbox]])
 
 -- Other settings
 require('mappings')
+require('workflows')
 
 -- further plugin settings
 require'colorizer'.setup()
 
-require('config')
