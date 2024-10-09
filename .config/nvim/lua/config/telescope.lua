@@ -9,7 +9,7 @@ end
 
 -- telescope
 bufmap("n", "<leader>tt", "<cmd>Telescope<cr>")
-bufmap("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
+bufmap("n", "<leader>ff", '<cmd>Telescope find_files<cr>')
 bufmap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 bufmap("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
 bufmap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
@@ -21,7 +21,6 @@ require("telescope").setup({
     vimgrep_arguments = {
       "rg",
       "-L",
-      "--color=never",
       "--no-heading",
       "--with-filename",
       "--line-number",
@@ -73,6 +72,14 @@ require("telescope").setup({
     },
     cache_picker = {
       num_pickers = 50,
+    },
+    pickers = {
+      live_grep = {
+        initial_mode = "insert",
+      },
+      find_files = {
+        theme = "dropdown",
+      }
     },
     extensions = {
       undo = {

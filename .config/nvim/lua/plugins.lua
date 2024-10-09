@@ -1,4 +1,18 @@
 return {
+  { "sainnhe/gruvbox-material", name = "gruvbox-material", priority = 1000,
+    -- config = function()
+    --   vim.cmd([[colorscheme gruvbox-material]])
+    -- end
+  },
+  { "catppuccin/nvim", name = "catppuccin",
+    -- config = function()
+    --   vim.cmd([[colorscheme catppuccin-macchiato]])
+    -- end
+  },
+  {
+    "sindrets/oxocarbon-lua.nvim"
+  },
+  { "nyoom-engineering/oxocarbon.nvim" },
   { "ellisonleao/gruvbox.nvim", priority = 1000 , lazy = false,
     -- colorscheme
     opts = {
@@ -7,7 +21,7 @@ return {
       underline = true,
       bold = true,
       italic = {
-        strings = true,
+        strings = false,
         emphasis = true,
         comments = true,
         operators = false,
@@ -21,13 +35,40 @@ return {
       inverse = true, -- invert background for search, diffs, statuslines and errors
       contrast = "", -- can be "hard", "soft" or empty string
       palette_overrides = {},
-      overrides = {},
+      overrides = {
+        NormalFloat = {bg = "#504945"}
+        -- TODO: invert vim diff colours
+      },
       dim_inactive = false,
-      transparent_mode = false,
+      transparent_mode = true,
     },
-    config = function()
-      vim.cmd([[colorscheme gruvbox]])
-    end
+    config = true,
+  },
+  { 'rebelot/kanagawa.nvim',
+    opts = {
+      compile = false,             -- enable compiling the colorscheme
+      undercurl = true,            -- enable undercurls
+      commentStyle = { italic = true },
+      functionStyle = {},
+      keywordStyle = { italic = true},
+      statementStyle = { bold = true },
+      typeStyle = {},
+      transparent = false,         -- do not set background color
+      dimInactive = false,         -- dim inactive window `:h hl-NormalNC`
+      terminalColors = true,       -- define vim.g.terminal_color_{0,17}
+      colors = {                   -- add/modify theme and palette colors
+          palette = {},
+          theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
+      },
+      overrides = function(_) -- add/modify highlights
+          return {}
+      end,
+      theme = "wave",              -- Load "wave" theme when 'background' option is not set
+      background = {               -- map the value of 'background' option to a theme
+          dark = "wave",           -- try "dragon" !
+          light = "lotus"
+      },
+    }
   },
   {'nvim-lua/plenary.nvim'},
   {'norcalli/nvim-colorizer.lua', config=true}, -- show colours in place
@@ -126,8 +167,12 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-    requires = {'nvim-tree/nvim-web-devicons', opt = true }
+    requires = {'nvim-tree/nvim-web-devicons', opt = false }
   },
+  -- with extras
+  -- {
+  --   'freddiehaddad/feline.nvim',
+  -- },
   -- invaluable vim plugins
   {'honza/vim-snippets'},
   {'tpope/vim-sensible'},
@@ -148,12 +193,18 @@ return {
     -- use opts = {} for passing setup options
     -- this is equalent to setup({}) function
   },
-  {'nvim-treesitter/nvim-treesitter', build = ":TSUpdate"},
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ":TSUpdate",
+    event = "VeryLazy";
+  },
   {'nvim-treesitter/nvim-treesitter-context'},
   {'lewis6991/gitsigns.nvim'},
   {'shatur/neovim-session-manager'},
   {'goolord/alpha-nvim'}, -- dashboard
-  {'sindrets/diffview.nvim'},
+  {
+    'sindrets/diffview.nvim'
+  },
   { 'echasnovski/mini.trailspace', version = false, config = true }, -- complain about whitespace
   -- {
   --   'ErichDonGubler/lsp_lines.nvim', version = false, config = true, -- lsp show errors under line
@@ -188,7 +239,23 @@ return {
   -- auto-save
   {
     "Pocco81/auto-save.nvim",
-    opts={},
+    opts={
+      trigger_events = {"InsertLeave", "TextChanged"}, -- vim events that trigger auto-save. See :h events
+      -- function that determines whether to save the current buffer or not
+      -- return true: if buffer is ok to be saved
+      -- return false: if it's not ok to be saved
+      condition = function(buf)
+        local fn = vim.fn
+        local utils = require("auto-save.utils.data")
+
+        if
+          fn.getbufvar(buf, "&modifiable") == 1 and
+          utils.not_in(fn.getbufvar(buf, "&filetype"), {"gitcommit", "lua"}) then
+          return true -- met condition(s), can save
+        end
+        return false -- can't save
+      end,
+    },
     config = true,
   },
   -- obsidian integration
@@ -282,13 +349,17 @@ return {
         "<cmd>Yazi toggle<cr>",
         desc = "Resume the last yazi session",
       },
-  },
-  opts = {
-    -- if you want to open yazi instead of netrw, see below for more info
-    open_for_directories = false,
-    keymaps = {
-      show_help = '<f1>',
+    },
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = false,
+      keymaps = {
+        show_help = '<f1>',
+      },
     },
   },
-}
+  {
+    "sindrets/diffview.nvim"
+  },
+  { "lewis6991/satellite.nvim" },
 }

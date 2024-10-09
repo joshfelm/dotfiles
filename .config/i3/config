@@ -267,13 +267,14 @@ exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 exec --no-startup-id ~/.config/scripts/startup.sh
 
 exec_always --no-startup-id autorandr -c --default horizontal
-exec --no-startup-id redshift
+exec --no-startup-id redshift -o
 
 # avizo can be a bitch on multiple monitors
 exec --no-startup-id avizo-service
 
-exec --no-startup-id "i3-msg 'workspace number 1; exec firefox; workspace number 2; exec $term; workspace number 3; exec slack'"
-exec i3-msg 'setxkbmap -layout gb'
+exec --no-startup-id "i3-msg 'workspace number 1; exec firefox; workspace number 2; exec $term; workspace number 3; exec flatpak run com.slack.Slack'"
+
+exec --not-startup-id /usr/libexec/gsd-xsettings
 
 for_window [class="kitty"] floating enable, resize set 800px 500px, move position center
 

@@ -62,7 +62,6 @@ require'barbar'.setup {
   clickable = true,
 
   -- Excludes buffers from the tabline
-  exclude_ft = {'javascript'},
   exclude_name = {'package.json'},
 
   -- A buffer to this direction will be focused (if it exists) when closing the current buffer.
@@ -86,12 +85,12 @@ require'barbar'.setup {
     -- Valid options to display the buffer index and -number are `true`, 'superscript' and 'subscript'
     buffer_index = false,
     buffer_number = false,
-    button = '',
+    button = '󰅙 ',
     -- Enables / disables diagnostic symbols
     diagnostics = {
-      [vim.diagnostic.severity.ERROR] = {enabled = true, icon = ""},
-      [vim.diagnostic.severity.WARN] = {enabled = true, icon = ""},
-      [vim.diagnostic.severity.INFO] = {enabled = false, icon = ""},
+      [vim.diagnostic.severity.ERROR] = {enabled = true, icon = " "},
+      [vim.diagnostic.severity.WARN] = {enabled = true, icon = " "},
+      [vim.diagnostic.severity.INFO] = {enabled = false, icon = " "},
       [vim.diagnostic.severity.HINT] = {enabled = false},
     },
     gitsigns = {
@@ -124,7 +123,7 @@ require'barbar'.setup {
     -- Supports all the base icon options, plus `modified` and `pinned`.
     alternate = {filetype = {enabled = false}},
     current = {buffer_index = false},
-    inactive = {button = '×'},
+    inactive = {button = '󰅙 '},
     visible = {modified = {buffer_number = false}},
   },
 
@@ -158,6 +157,10 @@ require'barbar'.setup {
       text = 'Files',
       align = 'center',
       event = 'BufWipeout'
+    },
+    DiffviewFiles = {
+      text = 'Source Control',
+      align = 'center',
     },
   },
 

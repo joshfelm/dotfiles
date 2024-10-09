@@ -70,3 +70,7 @@ bufmap("i",  "kj", "<ESC>")
 -- SOL and EOL easier
 bufmap({"n", "x", "o", "v"},  "H", "^")
 bufmap({"n", "x", "o", "v"},  "L", "$")
+
+-- FIX: move this to diffview
+bufmap("n", "<leader>do", ":DiffviewOpen")
+bufmap("n", "<leader>dc", ":DiffviewClose<CR>")
