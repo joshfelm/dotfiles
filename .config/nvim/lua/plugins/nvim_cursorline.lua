@@ -7,6 +7,7 @@ local function config(_, opts)
     },
     cursorword = {
       enable = true,
+      timeout = 1000,
       min_length = 3,
       hl = { underline = true },
     }

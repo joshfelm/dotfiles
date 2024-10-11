@@ -43,7 +43,7 @@ local function config(_, _)
   Bufmap("n", "gt", "<CMD>BufferNext<CR>")
   Bufmap("n", "gT", "<CMD>BufferPrevious<CR>")
 
-  require'barbar'.setup {
+  require('barbar').setup {
     -- Enable/disable animations
     animation = true,
 
@@ -104,7 +104,8 @@ local function config(_, _)
         -- Requires `nvim-web-devicons` if `true`
         enabled = true,
       },
-      separator = {left = '▎', right = ''},
+      separator = {left = '', right = ''},
+      -- separator = {left = '▎', right = ''},
 
       -- If true, add an additional separator at the end of the buffer list
       separator_at_end = true,

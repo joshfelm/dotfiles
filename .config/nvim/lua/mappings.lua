@@ -17,9 +17,6 @@ Bufmap('n', '<leader>qf', quickfix)
 -- lsp lines setup
 -- Bufmap('n', "<leader>l", require("lsp_lines").toggle)
 
--- zenmode
-Bufmap('n', "<leader>zm", require("zen-mode").toggle)
-
 Bufmap("n", "<leader>h", "<cmd>nohl<cr>")
 Bufmap("n", "J", "mzJ`z")
 

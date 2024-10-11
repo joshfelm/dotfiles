@@ -12,7 +12,7 @@ local function config(_, opts)
         symbols = { '⎺', '⎻', '⎼', '⎽' }
         -- symbols = { '⎻', '⎼' }
         -- Highlights:
-        -- - SatelliteCursor (default links to NonText
+        -- - SatelliteCursor (default links to NonText)
       },
       search = {
         enable = true,
@@ -23,7 +23,7 @@ local function config(_, opts)
       diagnostic = {
         enable = true,
         signs = {'-', '=', '≡'},
-        min_severity = vim.diagnostic.severity.HINT,
+        min_severity = vim.diagnostic.severity.WARN,
         -- Highlights:
         -- - SatelliteDiagnosticError (default links to DiagnosticError)
         -- - SatelliteDiagnosticWarn (default links to DiagnosticWarn)
@@ -50,6 +50,7 @@ local function config(_, opts)
         -- SatelliteMark (default links to Normal)
       },
       quickfix = {
+        enable = true,
         signs = { '-', '=', '≡' },
         -- Highlights:
         -- SatelliteQuickfix (default links to WarningMsg)

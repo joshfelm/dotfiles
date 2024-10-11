@@ -1,7 +1,6 @@
 local function config(_, opts)
   local function lsp_on_attach()
     local bufopts = { noremap = true, silent = true }
-    vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, bufopts)
   end
 
   -- Set up lspconfig.
@@ -161,20 +160,23 @@ local function config(_, opts)
   })
 
   vim.keymap.set('n', '<leader>e', function()
-    -- If we find a floating window, close it.
-    for _, win in ipairs(vim.api.nvim_list_wins()) do
-      if vim.api.nvim_win_get_config(win).relative ~= '' then
-        vim.api.nvim_win_close(win, true)
-        return
-      end
-    end
-
     vim.diagnostic.open_float(nil, { focus = false })
   end, { desc = 'Toggle Diagnostics' })
 
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover, { border = "rounded" }
   )
+
+  vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function()
+
+      Bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
+      Bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+      Bufmap("n", "gr", "<cmd>Telescope lsp_references<CR>")
+      Bufmap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" )
+    end
+  })
 end
 
 return {

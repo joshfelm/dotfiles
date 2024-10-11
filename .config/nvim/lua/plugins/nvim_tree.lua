@@ -190,7 +190,7 @@ local function config(_, opts)
             ignored = "I",
           },
           folder = {
-            default = "",
+            default = "" ,
             open = "",
             empty = "",
             empty_open = "",
@@ -211,7 +211,6 @@ return {
   -- explorer
   {
     'nvim-tree/nvim-tree.lua',
-    lazy = true,
     config=config
   },
   {'nvim-tree/nvim-web-devicons', lazy = true},

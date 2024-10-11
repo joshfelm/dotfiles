@@ -94,18 +94,6 @@ local function config(_, _)
     local text = vim.getVisualSelection()
     tb.grep_string({ search = text })
   end, { silent = true, noremap = true })
-
-
-  vim.api.nvim_create_autocmd('LspAttach', {
-    desc = 'LSP actions',
-    callback = function()
-
-      Bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
-      Bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-      Bufmap("n", "gr", "<cmd>Telescope lsp_references<CR>")
-      Bufmap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" )
-    end
-  })
 end
 
 return {

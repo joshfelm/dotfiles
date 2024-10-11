@@ -32,4 +32,7 @@ return {
     opts={},
     config=config
   },
+  {
+    'HiPhish/rainbow-delimiters.nvim'
+  }
 }

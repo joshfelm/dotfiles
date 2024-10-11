@@ -1,4 +1,4 @@
-local function config(_, opts)
+local function config(_, _)
   require("obsidian").setup({
     workspaces = {
       {
@@ -41,12 +41,12 @@ local function config(_, opts)
         opts = { noremap = false, expr = true, buffer = true },
       },
       -- toggle check-boxes
-      -- ["<leader>ch"] = {
-      --   action = function()
-      --     return require("obsidian").util.toggle_checkbox()
-      --   end,
-      --   opts = { buffer = true },
-      -- },
+      ["<leader>ch"] = {
+        action = function()
+          return require("obsidian").util.toggle_checkbox()
+        end,
+        opts = { buffer = true },
+      },
     },
     completion = {
       nvim_cmp = true,

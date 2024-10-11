@@ -1,4 +1,4 @@
-local function alphaconfig(_, opts)
+local function alphaconfig(_, _)
   require('alpha.term')
   local config = function()
     local path_ok, plenary_path = pcall(require, "plenary.path")
@@ -207,13 +207,13 @@ local function alphaconfig(_, opts)
         val = {
           { type = "text",    val = "Quick links", opts = { hl = "SpecialComment", position = "center" } },
           { type = "padding", val = 1 },
-          dashboard.button("e", "  New file", "<cmd>ene<CR>"),
+          dashboard.button("e", "  New file", "<cmd>ene<CR>"),
           dashboard.button("o", "  Open file", ":Yazi<CR>"),
-          dashboard.button("l", "󰑙  Restore Last Session"  , ":SessionManager load_last_session<CR>"),
+          dashboard.button("l", "  Restore Last Session"  , ":SessionManager load_last_session<CR>"),
           dashboard.button("c", "  Load CWD Session"  , ":SessionManager load_current_dir_session<CR>"),
           dashboard.button("u", "  Plugins"  , "<cmd>Lazy<CR>"),
           dashboard.button("r", "  Recent files"   , ":Telescope oldfiles<CR>"),
-          dashboard.button("s", "  Settings" , ":e $MYVIMRC<CR>"),
+          dashboard.button("d o", "  Open diffview" , ":DiffviewOpen<CR>"),
           dashboard.button("f f", "󰈞  Find file", "<cmd>Telescope find_files<CR>"),
           dashboard.button("f g", "󰊄  Live grep", "<cmd>Telescope live_grep<CR>"),
           dashboard.button("q", "󰿅  Quit NVIM", "<cmd>qa<CR>"),
