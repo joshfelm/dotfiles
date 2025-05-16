@@ -139,3 +139,10 @@
     background = "#ffffff"
     foreground = "#db0101"
     timeout = 0
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
