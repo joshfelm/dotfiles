@@ -26,9 +26,6 @@ do
 done
 done
 
-# let monitors settle
-sleep 1
-
 # start additional polybar instances on new monitors
 for j in $ACTIVE_MONITORS
 do
