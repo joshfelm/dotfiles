@@ -1,8 +1,6 @@
-local function config(_, opts)
-  local function lsp_on_attach()
-    local bufopts = { noremap = true, silent = true }
-  end
+require('utils')
 
+local function config(_, _)
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
@@ -153,10 +151,10 @@ local function config(_, opts)
 
   -- Diagnostics
   vim.diagnostic.config({
-    float = { source = "always", border = "rounded" },
-    virtual_text = true,
+    float = { source = true, border = "rounded" },
+    virtual_text = false,
     underline = true,
-    signs = true,
+    signs = false,
   })
 
   vim.keymap.set('n', '<leader>e', function()
@@ -170,11 +168,10 @@ local function config(_, opts)
   vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function()
-
-      Bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
-      Bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
-      Bufmap("n", "gr", "<cmd>Telescope lsp_references<CR>")
-      Bufmap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" )
+      Bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", {desc = 'LSP go to definition', silent = true, noremap = true})
+      Bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", {desc = 'LSP go to declaration', silent = true, noremap = true})
+      Bufmap("n", "gr", "<cmd>Telescope lsp_references<CR>", {desc = 'LSP open references', silent = true, noremap = true})
+      Bufmap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" , {desc = 'LSP open hover', silent = true, noremap = true})
     end
   })
 end

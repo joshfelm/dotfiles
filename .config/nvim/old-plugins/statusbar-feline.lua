@@ -1,26 +1,18 @@
+require('utils')
+require('colorscheme')
 -- configure feline
 local function config(_, opts)
-  local colorscheme = vim.g.colors_name
-  -- local palette = require('nightfox.palette').load(colorscheme)
-  local feline = require('feline')
   local vi_mode = require('feline.providers.vi_mode')
   local file = require('feline.providers.file')
   local lsp = require('feline.providers.lsp')
 
-  local theme = {
-    fg = '#928374',
-    bg = '#1d2021',
-    black ='#1B1B1B',
-    skyblue = '#458588',
-    cyan = '#83a597',
-    green = '#689d6a',
-    oceanblue = '#1d2021',
-    magenta = '#d3869b',
-    orange = '#fe8019',
-    red = '#cc241d',
-    violet = '#b16286',
-    white = '#ebdbb2',
-    yellow = '#d79921',
+  local vi_mode_colors = {
+    ["StatusComponentVimNormal"] = Theme.green,
+    ["StatusComponentVimInsert"] = Theme.red,
+    ["StatusComponentVimVisual"] = Theme.skyblue,
+    ["StatusComponentVimLines"] = Theme.violet,
+    ["StatusComponentVimBlock"] = Theme.magenta,
+    ["StatusComponentVimCommand"] = Theme.yellow
   }
 
   local c = {
@@ -37,7 +29,11 @@ local function config(_, opts)
         return s
       end,
       hl = function()
-        return { fg = vi_mode.get_mode_color(), bg = theme.bg }
+        local col = vi_mode_colors[vi_mode.get_mode_highlight_name()]
+        if not col then
+          col = vi_mode.get_mode_color()
+        end
+        return { fg = col, bg = Theme.bg }
       end,
     },
 
@@ -46,11 +42,11 @@ local function config(_, opts)
         name = 'file_info',
         opts = { colored_icon = true },
       },
-      hl = { fg = theme.yellow, bg = theme.bg },
+      hl = { fg = Theme.yellow, bg = Theme.bg },
       left_sep = {
         always_visible = true,
         str = string.format('%s', ' │ '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
 
@@ -59,11 +55,11 @@ local function config(_, opts)
         name = 'file_type',
         opts = { filetype_icon = true, colored_icon = true },
       },
-      -- hl = { fg = theme.yellow, bg = theme.bg },
+      -- hl = { fg = Theme.yellow, bg = Theme.bg },
       right_sep = {
         always_visible = true,
         str = string.format('%s', '  '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
 
@@ -77,16 +73,16 @@ local function config(_, opts)
 
     diagnostics_err = {
       provider = 'diagnostic_errors',
-      hl = { fg = theme.red, bg = theme.bg },
+      hl = { fg = Theme.red, bg = Theme.bg },
     },
 
     diagnostics_warn = {
       provider = 'diagnostic_warnings',
-      hl = { fg = theme.yellow, bg = theme.bg },
+      hl = { fg = Theme.yellow, bg = Theme.bg },
       right_sep = {
         always_visible = true,
         str = string.format('%s', '  '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
     git_branch = {
@@ -101,32 +97,44 @@ local function config(_, opts)
         end
         return s
       end,
-      hl = { fg = theme.fg, bg = theme.bg },
+      hl = { fg = Theme.fg1, bg = Theme.bg },
       left_sep = {
         always_visible = true,
         str = string.format('%s', ' │ '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
 
     git_add = {
       provider = 'git_diff_added',
-      hl = { fg = theme.green, bg = theme.bg },
+      hl = { fg = Theme.green, bg = Theme.bg },
       left_sep = {
         always_visible = true,
         str = string.format('%s', ' '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
     git_change = {
       provider = 'git_diff_changed',
-      hl = { fg = theme.yellow, bg = theme.bg },
+      hl = { fg = Theme.yellow, bg = Theme.bg },
       opt = { colored_icon = true},
     },
     git_del = {
       provider = 'git_diff_removed',
-      hl = { fg = theme.red, bg = theme.bg },
+      hl = { fg = Theme.red, bg = Theme.bg },
       opt = { colored_icon = true},
+    },
+
+    tabspace = {
+      provider = function()
+        return string.format(' %s ', vim.opt.tabstop:get())
+      end,
+      hl = { fg = Theme.fg, bg = Theme.bg },
+      right_sep = {
+        always_visible = true,
+        str = string.format('%s', ' '),
+        hl = { fg = 'none', bg = Theme.bg },
+      },
     },
 
     lsp = {
@@ -136,14 +144,14 @@ local function config(_, opts)
       end,
       hl = function()
         if not lsp.is_lsp_attached() then
-          return { fg = theme.fg, bg = theme.bg }
+          return { fg = Theme.grey, bg = Theme.bg }
         end
-        return { fg = theme.green, bg = theme.bg }
+        return { fg = Theme.green, bg = Theme.bg }
       end,
       right_sep = {
         always_visible = true,
         str = string.format('%s', '  '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
 
@@ -153,12 +161,12 @@ local function config(_, opts)
         return string.format('%s', vi_mode.get_vim_mode())
       end,
       hl = function()
-        return { fg = vi_mode.get_mode_color(), bg = theme.bg }
+        return { fg = vi_mode.get_mode_color(), bg = Theme.bg }
       end,
       right_sep = {
         always_visible = true,
         str = string.format('%s', '  '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
 
@@ -173,21 +181,21 @@ local function config(_, opts)
         end
         return s
       end,
-      hl = { fg = theme.fg, bg = theme.bg },
+      hl = { fg = Theme.fg, bg = Theme.bg },
       right_sep = {
         always_visible = false,
         str = string.format('%s', '  '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
 
     search_count = {
       provider = 'search_count',
-      hl = { fg = theme.yellow, bg = theme.bg },
+      hl = { fg = Theme.yellow, bg = Theme.bg },
       right_sep = {
         always_visible = false,
         str = string.format('%s', '  '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
 
@@ -196,11 +204,11 @@ local function config(_, opts)
         name = 'position',
         opts = { padding = true },
       },
-      hl = { fg = theme.blue, bg = theme.bg },
+      hl = { fg = Theme.fg, bg = Theme.bg },
       right_sep = {
         always_visible = true,
         str = string.format('%s', ' '),
-        hl = { fg = 'none', bg = theme.bg },
+        hl = { fg = 'none', bg = Theme.bg },
       },
     },
 
@@ -209,7 +217,7 @@ local function config(_, opts)
         name = 'scroll_bar',
         opts = { reverse = true },
       },
-      hl = { fg = theme.blue, bg = theme.bg },
+      hl = { fg = Theme.fg, bg = Theme.bg },
     },
 
     -- inactive statusline
@@ -224,7 +232,7 @@ local function config(_, opts)
           )
         end
       end,
-      hl = { fg = theme.blue, bg = theme.bg },
+      hl = { fg = Theme.skyblue, bg = Theme.bg },
     },
   }
 
@@ -242,6 +250,7 @@ local function config(_, opts)
       c.diagnostics_err,
       c.diagnostics_warn,
       c.file_format,
+      c.tabspace,
       c.lsp,
       c.search_count,
       c.cursor_position,
@@ -259,7 +268,7 @@ local function config(_, opts)
   opts.components = { active = active, inactive = inactive }
 
   require('feline').setup(opts)
-  require'feline'.use_theme(theme)
+  require'feline'.use_theme(Theme)
 end
 
 return {
@@ -304,7 +313,6 @@ return {
     })
 
     -- update statusbar with LSP progress
-    -- FIX: this does not work, bugs out with nvimtree
     vim.api.nvim_create_augroup('feline_augroup', { clear = true })
     vim.api.nvim_create_autocmd('User', {
       group = 'feline_augroup',

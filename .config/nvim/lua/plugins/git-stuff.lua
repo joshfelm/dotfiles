@@ -1,4 +1,4 @@
-local function config(_,_)
+local function gitsigns_config(_,_)
   require('gitsigns').setup {
     signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
     numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -77,5 +77,24 @@ local function config(_,_)
 end
 
 return {
-  {'lewis6991/gitsigns.nvim', config=config },
+  {'lewis6991/gitsigns.nvim', config=gitsigns_config },
+  {"kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  }
 }

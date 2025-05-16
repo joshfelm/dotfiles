@@ -12,7 +12,7 @@ return {
 
         if
           fn.getbufvar(buf, "&modifiable") == 1 and
-          utils.not_in(fn.getbufvar(buf, "&filetype"), {"gitcommit", "lua"}) then
+          utils.not_in(fn.getbufvar(buf, "&filetype"), {"gitcommit", "gitrebase", "lua"}) then
           return true -- met condition(s), can save
         end
         return false -- can't save

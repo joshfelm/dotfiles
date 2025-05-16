@@ -1,14 +1,4 @@
 -- flash on yank
-vim.api.nvim_set_hl(0, 'Flashy', {bold=true, bg="#45475b"})
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
-  desc = 'Highlight selection on yank',
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank({ higroup = 'Flashy', timeout = 200 })
-  end,
-})
-
 function vim.getVisualSelection()
   vim.cmd('noau normal! "vy"')
   local text = vim.fn.getreg('v')
@@ -57,42 +47,6 @@ vim.o.conceallevel = 2 -- set conceal level for obsidian plugin
 -- Make searching better
 vim.opt.smartcase=true
 vim.opt.ignorecase=true
-
--- autofiletypes
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "c",
-	callback = function()
-		vim.opt_local.shiftwidth = 8
-		vim.opt_local.tabstop = 8
-		vim.opt_local.expandtab = false
-	end
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "json",
-	callback = function()
-		vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-		vim.opt_local.softtabstop = 2
-	end
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "lua",
-	callback = function()
-	  vim.opt_local.tabstop = 2
-		vim.opt_local.shiftwidth = 2
-    vim.opt_local.softtabstop = 2
-	end
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
-	callback = function()
-	  vim.opt_local.tw = 74
-	  vim.opt_local.spell = true
-	end
-})
 
 -- set gutter signs
 local signs = { Error = "", Warn = "", Hint = "", Info = "" }

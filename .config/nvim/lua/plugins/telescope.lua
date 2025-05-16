@@ -1,30 +1,58 @@
 require('utils')
 
-local function config(_, _)
-  local previewers = require("telescope.previewers")
-  local sorters = require("telescope.sorters")
-  local actions = require("telescope.actions")
+local previewers = require("telescope.previewers")
+local sorters = require("telescope.sorters")
+local actions = require("telescope.actions")
 
+local function config(_, opts)
   -- telescope
-  Bufmap("n", "<leader>tt", "<cmd>Telescope<cr>")
-  Bufmap("n", "<leader>ff", '<cmd>Telescope find_files<cr>')
-  Bufmap("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
-  Bufmap("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
-  Bufmap("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
+  --
+  -- ctrl shift p requires emulator passthrough.
   Bufmap("n", "<C-S-P>", "<cmd>Telescope<cr>")
 
+  require("telescope").setup(opts)
+  require('telescope').load_extension('cmdline')
+  require('telescope').load_extension('undo')
+  require('telescope').load_extension('luasnip')
+  require('telescope').load_extension('nerdy')
 
-  require("telescope").setup({
-    defaults = {
-      vimgrep_arguments = {
-        "rg",
-        "-L",
-        "--no-heading",
-        "--with-filename",
-        "--line-number",
-        "--column",
-        "--smart-case",
-      },
+  local tb = require('telescope.builtin')
+  vim.keymap.set('v', '<leader>fw', function()
+    local text = vim.getVisualSelection()
+    tb.grep_string({ search = text })
+  end, { silent = true, noremap = true })
+end
+
+
+return {
+  {
+    'nvim-telescope/telescope.nvim',
+    config=config,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'jonarrien/telescope-cmdline.nvim',
+      "debugloop/telescope-undo.nvim",
+    },
+    keys = {
+      { "<C-S-P>", "<cmd>Telescope<cr>", desc = 'Telscope'},
+      { "<leader>tt", "<cmd>Telescope<cr>" , desc = 'Telescope'},
+      { "<leader>ff", '<cmd>Telescope find_files<cr>', desc = 'Telescope find files'},
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = 'Telescope live grep'},
+      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = 'Telescope buffers'},
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = 'Telescope help tags'},
+      { '<leader>fw', "<cmd>lua require('telescope.builtin').grep_string()<cr>", desc = 'Telescope grep current word'}
+    },
+    opts = {
+      defaults = {
+        vimgrep_arguments = {
+          "rg",
+          "-L",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--smart-case",
+        },
       prompt_prefix = "   ",
       selection_caret = "> ",
       entry_prefix = "  ",
@@ -77,25 +105,54 @@ local function config(_, _)
         },
         find_files = {
           theme = "dropdown",
-        }
+        },
+        nerdy = {},
+        undo = {},
+        luasnip = {},
       },
       extensions = {
         undo = {
           side_by_side = true,
           use_delta = false,
         },
+        cmdline = {
+          picker = {
+            layout_config = {
+              width = 120,
+              height = 25,
+            }
+          },
+          mappings = {
+            complete = '<Tab>',
+            run_selection = '<C-CR>',
+            run_input = '<CR>'
+          },
+          -- triggers any shell command using overseer.nvim
+          overseer = {
+            enabled = true,
+          }
+        }
       },
     },
-  })
-
-  local tb = require('telescope.builtin')
-  vim.api.nvim_set_keymap('n', '<leader>fw', [[<cmd>lua require('telescope.builtin').grep_string()<cr>]], { silent = true, noremap = true })
-  vim.keymap.set('v', '<leader>fw', function()
-    local text = vim.getVisualSelection()
-    tb.grep_string({ search = text })
-  end, { silent = true, noremap = true })
-end
-
-return {
-  {'nvim-telescope/telescope.nvim', config=config},
+    }
+  },
+  {
+    '2kabhishek/nerdy.nvim',
+    dependencies = {
+        'stevearc/dressing.nvim',
+        'nvim-telescope/telescope.nvim',
+    },
+    cmd = 'Nerdy',
+  },
+  {
+    'stevearc/overseer.nvim',
+    lazy = true,
+    opts = {},
+  },
+  {
+    'benfowler/telescope-luasnip.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim'
+    }
+  }
 }

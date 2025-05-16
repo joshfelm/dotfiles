@@ -1,4 +1,4 @@
-function Bufmap(mode, lhs, rhs)
-    local opts = {silent = true, noremap = false}
+function Bufmap(mode, lhs, rhs, opts)
+    opts = opts or {silent = true, noremap = true}
     vim.keymap.set(mode, lhs, rhs, opts)
 end

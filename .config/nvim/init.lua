@@ -1,4 +1,4 @@
--- Setup laxy
+-- Setup lazy
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -17,15 +17,11 @@ vim.opt.rtp:prepend(lazypath)
 
 -- do general before plugins
 require('general')
+require('filetypes')
 
 -- setup all plugins
 require('lazy').setup({import = 'plugins'})
 
-vim.cmd([[colorscheme gruvbox]])
-
 -- Other settings
 require('mappings')
 require('workflows')
-
--- further plugin settings
-require'colorizer'.setup()

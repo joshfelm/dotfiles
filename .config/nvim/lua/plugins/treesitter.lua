@@ -1,22 +1,22 @@
 require('utils')
 
 local function config(_, _)
-  Bufmap("n", "<C-E>", ":NvimTreeToggle<cr>")
-  Bufmap("n", "<leader>n", ":NvimTreeFocus<CR>")
+  Bufmap("n", "<C-E>", ":NvimTreeToggle<cr>", {desc = 'Toggle NvimTree', silent = true, noremap = true})
+  Bufmap("n", "<leader>n", ":NvimTreeFocus<CR>", {desc = 'Focus NvimTree', silent = true, noremap = true})
 
   -- setup treesitter
   require('nvim-treesitter.configs').setup({
-    ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query", "bitbake", "rust", "cpp", "bash", "javascript", "java", "vue", "html", "markdown", "kdl", "git_config", "git_rebase", "gitcommit", "gitignore", "gitattributes", "json", "kconfig", "make", "ninja", "regex", "ssh_config", "tmux"  },
+    ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query", "bitbake", "rust", "cpp", "bash", "javascript", "java", "vue", "html", "markdown", "kdl", "git_config", "git_rebase", "gitcommit", "gitignore", "gitattributes", "json", "kconfig", "make", "ninja", "regex", "ssh_config", "tmux" },
     highlight = { enable = true},
     indent = { enable = true },
   })
 
   require'treesitter-context'.setup{
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
-    max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
+    max_lines = 8, -- How many lines the window should span. Values <= 0 mean no limit.
     min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
     line_numbers = true,
-    multiline_threshold = 20, -- Maximum number of lines to show for a single context
+    multiline_threshold = 4, -- Maximum number of lines to show for a single context
     trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
     mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
     -- Separator between context and content. Should be a single character string, like '-'.

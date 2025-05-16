@@ -2,16 +2,20 @@
 export RUSTUP_HOME='/opt/rust'
 export PATH="$PATH:/opt/rust/bin"
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin$PATH
-export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 export PATH=$HOME/.cargo/bin:$PATH
 export PATH="$HOME/.local/share/nvim/distant.nvim/bin/:$PATH"
 export PATH="$HOME/.local/bin/bitbake/bin:$PATH"
+export PATH="/usr/sbin:$PATH"
 export PATH="/opt/nvim-linux64/bin:$PATH"
 export DENO_INSTALL="/home/jfelmeden/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export FZF_BASE="$HOME/.fzf"
-export TERM=screen-256color
+# export TERM=screen-256color
+export PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig"
+export GST_PLUGIN_PATH=$GST_PLUGIN_PATH:/usr/local/lib/gstreamer-1.0
 
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # print nerdfetch
 nerdfetch
@@ -36,11 +40,14 @@ export PARALLEL_MAKE="-j 16"
 
 # list of plugins
 plugins=(
+  command-not-found
   dotenv
   fzf
+  fzf-tab
   git
   ssh-agent
   tmux
+  sudo
   z
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -49,8 +56,11 @@ plugins=(
 # add ssh to path
 zstyle :omz:plugins:ssh-agent quiet yes
 zstyle :omz:plugins:ssh-agent lazy yes
-zstyle :omz:plugins:ssh-agent helper ksshaskpass
-zstyle :omz:plugins:ssh-agent identities ~/.ssh/github-office
+zstyle :omz:plugins:ssh-agent identities ~/.ssh/github-office ~/.ssh/gitlabseescan
+
+bindkey -e
+bindkey "^p" up-line-or-search
+bindkey "^n" down-line-or-search
 
 # autosuggestion settings
 ZSH_AUTOSUGGEST_STRATEGY="history"
@@ -123,11 +133,17 @@ HIST_STAMPS="dd.mm.yyyy"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# Don't allow tmux to share history
-setopt nosharehistory
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# History
+HISTSIZE=10000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt sharehistory
+setopt appendhistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -135,9 +151,6 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 # Enable custom fzf zsh commands
 source $HOME/.fzf_zsh

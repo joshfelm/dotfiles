@@ -4,17 +4,21 @@ return {
   --   --   vim.cmd([[colorscheme gruvbox-material]])
   --   -- end
   -- },
-  -- { "catppuccin/nvim", name = "catppuccin",
-  --   -- config = function()
-  --   --   vim.cmd([[colorscheme catppuccin-macchiato]])
-  --   -- end
-  -- },
+  { "catppuccin/nvim", name = "catppuccin",
+    -- config = function()
+      -- vim.cmd([[colorscheme catppuccin-macchiato]])
+    -- end
+  },
   -- {
   --   "sindrets/oxocarbon-lua.nvim"
   -- },
   -- { "nyoom-engineering/oxocarbon.nvim" },
   { "ellisonleao/gruvbox.nvim", priority = 1000 , lazy = false,
     -- colorscheme
+    config = function(_, opts)
+      require('gruvbox').setup(opts)
+      -- vim.cmd([[colorscheme gruvbox]])
+    end,
     opts = {
       terminal_colors = true, -- add neovim terminal colors
       undercurl = true,
@@ -43,6 +47,7 @@ return {
         BufferCurrentSign = {bg = "#3c3836", fg = "#8ec07c"},
         BufferInactiveMod = {bg = "#1d2021", fg = "#fb4934"},
         BufferInactive = {bg = "#1d2021", fg = "#928374"},
+        BufferTabpageFill = {bg = "#1d2021"},
         BufferInactiveSign = {bg = "#1d2021", fg = "#1d2021"},
         BufferInactiveERROR = {bg = "#1d2021", fg = "#fb4934"},
         BufferInactiveHINT = {bg = "#1d2021", fg = "#8ec07c"},
@@ -87,7 +92,6 @@ return {
       dim_inactive = false,
       transparent_mode = true,
     },
-    config = true,
   },
   -- { 'rebelot/kanagawa.nvim',
   --   opts = {
@@ -123,5 +127,10 @@ return {
     -- use opts = {} for passing setup options
     -- this is equalent to setup({}) function
   },
-  {'norcalli/nvim-colorizer.lua', config=true}, -- show colours in place
+  {
+    'norcalli/nvim-colorizer.lua',
+    config=function()
+      require('colorizer').setup()
+    end
+  }, -- show colours in place
 }
