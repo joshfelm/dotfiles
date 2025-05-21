@@ -1,5 +1,3 @@
-require('utils')
-
 local function config(_, _)
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -67,6 +65,9 @@ local function config(_, _)
             -- Tell the language server which version of Lua you're using
             -- (most likely LuaJIT in the case of Neovim)
             version = 'LuaJIT'
+          },
+          diagnostics = {
+            globals = { "vim" },
           },
           -- Make the server aware of Neovim runtime files
           workspace = {
@@ -157,6 +158,9 @@ local function config(_, _)
     signs = false,
   })
 
+  -- v0.11: needed for borders(?)
+  -- vim.o.winborder = 'single'
+
   vim.keymap.set('n', '<leader>e', function()
     vim.diagnostic.open_float(nil, { focus = false })
   end, { desc = 'Toggle Diagnostics' })
@@ -165,15 +169,6 @@ local function config(_, _)
     vim.lsp.handlers.hover, { border = "rounded" }
   )
 
-  vim.api.nvim_create_autocmd('LspAttach', {
-    desc = 'LSP actions',
-    callback = function()
-      Bufmap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", {desc = 'LSP go to definition', silent = true, noremap = true})
-      Bufmap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", {desc = 'LSP go to declaration', silent = true, noremap = true})
-      Bufmap("n", "gr", "<cmd>Telescope lsp_references<CR>", {desc = 'LSP open references', silent = true, noremap = true})
-      Bufmap("n", "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" , {desc = 'LSP open hover', silent = true, noremap = true})
-    end
-  })
 end
 
 return {

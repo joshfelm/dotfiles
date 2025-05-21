@@ -1,27 +1,26 @@
+local utils = require('utils')
 local function config(_, _)
   vim.g.barbar_auto_setup = false -- disable auto-setup
 
-  require('utils')
-
   -- barbar mappings
   -- Move to previous/next
-  Bufmap('n', '<A-,>', '<CMD>BufferPrevious<CR>', {desc = 'Barbar: go to previous tab', silent = true, noremap = true})
-  Bufmap('n', '<A-.>', '<CMD>BufferNext<CR>', {desc = 'Barbar: go to next tab', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-,>', '<CMD>BufferPrevious<CR>', {desc = 'Barbar: go to previous tab', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-.>', '<CMD>BufferNext<CR>', {desc = 'Barbar: go to next tab', silent = true, noremap = true})
   -- Goto buffer in position...
-  Bufmap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', {desc = 'Barbar: go to tab 1', silent = true, noremap = true})
-  Bufmap('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', {desc = 'Barbar: go to tab 2', silent = true, noremap = true})
-  Bufmap('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', {desc = 'Barbar: go to tab 3', silent = true, noremap = true})
-  Bufmap('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', {desc = 'Barbar: go to tab 4', silent = true, noremap = true})
-  Bufmap('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', {desc = 'Barbar: go to tab 5', silent = true, noremap = true})
-  Bufmap('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', {desc = 'Barbar: go to tab 6', silent = true, noremap = true})
-  Bufmap('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', {desc = 'Barbar: go to tab 7', silent = true, noremap = true})
-  Bufmap('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', {desc = 'Barbar: go to tab 8', silent = true, noremap = true})
-  Bufmap('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', {desc = 'Barbar: go to tab 9', silent = true, noremap = true})
-  Bufmap('n', '<A-0>', '<Cmd>BufferLast<CR>', {desc = 'Barbar: go to last buffer', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', {desc = 'Barbar: go to tab 1', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', {desc = 'Barbar: go to tab 2', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', {desc = 'Barbar: go to tab 3', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', {desc = 'Barbar: go to tab 4', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', {desc = 'Barbar: go to tab 5', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', {desc = 'Barbar: go to tab 6', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', {desc = 'Barbar: go to tab 7', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', {desc = 'Barbar: go to tab 8', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', {desc = 'Barbar: go to tab 9', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-0>', '<Cmd>BufferLast<CR>', {desc = 'Barbar: go to last buffer', silent = true, noremap = true})
   -- Pin/unpin buffer
-  Bufmap('n', '<A-p>', '<Cmd>BufferPin<CR>', {desc = 'Barbar: pin/unpin buffer', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-p>', '<Cmd>BufferPin<CR>', {desc = 'Barbar: pin/unpin buffer', silent = true, noremap = true})
   -- Close buffer
-  Bufmap('n', '<A-c>', '<Cmd>BufferClose<CR>', {desc = 'Barbar: close buffer', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-c>', '<Cmd>BufferClose<CR>', {desc = 'Barbar: close buffer', silent = true, noremap = true})
   -- Wipeout buffer
   --                 :BufferWipeout
   -- Close commands
@@ -30,18 +29,18 @@ local function config(_, _)
   --                 :BufferCloseAllButCurrentOrPinned
   --                 :BufferCloseBuffersLeft
   --                 :BufferCloseBuffersRight
-  Bufmap('n', '<A-l>', '<Cmd>BufferCloseBuffersRight<CR>', {desc = 'Barbar: close buffers to the right', silent = true, noremap = true})
-  Bufmap('n', '<A-h>', '<Cmd>BufferCloseBuffersLeft<CR>', {desc = 'Barbar: close buffers to the left', silent = true, noremap = true})
-  Bufmap('n', '<A-s-c>', '<Cmd>BufferRestore<CR>', {desc = 'Barbar: restore bufer', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-l>', '<Cmd>BufferCloseBuffersRight<CR>', {desc = 'Barbar: close buffers to the right', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-h>', '<Cmd>BufferCloseBuffersLeft<CR>', {desc = 'Barbar: close buffers to the left', silent = true, noremap = true})
+  utils.Bufmap('n', '<A-s-c>', '<Cmd>BufferRestore<CR>', {desc = 'Barbar: restore bufer', silent = true, noremap = true})
   -- Magic buffer-picking mode
-  Bufmap('n', '<C-p>', '<Cmd>BufferPick<CR>', {desc = 'Barbar: enter buffer picking mode', silent = true, noremap = true})
+  utils.Bufmap('n', '<C-p>', '<Cmd>BufferPick<CR>', {desc = 'Barbar: enter buffer picking mode', silent = true, noremap = true})
 
   -- bufmap("n", "K", "<CMD>BufferNext<CR>")
   -- bufmap("n", "J", "<CMD>BufferPrevious<CR>")
 
   -- make gt work
-  Bufmap("n", "gt", "<CMD>BufferNext<CR>", {desc = 'Barbar: fix gt', silent = true, noremap = true})
-  Bufmap("n", "gT", "<CMD>BufferPrevious<CR>", {desc = 'Barbar; fix gT', silent = true, noremap = true})
+  utils.Bufmap("n", "gt", "<CMD>BufferNext<CR>", {desc = 'Barbar: fix gt', silent = true, noremap = true})
+  utils.Bufmap("n", "gT", "<CMD>BufferPrevious<CR>", {desc = 'Barbar; fix gT', silent = true, noremap = true})
 
   require('barbar').setup {
     -- Enable/disable animations
@@ -173,6 +172,7 @@ local function config(_, _)
     no_name_title = nil,
   }
 
+  -- set colorscheme here to apply color settings to barbar
   vim.cmd([[colorscheme gruvbox]])
 end
 

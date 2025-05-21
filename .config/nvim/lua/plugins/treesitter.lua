@@ -1,8 +1,8 @@
-require('utils')
+local utils = require('utils')
 
 local function config(_, _)
-  Bufmap("n", "<C-E>", ":NvimTreeToggle<cr>", {desc = 'Toggle NvimTree', silent = true, noremap = true})
-  Bufmap("n", "<leader>n", ":NvimTreeFocus<CR>", {desc = 'Focus NvimTree', silent = true, noremap = true})
+  utils.Bufmap("n", "<C-E>", ":NvimTreeToggle<cr>", {desc = 'Toggle NvimTree', silent = true, noremap = true})
+  utils.Bufmap("n", "<leader>n", ":NvimTreeFocus<CR>", {desc = 'Focus NvimTree', silent = true, noremap = true})
 
   -- setup treesitter
   require('nvim-treesitter.configs').setup({

@@ -23,5 +23,5 @@ require('filetypes')
 require('lazy').setup({import = 'plugins'})
 
 -- Other settings
-require('mappings')
+require('key-mappings')
 require('workflows')

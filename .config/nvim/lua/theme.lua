@@ -1,3 +1,5 @@
+local M = {}
+
 local gruvbox_dark = {
   fg = '#ebdbb2',
   fg1 = '#bdae93',
@@ -13,11 +15,13 @@ local gruvbox_dark = {
   oceanblue = '#1d2021',
   magenta = '#d3869b',
   orange = '#fe8019',
-  red = '#cc241d',
+  red = '#fb4934',
   violet = '#b16286',
   white = '#ebdbb2',
   yellow = '#d79921',
   grey = '#928374',
 }
 
-Theme = gruvbox_dark
+M.theme = gruvbox_dark
+
+return M

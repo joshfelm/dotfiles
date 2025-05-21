@@ -1,6 +1,6 @@
-require('colorscheme')
+local t = require('theme')
 
-local theme = Theme
+local theme = t.theme
 
 local feline_theme = {
   normal = {
@@ -100,7 +100,7 @@ local function config(_, opts)
       component_separators = { left = '', right = ''},
       section_separators = { left = '', right = ''},
       disabled_filetypes = {
-        statusline = { 'NvimTree', 'alpha', 'DiffviewFiles' },
+        statusline = { 'NvimTree', 'alpha', 'DiffviewFiles', 'snacks_dashboard' },
         winbar = {},
       },
       ignore_focus = {},

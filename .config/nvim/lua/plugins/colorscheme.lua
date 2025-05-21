@@ -87,6 +87,9 @@ return {
         GitStagedStagedTopdeleteCul = {fg="#731310"},
         -- GitStagedStagedTopdeleteLn = {},
 
+        -- Pmenu = {bg="#7c6f64"}
+        -- NormalFloat = {bg="#7c6f64"}
+
         -- TODO: invert vim diff colours
       },
       dim_inactive = false,
