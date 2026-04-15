@@ -262,23 +262,6 @@ local function alphaconfig(_, _)
 
   config()
 
-  -- disable statusline in dashboard
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "alpha",
-    callback = function()
-      local old_laststatus = vim.opt.laststatus
-
-      vim.api.nvim_create_autocmd("BufUnload", {
-        buffer = 0,
-        callback = function()
-          vim.opt.laststatus = old_laststatus
-        end,
-      })
-
-      vim.opt.laststatus = 0
-    end,
-  })
-
 
   -- Disable folding on alpha buffer
   vim.cmd([[

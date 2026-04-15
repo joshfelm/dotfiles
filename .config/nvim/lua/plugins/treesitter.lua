@@ -1,23 +1,20 @@
-local utils = require('utils')
-
 local function config(_, _)
-  utils.Bufmap("n", "<C-E>", ":NvimTreeToggle<cr>", {desc = 'Toggle NvimTree', silent = true, noremap = true})
-  utils.Bufmap("n", "<leader>n", ":NvimTreeFocus<CR>", {desc = 'Focus NvimTree', silent = true, noremap = true})
-
   -- setup treesitter
-  require('nvim-treesitter.configs').setup({
-    ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query", "bitbake", "rust", "cpp", "bash", "javascript", "java", "vue", "html", "markdown", "kdl", "git_config", "git_rebase", "gitcommit", "gitignore", "gitattributes", "json", "kconfig", "make", "ninja", "regex", "ssh_config", "tmux" },
-    highlight = { enable = true},
-    indent = { enable = true },
-  })
+  -- require('nvim-treesitter.configs').setup({
+  --   ensure_installed = { "c", "lua", "vim", "python", "vimdoc", "query", "bitbake", "rust", "cpp", "bash", "javascript", "java", "vue", "html", "markdown", "kdl", "git_config", "git_rebase", "gitcommit", "gitignore", "gitattributes", "json", "kconfig", "make", "ninja", "regex", "ssh_config", "tmux" },
+  --   highlight = { enable = true},
+  --   indent = { enable = true },
+  -- })
+  require('nvim-treesitter').install({ "c", "cpp", "css", "diff", "lua", "vim", "python", "vimdoc", "query", "bitbake", "rust", "bash", "javascript", "java", "vue", "html", "markdown", "kdl", "git_config", "git_rebase", "gitcommit", "gitignore", "gitattributes", "json", "kconfig", "make", "ninja", "regex", "ssh_config", "tmux", "yaml", "zsh" })
 
   require'treesitter-context'.setup{
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
     max_lines = 8, -- How many lines the window should span. Values <= 0 mean no limit.
     min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
     line_numbers = true,
-    multiline_threshold = 4, -- Maximum number of lines to show for a single context
+    multiline_threshold = 1, -- Maximum number of lines to show for a single context
     trim_scope = 'outer', -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+    highlight = { enable = true},
     mode = 'cursor',  -- Line used to calculate context. Choices: 'cursor', 'topline'
     -- Separator between context and content. Should be a single character string, like '-'.
     -- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
@@ -25,6 +22,7 @@ local function config(_, _)
     zindex = 20, -- The Z-index of the context window
     on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
   }
+
 
   vim.api.nvim_set_hl(0, 'TreesitterContextLineNumberBottom', { underline = true, sp = '#a89984'} )
   vim.api.nvim_set_hl(0, 'TreesitterContextBottom', { underline = true, sp = '#a89984'} )
@@ -36,7 +34,11 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ":TSUpdate",
     config = config,
-    event = "VeryLazy";
+    opts = {
+      highlight = {enable = true},
+    },
+    branch = 'main',
+    lazy = false,
   },
   {'nvim-treesitter/nvim-treesitter-context'},
 }

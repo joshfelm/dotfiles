@@ -1,11 +1,14 @@
+local function config(_, opts)
+  vim.api.nvim_set_hl(0, "FlashLabel", { bg = '#cc241d', fg = '#ebdbb2' })
+  vim.api.nvim_set_hl(0, "FlashMatch", { bg = '#458588', fg = '#fabd2f' })
+  require('flash').setup(opts)
+end
+
 return {
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    opts = {
-      vim.api.nvim_set_hl(0, "FlashLabel", { bg = '#cc241d', fg = '#ebdbb2' }),
-      vim.api.nvim_set_hl(0, "FlashMatch", { bg = '#458588', fg = '#fabd2f' })
-    },
+    config = config,
     -- stylua: ignore
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },

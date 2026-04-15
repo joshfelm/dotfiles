@@ -1,12 +1,13 @@
 -- autofiletypes
--- vim.api.nvim_create_autocmd("FileType", {
--- 	pattern = "c",
--- 	callback = function()
--- 		vim.opt_local.shiftwidth = 8
--- 		vim.opt_local.tabstop = 8
--- 		vim.opt_local.expandtab = false
--- 	end
--- })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "dts",
+	callback = function()
+		vim.opt_local.shiftwidth = 4
+		vim.opt_local.tabstop = 4
+		vim.opt_local.expandtab = false
+	end
+})
 
 local autocmd = vim.api.nvim_create_autocmd
 local function augroup(name)
@@ -15,10 +16,17 @@ end
 
 local map = vim.keymap.set
 
+-- enable treesitter highlight
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
+
 -- set tabstop to be 2 for scripting languages
 autocmd("FileType", {
   group = augroup("Scripting"),
-	pattern = { "json", "sh", "javascript", "lua", "css", "vue", "yaml", "html", "zsh" },
+	pattern = { "json", "sh", "javascript", "lua", "css", "vue", "yaml", "html", "zsh", "svelte" },
 	callback = function()
 		vim.opt_local.tabstop = 2
 		vim.opt_local.shiftwidth = 2
@@ -81,3 +89,20 @@ autocmd("FileType", {
         vim.opt_local.spell = true
     end,
 })
+
+-- disable statusline in dashboard
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = {"alpha", "snacks_dashboard"},
+--   callback = function()
+--     local old_laststatus = vim.opt.laststatus
+--
+--     vim.api.nvim_create_autocmd("BufUnload", {
+--       buffer = 0,
+--       callback = function()
+--         vim.opt.laststatus = old_laststatus
+--       end,
+--     })
+--
+--     vim.opt.laststatus = 0
+--   end,
+-- })

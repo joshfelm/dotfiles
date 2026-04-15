@@ -1,9 +1,9 @@
 local utils = require('utils')
 
 local function config(_, _)
-  utils.Bufmap("n", "<leader>do", ":DiffviewOpen ", {desc = 'Close diff view', silent = false, noremap = true})
-  utils.Bufmap("n", "<leader>dc", ":DiffviewClose<CR>", {desc = 'Close diff view', silent = false, noremap = true})
-  utils.Bufmap("n", "<leader>df", ":DiffviewFileHistory<CR>", {desc = 'Open diff view file history', silent = true, noremap = true})
+  utils.map("n", "<leader>do", ":DiffviewOpen ", {desc = 'Close diff view', silent = false, noremap = true})
+  utils.map("n", "<leader>dc", ":DiffviewClose<CR>", {desc = 'Close diff view', silent = false, noremap = true})
+  utils.map("n", "<leader>df", ":DiffviewFileHistory<CR>", {desc = 'Open diff view file history', silent = true, noremap = true})
 end
 
 vim.api.nvim_create_autocmd("FileType", {

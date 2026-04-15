@@ -1,6 +1,6 @@
 local M = {}
 
-M.Bufmap = function(mode, lhs, rhs, opts)
+M.map = function(mode, lhs, rhs, opts)
     opts = opts or {silent = true, noremap = true}
     vim.keymap.set(mode, lhs, rhs, opts)
 end

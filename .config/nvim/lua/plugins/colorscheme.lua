@@ -17,7 +17,7 @@ return {
     -- colorscheme
     config = function(_, opts)
       require('gruvbox').setup(opts)
-      -- vim.cmd([[colorscheme gruvbox]])
+      vim.cmd([[colorscheme gruvbox]])
     end,
     opts = {
       terminal_colors = true, -- add neovim terminal colors
@@ -123,13 +123,6 @@ return {
   --   }
   -- },
   -- indent guide
-  {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    config = true,
-    -- use opts = {} for passing setup options
-    -- this is equalent to setup({}) function
-  },
   {
     'norcalli/nvim-colorizer.lua',
     config=function()

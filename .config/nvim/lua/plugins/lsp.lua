@@ -1,23 +1,26 @@
 local function config(_, _)
   -- Set up lspconfig.
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   -- python
-  require('lspconfig')['pyright'].setup {
-    capabilities = capabilities
-  }
+  -- require('lspconfig')['pyright'].setup {
+    -- capabilities = capabilities
+  -- }
 
   -- bash
-  require('lspconfig')['bashls'].setup {}
+  -- require('lspconfig')['bashls'].setup {}
+
+  -- svelte
+  -- require('lspconfig')['svelte-language-server'] {}
 
   -- rust
-  require('lspconfig')['rust_analyzer'].setup {}
+  -- require('lspconfig')['rust_analyzer'].setup {}
 
   -- js
-  require('lspconfig')['quick_lint_js'].setup {}
+  -- require('lspconfig')['quick_lint_js'].setup {}
 
   -- markdown
-  require('lspconfig')['marksman'].setup {}
+  -- require('lspconfig')['marksman'].setup {}
 
   -- bitbake
   -- require('lspconfig')['bitbake'].setup {}
@@ -94,6 +97,10 @@ local function config(_, _)
       diagnostics = { enable = "false" },
     },
 
+    ["svelte-language-server"] = {
+      name = "svelte-ls",
+    },
+
     ["marksman"] = {
       name = "marksman",
     },
@@ -125,7 +132,7 @@ local function config(_, _)
       local opts = vim.tbl_deep_extend("force", {
         capabilities = vim.deepcopy(common_capabilities),
       }, server_opts[server_name] or {})
-      require('lspconfig')[server_name].setup(opts)
+      -- require('lspconfig')[server_name].setup(opts)
     end,
   }
 
@@ -149,6 +156,17 @@ local function config(_, _)
     automatic_installation = true,
     handlers = server_handlers,
   })
+
+  -- require'lspconfig'.lua_ls.setup {
+  --   settings = {
+  --     Lua = {
+  --       diagnostics = {
+  --         -- Get the language server to recognize the `vim` global
+  --         globals = {'vim'},
+  --       },
+  --     },
+  --   },
+  -- }
 
   -- Diagnostics
   vim.diagnostic.config({
@@ -175,7 +193,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     -- cmd = "Mason",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    event = { "VeryLazy" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "hrsh7th/nvim-cmp",

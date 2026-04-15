@@ -1,4 +1,9 @@
+local utils = require('utils')
+
 local function config(_, opts)
+  utils.map("n", "<C-E>", ":NvimTreeToggle<cr>", {desc = 'nvim-tree: Toggle', silent = true, noremap = true, nowait = true})
+  utils.map("n", "<leader>n", ":NvimTreeFocus<CR>", {desc = 'nvim-tree: Focus', silent = true, noremap = true, nowait = true})
+
   local function my_on_attach(bufnr)
     local api = require "nvim-tree.api"
 
@@ -118,7 +123,8 @@ local function config(_, opts)
       no_buffer = false,
       custom = {
         "node_modules", -- filter out node_modules directory
-        ".git", -- filter out .git directory
+        "^.git$", -- filter out .git directory
+        "__pycache__"
       },
       exclude = {},
     },
@@ -148,7 +154,7 @@ local function config(_, opts)
     },
     git = {
       enable = true,
-      ignore = true,
+      ignore = false,
       timeout = 500,
     },
     view = {
@@ -187,7 +193,7 @@ local function config(_, opts)
             renamed = "R",
             deleted = "D",
             untracked = "U",
-            ignored = "I",
+            ignored = "",
           },
           folder = {
             default = "" ,

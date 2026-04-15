@@ -23,6 +23,7 @@ vim.opt.swapfile = false
 vim.opt.undofile = true
 vim.opt.clipboard = "unnamed" -- set to unnamedplus to always yank to clipboard
 vim.opt.fillchars:append { diff = "╱" } -- set diffview to have the greyed out stuff
+vim.opt.relativenumber = true
 
 -- For folds
 -- vim.opt.foldmethod="indent" -- XXX: this breaks tabs??

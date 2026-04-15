@@ -8,6 +8,9 @@ local function config(_, opts)
   vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = theme.white })
   vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = theme.red })
   vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+
+  vim.api.nvim_create_user_command('Noti', 'lua Snacks.picker.notifications()' , {})
+
   require('snacks').setup(opts)
 end
 
@@ -52,7 +55,7 @@ return {
     lazy = false,
     ---@type snacks.Config
     opts = {
-      bigfile = { enabled = false },
+      bigfile = { enabled = true },
       dashboard = {
         enabled = true,
         preset = {
@@ -92,7 +95,7 @@ return {
             padding = 1,
           },
           { section = "keys", padding = 1 },
-          { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+          { pane = 2, icon = " ", title = "Recent Files", section = "recent_files", cwd = true, indent = 2, padding = 1 },
           { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
           {
             pane = 2,
@@ -127,7 +130,7 @@ return {
       },
       lazygit = { enabled = true },
       notifier = {
-        enabled = false,
+        enabled = true,
         timeout = 3000,
       },
       picker = { enabled = false },
@@ -162,7 +165,7 @@ return {
           -- Create some toggle mappings
           Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
           Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
-          Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>uL")
+          Snacks.toggle.option("relativenumber", { name = "Relative Number" }):map("<leader>r")
           Snacks.toggle.diagnostics():map("<leader>ud")
           Snacks.toggle.line_number():map("<leader>ul")
           Snacks.toggle.option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 }):map("<leader>uc")
